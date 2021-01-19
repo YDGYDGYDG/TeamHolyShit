@@ -48,6 +48,9 @@ public class HookShotScript : MonoBehaviour
         {
             // 캐릭터가 중력을 받지 않게됨
             getRigid.gravityScale = 0;
+            // 힘 삭제
+            getRigid.velocity = Vector2.zero;
+
             // 이제 캐릭터를 훅 방향으로 움직인다.(훅의 조인트 길이를 줄인다.)
             // 처음에 빠르게, 가까워지면 천천히 줄어들어서 속도감
             if (hookJoint2D.distance > 1)
@@ -60,12 +63,18 @@ public class HookShotScript : MonoBehaviour
                     getRigid.AddForce(hook.position - transform.position);
                 }
             }
+            // 다 줄어들었어?
+            if ((hook.position - transform.position).magnitude <= 1)
+            {
+                // 달랑거리지 마
+                getRigid.simulated = false;
+            }
         }
 
         // 훅오프일 때, 누르면 쏜다. 
         if (Input.GetMouseButtonDown(0) && !isHookActive)
         {
-            //hookJoint2D.autoConfigureDistance = true;
+
             hook.gameObject.SetActive(true);
             isHookActive = true;
             // 훅은 캐릭터 위치에서부터 날아가겠지
@@ -82,9 +91,10 @@ public class HookShotScript : MonoBehaviour
         // 훅온일 때, 최대사거리아니고, 안붙었으면 = 늘어남
         if (isHookActive && !isLineMax && !isAttach)
         {
-            //
-            hook.Translate(shootDir.normalized * Time.deltaTime * lineSpeed);
+            // 훅 날릴 때 몸 안딸려가게 하기
+            hookJoint2D.enabled = false;
 
+            hook.Translate(shootDir.normalized * Time.deltaTime * lineSpeed);
             if(Vector2.Distance(transform.position, hook.position) > lineMax)
             {
                 isLineMax = true;
@@ -104,6 +114,7 @@ public class HookShotScript : MonoBehaviour
 
     void HookOFF()
     {
+        getRigid.simulated = true;
         getRigid.gravityScale = 1;
         isHookActive = false;
         isLineMax = false;

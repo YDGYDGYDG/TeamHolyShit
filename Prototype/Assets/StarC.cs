@@ -12,7 +12,7 @@ public class StarC : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "player")
         {
             star = true;
             Debug.Log("열쇠 획득");

@@ -20,6 +20,9 @@ public class HookShotScript : MonoBehaviour
 
     DistanceJoint2D hookJoint2D;
 
+    public bool isAttachWall;
+    public bool isAttachObject;
+
     void Start()
     {
         getRigid = gameObject.GetComponent<Rigidbody2D>();
@@ -43,31 +46,41 @@ public class HookShotScript : MonoBehaviour
         line.SetPosition(1, hook.position);
 
 
-        // 훅이 벽에 박혔으면
+        // 훅이 박혔으면
         if (isAttach)
         {
-            // 캐릭터가 중력을 받지 않게됨
-            getRigid.gravityScale = 0;
-            // 힘 삭제
-            getRigid.velocity = Vector2.zero;
-
-            // 이제 캐릭터를 훅 방향으로 움직인다.(훅의 조인트 길이를 줄인다.)
-            // 처음에 빠르게, 가까워지면 천천히 줄어들어서 속도감
-            if (hookJoint2D.distance > 1)
+            // 훅이 벽에 박혔으면
+            if (isAttachWall)
             {
-                hookJoint2D.distance -= Time.deltaTime * lineSpeed;
-                // 뭐? 다 줄였는데 훅이랑 캐릭터랑 멀리있다고?
-                if((hook.position - transform.position).magnitude > 1)
+                // 캐릭터가 중력을 받지 않게됨
+                getRigid.gravityScale = 0;
+                // 힘 삭제
+                getRigid.velocity = Vector2.zero;
+
+                // 이제 캐릭터를 훅 방향으로 움직인다.(훅의 조인트 길이를 줄인다.)
+                // 처음에 빠르게, 가까워지면 천천히 줄어들어서 속도감
+                if (hookJoint2D.distance > 1)
                 {
-                    // 때려서라도 가^^
-                    getRigid.AddForce(hook.position - transform.position);
+                    hookJoint2D.distance -= Time.deltaTime * lineSpeed;
+                    // 뭐? 다 줄였는데 훅이랑 캐릭터랑 멀리있다고?
+                    if ((hook.position - transform.position).magnitude > 1)
+                    {
+                        // 때려서라도 가^^
+                        getRigid.AddForce(hook.position - transform.position);
+                    }
+                }
+                // 다 줄어들었어?
+                if ((hook.position - transform.position).magnitude <= 1)
+                {
+                    // 달랑거리지 마
+                    getRigid.simulated = false;
                 }
             }
-            // 다 줄어들었어?
-            if ((hook.position - transform.position).magnitude <= 1)
+            // 훅이 오브젝트에 박혔으면
+            else if (isAttachObject)
             {
-                // 달랑거리지 마
-                getRigid.simulated = false;
+                // 니가와
+
             }
         }
 
@@ -82,13 +95,20 @@ public class HookShotScript : MonoBehaviour
             // 날아갈 방향은 포인터 방향
             shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         }
-        // 훅온일 때, 붙은 상태이면, 누르면 끊는다.
-        else if (Input.GetMouseButtonDown(0) && isHookActive && isAttach)
+        // 훅온일 때, 벽에 붙은 상태이면, 누르면 끊는다.
+        else if (Input.GetMouseButtonDown(0) && isHookActive && isAttachWall)
         {
             HookOFF();
-            // 가던 방향으로 쎄게 힘을 준다
-            getRigid.AddForce((hook.position - transform.position).normalized * 1000);
+            // 줄이 남은 상태에서 끊었으면 가던 방향으로 날라감
+            if ((hook.position - transform.position).magnitude > 1)
+                getRigid.AddForce((hook.position - transform.position).normalized * 1000);
         }
+        // 훅온일 때, 오브젝트에 붙은 상태이면, 누르면 끊는다.
+        else if (Input.GetMouseButtonDown(0) && isHookActive && isAttachObject)
+        {
+            HookOFF();
+        }
+
 
         // 훅온일 때, 최대사거리아니고, 안붙었으면 = 늘어남
         if (isHookActive && !isLineMax && !isAttach)
@@ -114,13 +134,15 @@ public class HookShotScript : MonoBehaviour
         }
     }
 
-    void HookOFF()
+    public void HookOFF()
     {
         getRigid.simulated = true;
         getRigid.gravityScale = 1;
         isHookActive = false;
         isLineMax = false;
         isAttach = false;
+        isAttachWall = false;
+        isAttachObject = false;
         hook.gameObject.SetActive(false);
     }
 }

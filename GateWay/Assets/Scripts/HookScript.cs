@@ -15,13 +15,41 @@ public class HookScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 훅이 벽에 닿으면
-        if (collision.CompareTag("Wall") && !hookShot.isLineMax)
+        if (!hookShot.isLineMax)
         {
-            joint2D.enabled = true;
-            // 이제부터 그 거리가 고정됩니다.
-            // 이 거리를 0.005까지 점차 줄이면 캐릭터가 훅 방향으로 가까워지겠지
-            hookShot.isAttach = true;
+            // 훅이 벽에 닿으면
+            if (collision.CompareTag("Wall"))
+            {
+                joint2D.enabled = true;
+                hookShot.isAttach = true;
+                hookShot.isAttachWall = true;
+            }
+
+            // 훅이 오브젝트에 닿으면
+            else if (collision.CompareTag("Object"))
+            {
+                joint2D.enabled = true;
+                hookShot.isAttach = true;
+                hookShot.isAttachObject = true;
+            }
+
+            // 훅이 몹에 닿으면
+            else if (collision.CompareTag("Monster"))
+            {
+                // 줄 거두기
+                hookShot.HookOFF();
+                // 해당 몹 죽이기
+                collision.gameObject.SetActive(false);
+                // or 해당 몹 데미지 주는 함수 호출하기
+                // collision.gameObject.GetComponent<MonsterScript>().Damage();
+            }
+
+            // 아무것도 해당 안되는 물체에 닿으면
+            else
+            {
+                // 줄 거두기
+                hookShot.HookOFF();
+            }
         }
     }
 

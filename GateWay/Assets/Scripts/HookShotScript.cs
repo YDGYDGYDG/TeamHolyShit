@@ -76,12 +76,6 @@ public class HookShotScript : MonoBehaviour
                     getRigid.simulated = false;
                 }
             }
-            // 훅이 오브젝트에 박혔으면
-            else if (isAttachObject)
-            {
-                // 니가와
-
-            }
         }
 
         // 훅오프일 때, 누르면 쏜다. 

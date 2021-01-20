@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class HookScript : MonoBehaviour
 {
+    GameObject player;
+
     HookShotScript hookShot;
     DistanceJoint2D joint2D;
+    DistanceJoint2D playerJoint2D;
+
+    float lineSpeed;
 
     void Start()
     {
-        hookShot = GameObject.Find("player").GetComponent<HookShotScript>();
+        player = GameObject.Find("player");
+        hookShot = player.GetComponent<HookShotScript>();
+        lineSpeed = hookShot.lineSpeed;
         joint2D = GetComponent<DistanceJoint2D>();
+        playerJoint2D = player.GetComponent<DistanceJoint2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,6 +39,15 @@ public class HookScript : MonoBehaviour
                 joint2D.enabled = true;
                 hookShot.isAttach = true;
                 hookShot.isAttachObject = true;
+                playerJoint2D.enabled = true;
+
+                // 플레이어가 가진 joint 길이 줄이기
+                if (playerJoint2D.distance > 1)
+                {
+                    Debug.Log("작동해야할텐데?");
+                    playerJoint2D.distance -= Time.deltaTime * lineSpeed;
+                }
+
             }
 
             // 훅이 몹에 닿으면
@@ -44,12 +61,12 @@ public class HookScript : MonoBehaviour
                 // collision.gameObject.GetComponent<MonsterScript>().Damage();
             }
 
-            // 아무것도 해당 안되는 물체에 닿으면
-            else
-            {
-                // 줄 거두기
-                hookShot.HookOFF();
-            }
+            // ~ 물체에 닿으면
+            //else if (collision.CompareTag(""))
+            //{
+            //    // 줄 거두기
+            //    hookShot.HookOFF();
+            //}
         }
     }
 

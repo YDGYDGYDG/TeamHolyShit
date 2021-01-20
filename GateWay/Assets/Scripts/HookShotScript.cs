@@ -95,6 +95,8 @@ public class HookShotScript : MonoBehaviour
         // 훅오프일 때, 누르면 쏜다. 
         if (Input.GetMouseButtonDown(0) && !isHookActive)
         {
+            GetComponent<AudioSource>().Play();     // 훅 사운드 재생
+
             hook.gameObject.SetActive(true);
             isHookActive = true;
             // 훅은 캐릭터 위치에서부터 날아가겠지

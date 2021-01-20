@@ -28,7 +28,8 @@ public class LaserProjector : MonoBehaviour
 
         line.positionCount++;
         hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask);
-        line.SetPosition(line.positionCount - 1, hit.point);
+        if (hit) line.SetPosition(line.positionCount - 1, hit.point);
+        else line.SetPosition(line.positionCount - 1, transform.position);
 
         while (hit && line.positionCount < 50) 
         {

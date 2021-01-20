@@ -8,17 +8,16 @@ public class HookScript : MonoBehaviour
 
     HookShotScript hookShot;
     DistanceJoint2D joint2D;
-    DistanceJoint2D playerJoint2D;
-
-    float lineSpeed;
 
     void Start()
     {
         player = GameObject.Find("player");
         hookShot = player.GetComponent<HookShotScript>();
-        lineSpeed = hookShot.lineSpeed;
         joint2D = GetComponent<DistanceJoint2D>();
-        playerJoint2D = player.GetComponent<DistanceJoint2D>();
+    }
+
+    private void Update()
+    {
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,15 +38,7 @@ public class HookScript : MonoBehaviour
                 joint2D.enabled = true;
                 hookShot.isAttach = true;
                 hookShot.isAttachObject = true;
-                playerJoint2D.enabled = true;
-
-                // 플레이어가 가진 joint 길이 줄이기
-                if (playerJoint2D.distance > 1)
-                {
-                    Debug.Log("작동해야할텐데?");
-                    playerJoint2D.distance -= Time.deltaTime * lineSpeed;
-                }
-
+                hookShot.hookedObject = collision.gameObject;
             }
 
             // 훅이 몹에 닿으면

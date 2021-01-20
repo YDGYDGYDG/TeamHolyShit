@@ -23,6 +23,8 @@ public class HookShotScript : MonoBehaviour
     public bool isAttachWall;
     public bool isAttachObject;
 
+    public GameObject hookedObject;
+
     void Start()
     {
         getRigid = gameObject.GetComponent<Rigidbody2D>();
@@ -76,12 +78,23 @@ public class HookShotScript : MonoBehaviour
                     getRigid.simulated = false;
                 }
             }
+            // 훅이 오브젝트에 박혔으면
+            else if (isAttachObject)
+            {
+                hookJoint2D.enabled = false;
+                hookedObject.transform.position = hook.position;
+                hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * lineSpeed / 2);
+                // 다 돌아왔으면
+                if (Vector2.Distance(transform.position, hook.position) < 1f)
+                {
+                    HookOFF();
+                }
+            }
         }
 
         // 훅오프일 때, 누르면 쏜다. 
         if (Input.GetMouseButtonDown(0) && !isHookActive)
         {
-
             hook.gameObject.SetActive(true);
             isHookActive = true;
             // 훅은 캐릭터 위치에서부터 날아가겠지

@@ -11,15 +11,9 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public BTNType currentType;
     public Transform buttonScale;
     Vector3 defaultScale;
-    
-    public GameObject mainUI;
-    public GameObject credit;
-    public bool creditON;
-
-    bool isSound;
+    public bool isSound;
     public void Awake()
     {
-        credit = GameObject.Find("Credit");
         defaultScale = buttonScale.localScale;
     }
     
@@ -34,21 +28,28 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 SceneManager.LoadScene("Game");
                 break;
             case BTNType.Level:
+                SceneManager.LoadScene("StageSelectScene");
+                break;
+            case BTNType.Stage1:
+                SceneManager.LoadScene("Game");
+                break;
+            case BTNType.Stage2:
+                SceneManager.LoadScene("Game");
+                break;
+            case BTNType.Stage3:
+                SceneManager.LoadScene("Game");
+                break;
+            case BTNType.Stage4:
+                SceneManager.LoadScene("Game");
+                break;
+            case BTNType.Hidden:
                 SceneManager.LoadScene("Game");
                 break;
             case BTNType.Option:
                 SceneManager.LoadScene("OptionScene");
                 break;
-            case BTNType.Credit:
-                if (creditON)
-                {
-                    credit.SetActive(true);
-                }
-                else
-                {
-                    credit.SetActive(false);
-                }
-                creditON = !creditON;
+            case BTNType.Credit:              
+                 SceneManager.LoadScene("CreditScene");                           
                 break;
             case BTNType.Sound:
                 if (isSound)
@@ -63,7 +64,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Back:
                 SceneManager.LoadScene("MainScene");
-                break;           
+                break;
             case BTNType.Quit:
                 Application.Quit();
                 Debug.Log("앱종료");

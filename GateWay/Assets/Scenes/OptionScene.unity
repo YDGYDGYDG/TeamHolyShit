@@ -378,10 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a60479b862d2f4ca3e4338f8b6c3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentType: 6
+  currentType: 11
   buttonScale: {fileID: 731519113}
-  mainUI: {fileID: 0}
-  optionUI: {fileID: 0}
+  isSound: 0
 --- !u!114 &286384103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,7 +694,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.25680846, g: 0.26333264, b: 0.2735849, a: 0}
+  m_BackGroundColor: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -934,10 +933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a60479b862d2f4ca3e4338f8b6c3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentType: 5
+  currentType: 10
   buttonScale: {fileID: 2085524829}
-  mainUI: {fileID: 0}
-  optionUI: {fileID: 0}
+  isSound: 0
 --- !u!114 &1799297719
 MonoBehaviour:
   m_ObjectHideFlags: 0

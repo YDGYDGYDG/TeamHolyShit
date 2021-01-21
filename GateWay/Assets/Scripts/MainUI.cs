@@ -5,9 +5,11 @@ using UnityEngine;
 
 public enum BTNType
 {
-    New,
+    Newgame,
     Continue,
+    Level,
     Option,
+    Credit,
     Sound,
     Back,
     Quit

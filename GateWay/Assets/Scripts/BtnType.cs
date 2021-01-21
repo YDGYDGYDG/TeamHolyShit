@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
@@ -10,27 +11,44 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public BTNType currentType;
     public Transform buttonScale;
     Vector3 defaultScale;
-    public CanvasGroup mainGroup;
-    public CanvasGroup optionGroup;
+    
+    public GameObject mainUI;
+    public GameObject credit;
+    public bool creditON;
 
     bool isSound;
-    public void Start()
+    public void Awake()
     {
+        credit = GameObject.Find("Credit");
         defaultScale = buttonScale.localScale;
     }
+    
     public void OnBtnClick()
     {
         switch (currentType)
         {
-            case BTNType.New:
+            case BTNType.Newgame:
                 SceneManager.LoadScene("Game");
                 break;
             case BTNType.Continue:
                 SceneManager.LoadScene("Game");
                 break;
+            case BTNType.Level:
+                SceneManager.LoadScene("Game");
+                break;
             case BTNType.Option:
-                CanvasGroupOn(optionGroup);
-                CanvasGroupOff(mainGroup);
+                SceneManager.LoadScene("OptionScene");
+                break;
+            case BTNType.Credit:
+                if (creditON)
+                {
+                    credit.SetActive(true);
+                }
+                else
+                {
+                    credit.SetActive(false);
+                }
+                creditON = !creditON;
                 break;
             case BTNType.Sound:
                 if (isSound)
@@ -44,9 +62,8 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 isSound = !isSound;
                 break;
             case BTNType.Back:
-                CanvasGroupOn(mainGroup);
-                CanvasGroupOff(optionGroup);
-                break;
+                SceneManager.LoadScene("MainScene");
+                break;           
             case BTNType.Quit:
                 Application.Quit();
                 Debug.Log("앱종료");
@@ -54,18 +71,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
     }
-    public void CanvasGroupOn(CanvasGroup cg)
-    {
-        cg.alpha = 1;
-        cg.interactable = true;
-        cg.blocksRaycasts = true;
-    }
-    public void CanvasGroupOff(CanvasGroup cg)
-    {
-        cg.alpha = 0;
-        cg.interactable = false;
-        cg.blocksRaycasts = false;
-    }
+  
 
     public void OnPointerEnter(PointerEventData eventData)
     {

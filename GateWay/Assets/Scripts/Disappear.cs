@@ -5,9 +5,6 @@ using UnityEngine;
 public class Disappear : MonoBehaviour
 {
 
-    private CapsuleCollider2D capsule; // 충돌 처리해주기 위한 컴포넌트
-   
-
     void Start()
     {
     }
@@ -25,6 +22,15 @@ public class Disappear : MonoBehaviour
             Debug.Log("제발실행해젭ㄷㄱㄹ ㅓㅐㅇ");
             Destroy(collision.gameObject, 1);
             GameObject.Find("player").GetComponent<HookShotScript>().HookOFF();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "diswall")
+        {
+            Debug.Log("되라");
+            Destroy(collision.gameObject, 1);
         }
     }
 }

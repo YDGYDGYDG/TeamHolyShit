@@ -27,9 +27,13 @@ public class HookShotScript : MonoBehaviour
 
     GameObject player;    // 플레이어 연결(형준)
     Animator jumpAnim;    // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
+    Vector2 Mouseposition;  // 줄 생성 위치 좌표 판단(형준)
+    SpriteRenderer playerPosition;      // 캐릭터 이동방향 판단(형준)
+
 
     void Start()
     {
+
         getRigid = gameObject.GetComponent<Rigidbody2D>();
 
         // 줄 생성
@@ -43,6 +47,8 @@ public class HookShotScript : MonoBehaviour
         hookJoint2D = hook.GetComponent<DistanceJoint2D>();
 
         player = GameObject.Find("player");   // 일단 플레이어 찾고(형준)
+        playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
+     
         
         
     }
@@ -114,6 +120,25 @@ public class HookShotScript : MonoBehaviour
             hook.position = transform.position;
             // 날아갈 방향은 포인터 방향
             shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
+
+
+            this.Mouseposition = shootDir;  // shootDir 값 대입(형준)
+            
+            if (Mouseposition.x < 0)        // 마우스 포인터 위치 판단(형준)
+            {
+                // 방향이 왼쪽일때(형준)
+                playerPosition.flipX = true;     // 애니메이션 위치 왼쪽(형준)   
+            }
+            else
+            {
+                // 방향이 오른쪽일때(형준)
+                playerPosition.flipX = false;     // 애니메이션 위치 오른쪽(형준)
+            }
+            
+
+            
+
         }
         // 훅온일 때, 벽에 붙은 상태이면, 누르면 끊는다.
         else if (Input.GetMouseButtonDown(0) && isHookActive && isAttachWall)

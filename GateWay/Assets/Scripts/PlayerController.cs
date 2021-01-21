@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        
         
     }
     // 캐릭터가 죽음

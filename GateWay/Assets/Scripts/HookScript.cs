@@ -32,6 +32,13 @@ public class HookScript : MonoBehaviour
                 hookShot.isAttachWall = true;
             }
 
+            else if (collision.CompareTag("diswall"))
+            {
+                joint2D.enabled = true;
+                hookShot.isAttach = true;
+                hookShot.isAttachWall = true;
+            }
+
             // 훅이 오브젝트에 닿으면
             else if (collision.CompareTag("Object"))
             {

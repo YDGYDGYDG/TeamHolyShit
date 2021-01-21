@@ -53,7 +53,7 @@ public class FireWallController : MonoBehaviour
         {
             line.SetPosition(1, laserPos + new Vector2(0f, fireHigh));  // 안하면 현재 위치에서 100 떨어진 곳
             hitPoint = (transform.position.y + fireHigh)- transform.position.y;
-            Debug.Log(hitPoint);
+          
         }
         
     }

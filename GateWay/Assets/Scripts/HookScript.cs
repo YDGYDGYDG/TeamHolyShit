@@ -9,11 +9,15 @@ public class HookScript : MonoBehaviour
     HookShotScript hookShot;
     DistanceJoint2D joint2D;
 
+    GameObject attackHook;      // 충돌 사운드 재생용(형준)
+
     void Start()
     {
         player = GameObject.Find("player");
         hookShot = player.GetComponent<HookShotScript>();
         joint2D = GetComponent<DistanceJoint2D>();
+
+        attackHook = GameObject.Find("HookSE");     // 훅 사운드 컴포넌트 연결(형준)
     }
 
     private void Update()
@@ -30,6 +34,8 @@ public class HookScript : MonoBehaviour
                 joint2D.enabled = true;
                 hookShot.isAttach = true;
                 hookShot.isAttachWall = true;
+
+                attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
             }
 
             else if (collision.CompareTag("diswall"))
@@ -46,6 +52,8 @@ public class HookScript : MonoBehaviour
                 hookShot.isAttach = true;
                 hookShot.isAttachObject = true;
                 hookShot.hookedObject = collision.gameObject;
+
+                attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
             }
 
             // 훅이 몹에 닿으면
@@ -57,6 +65,8 @@ public class HookScript : MonoBehaviour
                 collision.gameObject.SetActive(false);
                 // or 해당 몹 데미지 주는 함수 호출하기
                 // collision.gameObject.GetComponent<MonsterScript>().Damage();
+
+                //attackHook.GetComponent<AudioSource>().Play();     -->      충돌 사운드 재생(형준)
             }
 
             // ~ 물체에 닿으면

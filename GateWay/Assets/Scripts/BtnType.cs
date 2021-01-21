@@ -22,28 +22,28 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         switch (currentType)
         {
             case BTNType.Newgame:
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Tutorial1");
                 break;
             case BTNType.Continue:
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Tutorial1");
                 break;
             case BTNType.Level:
                 SceneManager.LoadScene("StageSelectScene");
                 break;
             case BTNType.Stage1:
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Tutorial1");
                 break;
             case BTNType.Stage2:
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Tutorial1");
                 break;
             case BTNType.Stage3:
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Tutorial1");
                 break;
             case BTNType.Stage4:
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Tutorial1");
                 break;
             case BTNType.Hidden:
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Tutorial1");
                 break;
             case BTNType.Option:
                 SceneManager.LoadScene("OptionScene");

@@ -25,6 +25,9 @@ public class HookShotScript : MonoBehaviour
 
     public GameObject hookedObject;
 
+    GameObject player;    // 플레이어 연결(형준)
+    Animator jumpAnim;    // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
+
     void Start()
     {
         getRigid = gameObject.GetComponent<Rigidbody2D>();
@@ -38,10 +41,16 @@ public class HookShotScript : MonoBehaviour
 
         hook.gameObject.SetActive(false);
         hookJoint2D = hook.GetComponent<DistanceJoint2D>();
+
+        player = GameObject.Find("player");   // 일단 플레이어 찾고(형준)
+        
+        
     }
 
     void Update()
     {
+        
+
         // '줄'의 시작점은 캐릭터의 위치로 고정
         line.SetPosition(0, transform.position);
         // 줄의 끝점은 훅의 위치로 고정
@@ -95,7 +104,9 @@ public class HookShotScript : MonoBehaviour
         // 훅오프일 때, 누르면 쏜다. 
         if (Input.GetMouseButtonDown(0) && !isHookActive)
         {
-            GetComponent<AudioSource>().Play();     // 훅 사운드 재생
+            player.GetComponent<Animator>().SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
+
+            GetComponent<AudioSource>().Play();     // 훅 사운드 재생(형준)
 
             hook.gameObject.SetActive(true);
             isHookActive = true;
@@ -145,6 +156,8 @@ public class HookShotScript : MonoBehaviour
 
     public void HookOFF()
     {
+        player.GetComponent<Animator>().SetBool("isJump", false);    // Idle 애니메이션 출력(형준)
+
         getRigid.simulated = true;
         getRigid.gravityScale = 1;
         isHookActive = false;

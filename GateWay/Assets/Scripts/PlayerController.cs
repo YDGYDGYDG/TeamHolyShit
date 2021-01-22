@@ -5,13 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-     GameObject deathEffect;     // 사망 이펙트 재생용(형준)
-     GameObject outChartter;      // 
+     
 
     // Start is called before the first frame update
     void Start()
     {
-        deathEffect = GameObject.Find("Death");     // 사망 프리팹 연결(형준)
+        
         
 
         
@@ -20,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerDead()
     {
         Debug.Log("캐릭터 사망");
-
+        this.gameObject.SetActive(false);
 
         
 

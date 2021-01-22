@@ -39,7 +39,7 @@ public class HookScript : MonoBehaviour
                 hookShot.isAttachWall = true;
 
                 hookSE.GetComponent<AudioSource>().Stop();          // 로프 사운드 정지(형준)
-                attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
+                //attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
             }
 
             else if (collision.CompareTag("diswall"))
@@ -58,7 +58,7 @@ public class HookScript : MonoBehaviour
                 hookShot.hookedObject = collision.gameObject;
 
                 hookSE.GetComponent<AudioSource>().Stop();          // 로프 사운드 정지(형준)
-                attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
+                // attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
             }
 
             // 훅이 몹에 닿으면

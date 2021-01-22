@@ -9,7 +9,23 @@ public class InGameBtnType : MonoBehaviour
 {
     public InGameBTNType InGameBtn;
     public GameObject menuSet;
+    public GameObject Player;
+    public void GameSave()
+    {
+        PlayerPrefs.SetFloat("PlayerX", Player.transform.position.x);
+        PlayerPrefs.SetFloat("PlayerY", Player.transform.position.y);
+        PlayerPrefs.Save();
+    }
+    public void GameLoad()
+    {
+        if (!PlayerPrefs.HasKey("PlayerX"))
+            return;
+        float x = PlayerPrefs.GetFloat("PlayerX");
+        float y = PlayerPrefs.GetFloat("PlayerY");
 
+        Player.transform.position = new Vector3(x, y, 0);
+
+    }
     public void InGameOnBtnClick()
     {
         switch (InGameBtn)
@@ -18,6 +34,7 @@ public class InGameBtnType : MonoBehaviour
                 menuSet.SetActive(false);
                 break;
             case InGameBTNType.GameSave:
+                GameSave();
                 Debug.Log("게임세이브");
                 SceneManager.LoadScene("MainScene");
                 break; 
@@ -32,7 +49,8 @@ public class InGameBtnType : MonoBehaviour
                     menuSet.SetActive(true);
                 break;
             case InGameBTNType.Reset:
-                Debug.Log("세이브포인트로 이동");
+                GameLoad();
+                Debug.Log("게임로드");
                 break;
         }
 

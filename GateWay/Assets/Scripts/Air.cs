@@ -12,6 +12,7 @@ public class Air : MonoBehaviour
     private float curAir = 0;
     bool isWater;
     private float time = 0;
+    float outTime = 0;
 
 
     // Update is called once per frame
@@ -20,7 +21,6 @@ public class Air : MonoBehaviour
         if (isWater)
         {
             time += Time.deltaTime;
-
             if (time > 0.5)
             {
                 time = 0;
@@ -28,7 +28,18 @@ public class Air : MonoBehaviour
                 airbar.value = curAir / maxAir;
             }
         }
+        else
+        {
+            outTime -= Time.deltaTime;
+            if(outTime > 0.5)
+            {
+                outTime = 0;
+                curAir -= 5.0f;
+                airbar.value = curAir / maxAir;
+            }
+        }
         
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,7 +53,7 @@ public class Air : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Water")
         {
             Debug.Log("아니야");
             isWater = false;

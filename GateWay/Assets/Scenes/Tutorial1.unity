@@ -10306,6 +10306,12 @@ MonoBehaviour:
   isAttach: 0
   lineMax: 10
   lineSpeed: 30
+  linePullSpeed: 60
+  objectPullSpeed: 15
+  linePower: 100
+  linePowerRate: 1
+  ropeLength: 0
+  cuttedRopeLength: 0
   isAttachWall: 0
   isAttachObject: 0
   hookedObject: {fileID: 0}
@@ -10587,7 +10593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408317017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.204553, y: -0.09305054, z: 21.047256}
+  m_LocalPosition: {x: -8.441, y: -0.128, z: 21.047256}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 2063426738}

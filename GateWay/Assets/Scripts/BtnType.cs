@@ -43,6 +43,18 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case BTNType.Stage4:
                 SceneManager.LoadScene("Tutorial1");
                 break;
+            case BTNType.Stage1Enter:
+                SceneManager.LoadScene("Stage1_LevelScene");
+                break;
+            case BTNType.Stage2Enter:
+                SceneManager.LoadScene("Stage2_LevelScene");
+                break;
+            case BTNType.Stage3Enter:
+                SceneManager.LoadScene("Stage3_LevelScene");
+                break;
+            case BTNType.Stage4Enter:
+                SceneManager.LoadScene("Stage4_LevelScene");
+                break;
             case BTNType.Hidden:
                 SceneManager.LoadScene("Tutorial1");
                 break;

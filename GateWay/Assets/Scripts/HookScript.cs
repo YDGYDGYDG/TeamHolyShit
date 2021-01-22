@@ -23,10 +23,6 @@ public class HookScript : MonoBehaviour
         hookSE = GameObject.Find("player");         // 플레이어 컴포넌트 연결(형준)
     }
 
-    private void Update()
-    {
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!hookShot.isLineMax)
@@ -38,10 +34,12 @@ public class HookScript : MonoBehaviour
                 hookShot.isAttach = true;
                 hookShot.isAttachWall = true;
 
+                hookShot.ropeLength = (player.transform.position - transform.position).magnitude;
+
                 hookSE.GetComponent<AudioSource>().Stop();          // 로프 사운드 정지(형준)
                 attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
             }
-
+            // 훅이  곧 사라지는 벽에 닿으면
             else if (collision.CompareTag("diswall"))
             {
                 joint2D.enabled = true;

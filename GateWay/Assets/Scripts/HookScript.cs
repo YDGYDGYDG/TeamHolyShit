@@ -45,6 +45,7 @@ public class HookScript : MonoBehaviour
                 joint2D.enabled = true;
                 hookShot.isAttach = true;
                 hookShot.isAttachWall = true;
+
             }
 
             // 훅이 오브젝트에 닿으면

@@ -13,6 +13,7 @@ public class Disappear : MonoBehaviour
 
     void Start()
     {
+      
         hook_script = GetComponent<HookShotScript>();
     }
 
@@ -45,7 +46,7 @@ public class Disappear : MonoBehaviour
                     cur_sec += Time.deltaTime;
                 }
 
-                // 씬이동 여기 씬 이름 넣어
+                // 씬이동 여기 씬 이름 sjgg
                 SceneManager.LoadScene("Game");
             }
         }
@@ -53,7 +54,7 @@ public class Disappear : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "diswall")
+        if (collision.gameObject.tag == "diswall")
         {
             Debug.Log("되라");
             Destroy(collision.gameObject, 1);

@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public GameObject menuSet;
     public BTNType currentType;
     public Transform buttonScale;
     Vector3 defaultScale;
@@ -64,7 +65,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Back:
                 SceneManager.LoadScene("MainScene");
-                break;
+                break;         
             case BTNType.Quit:
                 Application.Quit();
                 Debug.Log("앱종료");

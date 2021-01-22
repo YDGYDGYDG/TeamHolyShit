@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float heightMax = 1000;
-    public float heightMin = -1000;
-    public float widthMax = 1000;
-    public float widthMin = -1000;
+    public float heightMax = 100;
+    public float heightMin = -100;
+    public float widthMax = 100;
+    public float widthMin = -100;
 
-    public GameObject player;
+    public Transform playerTransform;
 
-    void Awake()
+    public float smoothSpeed = 0.9f;
+    Vector3 smoothedPosition;
+
+    void FixedUpdate()
     {
-        player = GameObject.Find("player");
-    }
-
-    void Update()
-    {
+        smoothedPosition = Vector3.Lerp(playerTransform.position, transform.position, smoothSpeed);
         if (transform.position.x < widthMax && transform.position.x > widthMin && transform.position.y < heightMax && transform.position.y > heightMin)
-            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+        {
+            transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
+        }
     }
 }

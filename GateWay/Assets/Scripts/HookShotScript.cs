@@ -208,7 +208,7 @@ public class HookShotScript : MonoBehaviour
         GetComponent<Animator>().SetBool("isJump", false);    // Idle 애니메이션 출력(형준)
 
         getRigid.simulated = true;
-        //getRigid.gravityScale = 1;
+        getRigid.gravityScale = 1;
         isHookActive = false;
         isLineMax = false;
         isAttach = false;

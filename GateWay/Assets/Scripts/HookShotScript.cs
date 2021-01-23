@@ -107,10 +107,6 @@ public class HookShotScript : MonoBehaviour
                         // 에임 위치는 레이캐스트 위치
                         aim.transform.position = hit.point;
                     }
-                    else if (!hit)
-                    {
-                        Debug.Log("충돌체 없음");
-                    }
                     else
                     {
                         // 최대 사거리 위치 구하기
@@ -160,7 +156,6 @@ public class HookShotScript : MonoBehaviour
                 hook.position = transform.position;
                 // 날아갈 방향은 포인터 방향
                 shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-                Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 if (shootDir.x < 0)        // 마우스 포인터 위치 판단(형준)
                 {
                     // 방향이 왼쪽일때(형준)
@@ -210,9 +205,6 @@ public class HookShotScript : MonoBehaviour
                     getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
 
                 }
-                Debug.Log(transform.position);
-                Debug.Log(hook.position);
-                Debug.Log("1이하인가: " + (hook.position - transform.position).magnitude);
             }
 
             // 훅이 오브젝트에 박혔다

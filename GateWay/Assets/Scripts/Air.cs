@@ -21,21 +21,26 @@ public class Air : MonoBehaviour
         if (isWater)
         {
             time += Time.deltaTime;
-            if (time > 0.5)
-            {
-                time = 0;
-                curAir += 5.0f;
-                airbar.value = curAir / maxAir;
-            }
+
+                if (time > 0.5)
+                {
+                    time = 0;
+                    curAir += 5.0f;
+                    airbar.value = curAir / maxAir;
+                }
         }
         else
         {
-            outTime -= Time.deltaTime;
-            if(outTime > 0.5)
+            outTime += Time.deltaTime;
+
+            if(curAir > 0)
             {
-                outTime = 0;
-                curAir -= 5.0f;
-                airbar.value = curAir / maxAir;
+                if (outTime > 1.0)
+                {
+                    outTime = 0;
+                    curAir -= 3.0f;
+                    airbar.value = curAir / maxAir;
+                }
             }
         }
         

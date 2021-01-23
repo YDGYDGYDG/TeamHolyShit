@@ -5,6 +5,8 @@ using UnityEngine;
 public class FireController : MonoBehaviour
 {
     PlayerController playerController;
+
+    public bool dropFire = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class FireController : MonoBehaviour
     void Update()
     {
         // 아래로 떨어짐
+        if(dropFire)
         transform.Translate(0, -0.1f, 0);
 
         // 화면밖으로 나가면 소멸

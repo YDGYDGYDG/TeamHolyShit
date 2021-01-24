@@ -11,7 +11,9 @@ public class HookScript : MonoBehaviour
 
     GameObject attackHook;      // 충돌 사운드 재생용(형준)
 
-    GameObject hookSE;       // 훅 SE 정지용(형준)
+    GameObject hookSE;          // 훅 SE 정지용(형준)
+
+    
 
     void Start()
     {
@@ -66,7 +68,9 @@ public class HookScript : MonoBehaviour
                 // 줄 거두기
                 hookShot.HookOFF();
                 // 해당 몹 죽이기
-                collision.gameObject.SetActive(false);
+                //collision.gameObject.SetActive(false);
+                // 이펙트 호출하기
+                
                 // or 해당 몹 데미지 주는 함수 호출하기
                 // collision.gameObject.GetComponent<MonsterScript>().Damage();
 

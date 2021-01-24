@@ -6,8 +6,7 @@ using UnityEngine;
 public class ArrowGenerator : MonoBehaviour
 {
     public GameObject arrowPrefab;  //프리팹을 이용해 만들 객체
-    GameObject arrow;
-
+    GameObject arrow;   
     float span = 0.3f;
     float timeStack = 0;
     void Start()

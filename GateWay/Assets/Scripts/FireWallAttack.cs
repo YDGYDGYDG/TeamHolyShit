@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireWallAttack : MonoBehaviour
 {
+    
     PlayerController playerController;
     BoxCollider2D fireCollider;
     FireWallController fireWallController;
@@ -13,6 +14,7 @@ public class FireWallAttack : MonoBehaviour
         playerController = GameObject.Find("player").GetComponent<PlayerController>();
         fireCollider = GameObject.Find("FireWallLine").GetComponent<BoxCollider2D>();
         fireWallController = GameObject.Find("FireWall").GetComponent<FireWallController>();
+        
 
     }
 

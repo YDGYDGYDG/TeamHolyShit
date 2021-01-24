@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    HookShotScript hookLine;    // 훅 연결용 변수(형준)
 
-     
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        
 
-        
+        hookLine = GameObject.Find("player").GetComponent<HookShotScript>();    // 스크립트 연결(형준)
+
+
+
+
     }
     // 캐릭터가 죽음
     public void PlayerDead()
     {
         Debug.Log("캐릭터 사망");
-        this.gameObject.SetActive(false);
-
+        this.gameObject.SetActive(false);     // 캐릭터 없애주고..(형준)
+        hookLine.HookOFF();                   // 훅도 지워줘야지??(형준)
         
 
-        //this.gameObject.SetActive(false);                       // 플레이어를 없앤다(형준)
-        //deathEffect.GetComponent<ParticleSystem>().Play();      // 사망 이펙트를 실행(형준)
         
 
     }

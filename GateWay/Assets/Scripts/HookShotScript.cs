@@ -45,8 +45,9 @@ public class HookShotScript : MonoBehaviour
 
     public GameObject hookedObject;
 
-    Animator jumpAnim;    // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
+    Animator jumpAnim;                  // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
     SpriteRenderer playerPosition;      // 캐릭터 이동방향 판단(형준)
+    GameObject HookSE;                  // 훅 SE 재생용(형준)
 
     public GameObject aim;
     Vector3 aimDir;
@@ -68,6 +69,7 @@ public class HookShotScript : MonoBehaviour
         hookJoint2D = hook.GetComponent<DistanceJoint2D>();
 
         playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
+        HookSE = GameObject.Find("Hook");                   // 훅 찾아주고..(형준)
 
         aimLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
     }
@@ -148,7 +150,7 @@ public class HookShotScript : MonoBehaviour
                 aim.SetActive(false);
                 GetComponent<Animator>().SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
 
-                GetComponent<AudioSource>().Play();     // 훅 사운드 재생(형준)
+                
 
                 hook.gameObject.SetActive(true);
                 isHookActive = true;

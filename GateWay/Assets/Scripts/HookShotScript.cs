@@ -36,6 +36,7 @@ public class HookShotScript : MonoBehaviour
     public float ropeLength;
 
     DistanceJoint2D hookJoint2D;
+    DistanceJoint2D hookChildJoint2D;
 
     public bool isAttachWall;
     public bool isAttachObject;
@@ -71,6 +72,7 @@ public class HookShotScript : MonoBehaviour
 
         hook.gameObject.SetActive(false);
         hookJoint2D = hook.GetComponent<DistanceJoint2D>();
+        hookChildJoint2D = hook.GetChild(2).GetComponent<DistanceJoint2D>();
 
         playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
         HookSE = GameObject.Find("Hook");                   // 훅 찾아주고..(형준)
@@ -132,14 +134,15 @@ public class HookShotScript : MonoBehaviour
                 //hookedObject.transform.position = hook.position;
 
                 // 후크와 오브젝트를 딱붙이는 컴포넌트를 활성화시킨다 
-                hook.GetComponent<HingeJoint2D>().connectedBody = hookedObject.GetComponent<Rigidbody2D>();
+                hookChildJoint2D.connectedBody = hookedObject.GetComponent<Rigidbody2D>();
+                hookChildJoint2D.distance = hookedObjectSize / 2;
                 hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * objectPullSpeed);
 
                 // 내 앞까지 이동했으면 줄 끊는다.
                 if (Vector2.Distance(transform.position, hook.position) < hookedObjectSize)
                 {
                     HookOFF();
-                    hook.GetComponent<HingeJoint2D>().connectedBody = null;
+                    hookChildJoint2D.connectedBody = null;
                 }
             }
 

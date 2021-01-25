@@ -57,7 +57,7 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
             Vector2 clampedDir = localPoint.magnitude < leverRange ? localPoint : localPoint.normalized * leverRange;
             lever.anchoredPosition = clampedDir;
             player.aimDir = (lever.position - rectTransform.position).normalized;
-            Debug.Log(player.aimDir);
+            
         }
     }
 

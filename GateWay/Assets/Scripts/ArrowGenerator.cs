@@ -19,6 +19,6 @@ public class ArrowGenerator : MonoBehaviour
         if (timeStack > span) // span에서 지정한 값보다 커짐 (시간이 초과)
             timeStack = 0; // 축적된 시간을 초기화
         arrow = Instantiate(arrowPrefab) as GameObject;
-        arrow.transform.position = new Vector3(20.0f, Random.Range(-3, -8), 0);
+        arrow.transform.position = new Vector3(20.0f, Random.Range(38, 45), 0);
     }
 }

@@ -51,6 +51,7 @@ public class HookShotScript : MonoBehaviour
     // 에임 표시
     public GameObject aim;
     public Vector2 aimDir;
+    public Vector2 shootDir;
 
     int aimLayerMask;
 
@@ -146,7 +147,7 @@ public class HookShotScript : MonoBehaviour
             // 훅 날릴 때 몸 안딸려가게 하기
             hookJoint2D.enabled = false;
 
-            hook.Translate(aimDir * Time.deltaTime * lineSpeed);
+            hook.Translate(shootDir * Time.deltaTime * lineSpeed);
             if (Vector2.Distance(transform.position, hook.position) > lineMax)
             {
                 isLineMax = true;

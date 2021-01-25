@@ -20,6 +20,8 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     HookShotScript player;
 
+    Vector2 clampedDir;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -44,20 +46,20 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
+        player.shootDir = clampedDir.normalized;
         player.HookShot();
         HookOffBtn.SetActive(true);
     }
 
     void DragControl(PointerEventData eventData)
     {
-        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
             rectTransform, eventData.position, eventData.pressEventCamera, out Vector2 localPoint)
             )
         {
-            Vector2 clampedDir = localPoint.magnitude < leverRange ? localPoint : localPoint.normalized * leverRange;
+            clampedDir = localPoint.magnitude < leverRange ? localPoint : localPoint.normalized * leverRange;
             lever.anchoredPosition = clampedDir;
             player.aimDir = (lever.position - rectTransform.position).normalized;
-            
         }
     }
 

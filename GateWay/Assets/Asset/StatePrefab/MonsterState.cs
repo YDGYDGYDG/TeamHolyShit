@@ -26,7 +26,7 @@ public class MonsterState : MonoBehaviour
 
             this.gameObject.SetActive(false);   // 그럼 뒤지삼
             Instantiate(monsterDeath, transform.position, Quaternion.identity);  // 이펙트도 출력해
-            hookLine.HookOFF();                   // 훅도 지워줘야지??
+            hookLine.HookOFF();                 // 훅도 지워줘야지??
 
         }
     }

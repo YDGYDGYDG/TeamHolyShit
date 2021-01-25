@@ -7,13 +7,11 @@ public class LaserProjector : MonoBehaviour
     Vector2 laserDir;
     Vector2 laserPos;
     public LineRenderer line;
-    int layerMask;
     int layerMask_ignore;
     RaycastHit2D hit;
 
     void Awake()
     {
-        layerMask = 1 << LayerMask.NameToLayer("Mirror");
         layerMask_ignore = 1 << LayerMask.NameToLayer("LaserProjector");
         layerMask_ignore = ~layerMask_ignore;
         line.positionCount = 1;
@@ -33,7 +31,7 @@ public class LaserProjector : MonoBehaviour
         if (hit) line.SetPosition(line.positionCount - 1, hit.point);
         else line.SetPosition(line.positionCount - 1, transform.position);
 
-        while (hit.collider.gameObject.layer == layerMask && line.positionCount < 50) 
+        while (hit.collider.gameObject.layer == 8 && line.positionCount < 50) 
         {
             line.positionCount++;
             laserPos = hit.point - (laserDir.normalized);

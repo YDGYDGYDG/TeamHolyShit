@@ -35,13 +35,13 @@ public class HookShotScript : MonoBehaviour
     // 현재 로프의 최대 길이
     public float ropeLength;
 
-
     DistanceJoint2D hookJoint2D;
 
     public bool isAttachWall;
     public bool isAttachObject;
 
     public GameObject hookedObject;
+    public float hookedObjectSize;
 
     Animator jumpAnim;                  // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
     SpriteRenderer playerPosition;      // 캐릭터 이동방향 판단(형준)
@@ -128,14 +128,19 @@ public class HookShotScript : MonoBehaviour
             else if (isAttachObject)
             {
                 hookJoint2D.enabled = false;
-                hookedObject.transform.position = hook.position;
+                // 오브젝트의 위치는 훅을 맞은 직후 표면에 훅을 붙힌 채로 딸려옴
+                //hookedObject.transform.position = hook.position;
+
+                // 후크와 오브젝트를 딱붙이는 컴포넌트를 활성화시킨다 
+                hook.GetComponent<HingeJoint2D>().connectedBody = hookedObject.GetComponent<Rigidbody2D>();
                 hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * objectPullSpeed);
-                // 다 돌아왔으면
-                if (Vector2.Distance(transform.position, hook.position) < 1f)
+
+                // 내 앞까지 이동했으면 줄 끊는다.
+                if (Vector2.Distance(transform.position, hook.position) < hookedObjectSize)
                 {
                     HookOFF();
+                    hook.GetComponent<HingeJoint2D>().connectedBody = null;
                 }
-
             }
 
         }

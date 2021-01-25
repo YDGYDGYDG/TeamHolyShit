@@ -8,8 +8,6 @@ public class HookShotScript : MonoBehaviour
     public LineRenderer line;
     public Transform hook;
 
-    Vector2 shootDir;
-
     Rigidbody2D getRigid;
 
     // 현재 훅 조건
@@ -48,11 +46,16 @@ public class HookShotScript : MonoBehaviour
     Animator jumpAnim;                  // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
     SpriteRenderer playerPosition;      // 캐릭터 이동방향 판단(형준)
     GameObject HookSE;                  // 훅 SE 재생용(형준)
+    
 
+    // 에임 표시
     public GameObject aim;
-    Vector3 aimDir;
+    public Vector2 aimDir;
 
     int aimLayerMask;
+
+    // UI 사용
+    public GameObject HookOffBtn;
 
     void Start()
     {
@@ -81,95 +84,6 @@ public class HookShotScript : MonoBehaviour
         line.SetPosition(0, transform.position);
         // 줄의 끝점은 훅의 위치로 고정
         line.SetPosition(1, hook.position);
-
-        // 마우스 처리=============================================================================
-        // 마우스 왼쪽 클릭을 누르고 있을 때
-        if (Input.GetMouseButton(0))
-        {
-            if (EventSystem.current.IsPointerOverGameObject() == false)
-            {
-                // 훅을 사용하지 않는 중이라면
-                if (!isHookActive)
-                {
-                    // 에임을 켜고
-                    aim.SetActive(true);
-                    // 에임 그리기 시퀀스 ---------------------
-                    // 에임의 방향 구하기
-                    Vector3 cameraMousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-                    cameraMousePoint.z = 0;
-                    aimDir = cameraMousePoint.normalized;
-
-                    // 에임의 끝점을 구하는 레이캐스트
-                    RaycastHit2D hit;
-                    hit = Physics2D.Raycast(transform.position, aimDir, Mathf.Infinity, aimLayerMask);
-                    // 에임을 그린다
-                    // 에임의 레이캐스트 거리 > 에임의 최대 사거리 이면
-                    if (hit && lineMax > (transform.position - new Vector3(hit.point.x, hit.point.y, 0)).magnitude)
-                    {
-                        // 에임 위치는 레이캐스트 위치
-                        aim.transform.position = hit.point;
-                    }
-                    else
-                    {
-                        // 최대 사거리 위치 구하기
-                        //float aimDistance = (transform.position - new Vector3(hit.point.x, hit.point.y, 0)).magnitude;
-                        Vector2 newAimPosition = new Vector2(transform.position.x, transform.position.y) + (lineMax * new Vector2(aimDir.x, aimDir.y));
-                        // 에임 위치는 최대 사거리 위치
-                        aim.transform.position = newAimPosition;
-                    }
-                }
-            }
-        }
-
-        // 마우스 왼쪽 클릭을 눌렀을 때
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (EventSystem.current.IsPointerOverGameObject() == false)
-            {
-                // 훅을 사용중이면
-                if (isHookActive)
-                {
-                    // 훅이 어딘가에 걸려있는 상태라면
-                    if (isAttach)
-                    {
-                        // 끊고 힘을 받는다
-                        HookOFF();
-                        float cuttedRopeLength = (transform.position - hook.position).magnitude;
-                        float nowRope = ropeLength - cuttedRopeLength;
-                        getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
-                    }
-                }
-            }
-        }
-
-        // 마우스 왼쪽 클릭을 뗐을 때
-        if (Input.GetMouseButtonUp(0) && !isHookActive)
-        {
-            if (EventSystem.current.IsPointerOverGameObject() == false)
-            {
-                aim.SetActive(false);
-                GetComponent<Animator>().SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
-
-                
-
-                hook.gameObject.SetActive(true);
-                isHookActive = true;
-                // 훅은 캐릭터 위치에서부터 날아가겠지
-                hook.position = transform.position;
-                // 날아갈 방향은 포인터 방향
-                shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-                if (shootDir.x < 0)        // 마우스 포인터 위치 판단(형준)
-                {
-                    // 방향이 왼쪽일때(형준)
-                    playerPosition.flipX = true;     // 애니메이션 위치 왼쪽(형준)   
-                }
-                else
-                {
-                    // 방향이 오른쪽일때(형준)
-                    playerPosition.flipX = false;     // 애니메이션 위치 오른쪽(형준)
-                }
-            }
-        }
 
         // 훅 처리=============================================================================
         // 훅과 연결된 캐릭터 처리-------------------------------------------------------------
@@ -232,7 +146,7 @@ public class HookShotScript : MonoBehaviour
             // 훅 날릴 때 몸 안딸려가게 하기
             hookJoint2D.enabled = false;
 
-            hook.Translate(shootDir.normalized * Time.deltaTime * lineSpeed);
+            hook.Translate(aimDir * Time.deltaTime * lineSpeed);
             if (Vector2.Distance(transform.position, hook.position) > lineMax)
             {
                 isLineMax = true;
@@ -262,5 +176,72 @@ public class HookShotScript : MonoBehaviour
         isAttachWall = false;
         isAttachObject = false;
         hook.gameObject.SetActive(false);
+        HookOffBtn.SetActive(false);
     }
+
+    public void HookOFFBtnTouch()
+    {
+        if (isAttachWall)
+        {
+            float cuttedRopeLength = (transform.position - hook.position).magnitude;
+            float nowRope = ropeLength - cuttedRopeLength;
+            getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
+        }
+        HookOFF();
+    }
+
+    public void HookAim()
+    {
+        // 훅을 사용하지 않는 중이라면
+        if (!isHookActive)
+        {
+            // 에임을 켜고
+            aim.SetActive(true);
+            // 에임 그리기 시퀀스 ---------------------
+            // 에임의 끝점을 구하는 레이캐스트
+            RaycastHit2D hit;
+            hit = Physics2D.Raycast(transform.position, aimDir, Mathf.Infinity, aimLayerMask);
+            // 에임을 그린다
+            // 에임의 레이캐스트 거리 > 에임의 최대 사거리 이면
+            if (hit && lineMax > (transform.position - new Vector3(hit.point.x, hit.point.y, 0)).magnitude)
+            {
+                // 에임 위치는 레이캐스트 위치
+                aim.transform.position = hit.point;
+            }
+            else
+            {
+                // 최대 사거리 위치 구하기
+                Vector2 newAimPosition = new Vector2(transform.position.x, transform.position.y) + (lineMax * aimDir);
+                // 에임 위치는 최대 사거리 위치
+                aim.transform.position = newAimPosition;
+            }
+        }
+    }
+
+    public void HookShot()
+    {
+        if (!isHookActive)
+        {
+            aim.SetActive(false);
+            GetComponent<Animator>().SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
+
+            hook.gameObject.SetActive(true);
+            isHookActive = true;
+            // 훅은 캐릭터 위치에서부터 날아가겠지
+            hook.position = transform.position;
+            //// 날아갈 방향은 포인터 방향
+            //aimDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            if (aimDir.x < 0)        // 마우스 포인터 위치 판단(형준)
+            {
+                // 방향이 왼쪽일때(형준)
+                playerPosition.flipX = true;     // 애니메이션 위치 왼쪽(형준)   
+            }
+            else
+            {
+                // 방향이 오른쪽일때(형준)
+                playerPosition.flipX = false;     // 애니메이션 위치 오른쪽(형준)
+            }
+        }
+    }
+
 }

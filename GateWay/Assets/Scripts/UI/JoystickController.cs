@@ -9,17 +9,21 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
     [SerializeField]
 
-    private RectTransform lever;
-    private RectTransform rectTransform;
+    RectTransform lever;
+    RectTransform rectTransform;
 
 
     [SerializeField, Range(10f, 150f)]
     private float leverRange;
 
+    public GameObject HookOffBtn;
+
+    HookShotScript player;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        player = GameObject.Find("player").GetComponent<HookShotScript>();
     }
 
 
@@ -33,12 +37,15 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         DragControl(eventData);
+        player.HookAim();
     }
 
 
     public void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
+        player.HookShot();
+        HookOffBtn.SetActive(true);
     }
 
     void DragControl(PointerEventData eventData)
@@ -49,6 +56,8 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             Vector2 clampedDir = localPoint.magnitude < leverRange ? localPoint : localPoint.normalized * leverRange;
             lever.anchoredPosition = clampedDir;
+            player.aimDir = (lever.position - rectTransform.position).normalized;
+            Debug.Log(player.aimDir);
         }
     }
 

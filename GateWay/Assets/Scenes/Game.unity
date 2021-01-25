@@ -1800,6 +1800,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0213d9f527762cf42a690aca6fe83288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &949643027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949643028}
+  m_Layer: 11
+  m_Name: JumpPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &949643028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949643027}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1897129653}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &960287754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8277637352147949092, guid: 833863b3ba328234db770d1b6bb0aded,
@@ -3396,6 +3426,7 @@ GameObject:
   - component: {fileID: 1897129654}
   - component: {fileID: 1897129656}
   - component: {fileID: 1897129659}
+  - component: {fileID: 1897129658}
   m_Layer: 10
   m_Name: player
   m_TagString: Player
@@ -3462,11 +3493,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897129651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.27, y: 6.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1108503705}
   - {fileID: 2111152656}
+  - {fileID: 949643028}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3635,6 +3667,24 @@ MonoBehaviour:
   aimDir: {x: 0, y: 0}
   shootDir: {x: 0, y: 0}
   HookOffBtn: {fileID: 897249888}
+--- !u!114 &1897129658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897129651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ecfd0d891c7f34fb38ec384c6d5a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 10
+  pos: {fileID: 949643028}
+  checkRadius: 0.35
+  islayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!95 &1897129659
 Animator:
   serializedVersion: 3

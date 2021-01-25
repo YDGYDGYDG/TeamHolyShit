@@ -11,7 +11,9 @@ public class HookScript : MonoBehaviour
 
     GameObject attackHook;      // 충돌 사운드 재생용(형준)
 
-    GameObject hookSE;       // 훅 SE 정지용(형준)
+    GameObject hookSE;          // 훅 SE 정지용(형준)
+
+    
 
     void Start()
     {
@@ -20,7 +22,7 @@ public class HookScript : MonoBehaviour
         joint2D = GetComponent<DistanceJoint2D>();
 
         attackHook = GameObject.Find("HookSE");     // 훅 사운드 컴포넌트 연결(형준)
-        hookSE = GameObject.Find("player");         // 플레이어 컴포넌트 연결(형준)
+        hookSE = GameObject.Find("Hook");         // 훅 컴포넌트 연결(형준)
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,7 +39,7 @@ public class HookScript : MonoBehaviour
                 hookShot.ropeLength = (player.transform.position - transform.position).magnitude;
 
                 hookSE.GetComponent<AudioSource>().Stop();          // 로프 사운드 정지(형준)
-                //attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
+                attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
             }
             // 훅이  곧 사라지는 벽에 닿으면
             else if (collision.CompareTag("diswall"))
@@ -57,7 +59,7 @@ public class HookScript : MonoBehaviour
                 hookShot.hookedObject = collision.gameObject;
 
                 hookSE.GetComponent<AudioSource>().Stop();          // 로프 사운드 정지(형준)
-                // attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
+                attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)
             }
 
             // 훅이 몹에 닿으면
@@ -66,7 +68,9 @@ public class HookScript : MonoBehaviour
                 // 줄 거두기
                 hookShot.HookOFF();
                 // 해당 몹 죽이기
-                collision.gameObject.SetActive(false);
+                //collision.gameObject.SetActive(false);
+                // 이펙트 호출하기
+                
                 // or 해당 몹 데미지 주는 함수 호출하기
                 // collision.gameObject.GetComponent<MonsterScript>().Damage();
 

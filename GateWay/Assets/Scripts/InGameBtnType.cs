@@ -5,6 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+// IngameUI 스크립트와 연동되어있음
+// 위치 저장
+// 위치로 이동
+// 인게임내 버튼을 눌렀을때의 행동들이 정의되어 있음
+
 public class InGameBtnType : MonoBehaviour
 {
     public InGameBTNType InGameBtn;
@@ -34,7 +39,6 @@ public class InGameBtnType : MonoBehaviour
                 break;
             case InGameBTNType.GameSave:
                 GameSave();
-                Debug.Log("위치저장");
                 break; 
             case InGameBTNType.GameQuit:
                 SceneManager.LoadScene("MainScene");
@@ -47,7 +51,6 @@ public class InGameBtnType : MonoBehaviour
                 break;
             case InGameBTNType.Reset:
                 GameLoad();
-                Debug.Log("최근Save포인트로 이동");
                 break;
         }
 

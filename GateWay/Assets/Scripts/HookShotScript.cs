@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HookShotScript : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class HookShotScript : MonoBehaviour
 
     Rigidbody2D getRigid;
 
+    // 현재 훅 조건
+    // 훅이 사용중인가
     public bool isHookActive;
+    // 훅이 최대 길이만큼 늘어났는가
     public bool isLineMax;
+    // 훅이 어딘가에 연결되었는가
     public bool isAttach;
 
     // 로프 길이
-    public int lineMax = 10;
+    public float lineMax = 10;
     // 로프 날아가는 속도
     public float lineSpeed = 30;
     // 로프 회수하는 속도
@@ -31,8 +36,6 @@ public class HookShotScript : MonoBehaviour
 
     // 현재 로프의 최대 길이
     public float ropeLength;
-    // 현재 로프의 길이
-    public float cuttedRopeLength;
 
 
     DistanceJoint2D hookJoint2D;
@@ -42,13 +45,17 @@ public class HookShotScript : MonoBehaviour
 
     public GameObject hookedObject;
 
-    Animator jumpAnim;    // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
+    Animator jumpAnim;                  // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
     SpriteRenderer playerPosition;      // 캐릭터 이동방향 판단(형준)
+    GameObject HookSE;                  // 훅 SE 재생용(형준)
 
+    public GameObject aim;
+    Vector3 aimDir;
+
+    int aimLayerMask;
 
     void Start()
     {
-
         getRigid = gameObject.GetComponent<Rigidbody2D>();
 
         // 줄 생성
@@ -62,28 +69,119 @@ public class HookShotScript : MonoBehaviour
         hookJoint2D = hook.GetComponent<DistanceJoint2D>();
 
         playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
-     
+        HookSE = GameObject.Find("Hook");                   // 훅 찾아주고..(형준)
+
+        aimLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
     }
 
     void Update()
     {
-        
 
         // '줄'의 시작점은 캐릭터의 위치로 고정
         line.SetPosition(0, transform.position);
         // 줄의 끝점은 훅의 위치로 고정
         line.SetPosition(1, hook.position);
 
+        // 마우스 처리=============================================================================
+        // 마우스 왼쪽 클릭을 누르고 있을 때
+        if (Input.GetMouseButton(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject() == false)
+            {
+                // 훅을 사용하지 않는 중이라면
+                if (!isHookActive)
+                {
+                    // 에임을 켜고
+                    aim.SetActive(true);
+                    // 에임 그리기 시퀀스 ---------------------
+                    // 에임의 방향 구하기
+                    Vector3 cameraMousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                    cameraMousePoint.z = 0;
+                    aimDir = cameraMousePoint.normalized;
 
-        // 훅이 박혔으면
+                    // 에임의 끝점을 구하는 레이캐스트
+                    RaycastHit2D hit;
+                    hit = Physics2D.Raycast(transform.position, aimDir, Mathf.Infinity, aimLayerMask);
+                    // 에임을 그린다
+                    // 에임의 레이캐스트 거리 > 에임의 최대 사거리 이면
+                    if (hit && lineMax > (transform.position - new Vector3(hit.point.x, hit.point.y, 0)).magnitude)
+                    {
+                        // 에임 위치는 레이캐스트 위치
+                        aim.transform.position = hit.point;
+                    }
+                    else
+                    {
+                        // 최대 사거리 위치 구하기
+                        //float aimDistance = (transform.position - new Vector3(hit.point.x, hit.point.y, 0)).magnitude;
+                        Vector2 newAimPosition = new Vector2(transform.position.x, transform.position.y) + (lineMax * new Vector2(aimDir.x, aimDir.y));
+                        // 에임 위치는 최대 사거리 위치
+                        aim.transform.position = newAimPosition;
+                    }
+                }
+            }
+        }
+
+        // 마우스 왼쪽 클릭을 눌렀을 때
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject() == false)
+            {
+                // 훅을 사용중이면
+                if (isHookActive)
+                {
+                    // 훅이 어딘가에 걸려있는 상태라면
+                    if (isAttach)
+                    {
+                        // 끊고 힘을 받는다
+                        HookOFF();
+                        float cuttedRopeLength = (transform.position - hook.position).magnitude;
+                        float nowRope = ropeLength - cuttedRopeLength;
+                        getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
+                    }
+                }
+            }
+        }
+
+        // 마우스 왼쪽 클릭을 뗐을 때
+        if (Input.GetMouseButtonUp(0) && !isHookActive)
+        {
+            if (EventSystem.current.IsPointerOverGameObject() == false)
+            {
+                aim.SetActive(false);
+                GetComponent<Animator>().SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
+
+                
+
+                hook.gameObject.SetActive(true);
+                isHookActive = true;
+                // 훅은 캐릭터 위치에서부터 날아가겠지
+                hook.position = transform.position;
+                // 날아갈 방향은 포인터 방향
+                shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                if (shootDir.x < 0)        // 마우스 포인터 위치 판단(형준)
+                {
+                    // 방향이 왼쪽일때(형준)
+                    playerPosition.flipX = true;     // 애니메이션 위치 왼쪽(형준)   
+                }
+                else
+                {
+                    // 방향이 오른쪽일때(형준)
+                    playerPosition.flipX = false;     // 애니메이션 위치 오른쪽(형준)
+                }
+            }
+        }
+
+        // 훅 처리=============================================================================
+        // 훅과 연결된 캐릭터 처리-------------------------------------------------------------
+        // 훅이 박혔는지 판단
         if (isAttach)
         {
-            // 훅이 벽에 박혔으면
+            // 훅이 벽에 박혔다
             if (isAttachWall)
             {
                 // 캐릭터가 중력을 받지 않게됨
                 getRigid.gravityScale = 0;
-                // 힘 삭제
+                // 이전에 받고 있던 힘 삭제
                 getRigid.velocity = Vector2.zero;
 
                 // 이제 캐릭터를 훅 방향으로 움직인다.(훅의 조인트 길이를 줄인다.)
@@ -104,13 +202,14 @@ public class HookShotScript : MonoBehaviour
                     // 달랑거리지 마
                     //getRigid.simulated = false;
                     HookOFF();
-                    cuttedRopeLength = (transform.position - hook.position).magnitude;
+                    float cuttedRopeLength = (transform.position - hook.position).magnitude;
                     float nowRope = ropeLength - cuttedRopeLength;
                     getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
 
                 }
             }
-            // 훅이 오브젝트에 박혔으면
+
+            // 훅이 오브젝트에 박혔다
             else if (isAttachObject)
             {
                 hookJoint2D.enabled = false;
@@ -121,72 +220,20 @@ public class HookShotScript : MonoBehaviour
                 {
                     HookOFF();
                 }
+
             }
-        }
-
-        // 훅오프일 때, 누르면 쏜다. 
-        if (Input.GetMouseButtonDown(0) && !isHookActive)
-        {
-            GetComponent<Animator>().SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
-
-            GetComponent<AudioSource>().Play();     // 훅 사운드 재생(형준)
-
-            hook.gameObject.SetActive(true);
-            isHookActive = true;
-            // 훅은 캐릭터 위치에서부터 날아가겠지
-            hook.position = transform.position;
-            // 날아갈 방향은 포인터 방향
-            shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-
-            if (shootDir.x < 0)        // 마우스 포인터 위치 판단(형준)
-            {
-                // 방향이 왼쪽일때(형준)
-                playerPosition.flipX = true;     // 애니메이션 위치 왼쪽(형준)   
-            }
-            else
-            {
-                // 방향이 오른쪽일때(형준)
-                playerPosition.flipX = false;     // 애니메이션 위치 오른쪽(형준)
-            }
-            
-
-            
 
         }
-        // 훅온일 때, 벽에 붙은 상태이면, 누르면 끊는다.
-        else if (Input.GetMouseButtonDown(0) && isHookActive && isAttachWall)
-        {
-            HookOFF();
-            // 줄이 남은 상태에서 끊었으면 가던 방향으로 날라감
-            //if ((hook.position - transform.position).magnitude > 1)
-            //{
-            //    cuttedRopeLength = (transform.position - hook.position).magnitude;
-            //    float nowRope = ropeLength - cuttedRopeLength;
-            //    Debug.Log(cuttedRopeLength);
-            //    Debug.Log(nowRope);
-            //    getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
-            //}
-            cuttedRopeLength = (transform.position - hook.position).magnitude;
-            float nowRope = ropeLength - cuttedRopeLength;
-            nowRope *= linePowerRate;
-            getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
 
-        }
-        // 훅온일 때, 오브젝트에 붙은 상태이면, 누르면 끊는다.
-        else if (Input.GetMouseButtonDown(0) && isHookActive && isAttachObject)
-        {
-            HookOFF();
-        }
-
-
-        // 훅온일 때, 최대사거리아니고, 안붙었으면 = 늘어남
+        // 훅 위치 처리-------------------------------------------------------------
+        // 훅온일 때, 최대사거리아니고, 안붙었으면 = 날아감
         if (isHookActive && !isLineMax && !isAttach)
         {
             // 훅 날릴 때 몸 안딸려가게 하기
             hookJoint2D.enabled = false;
 
             hook.Translate(shootDir.normalized * Time.deltaTime * lineSpeed);
-            if(Vector2.Distance(transform.position, hook.position) > lineMax)
+            if (Vector2.Distance(transform.position, hook.position) > lineMax)
             {
                 isLineMax = true;
             }
@@ -196,7 +243,7 @@ public class HookShotScript : MonoBehaviour
         {
             hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * linePullSpeed);
             // 다 돌아왔으면
-            if(Vector2.Distance(transform.position, hook.position) < 0.1f)
+            if (Vector2.Distance(transform.position, hook.position) < 0.1f)
             {
                 HookOFF();
             }
@@ -206,7 +253,7 @@ public class HookShotScript : MonoBehaviour
     public void HookOFF()
     {
         GetComponent<Animator>().SetBool("isJump", false);    // Idle 애니메이션 출력(형준)
-
+        aim.SetActive(false);
         getRigid.simulated = true;
         getRigid.gravityScale = 1;
         isHookActive = false;

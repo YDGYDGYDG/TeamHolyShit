@@ -17,7 +17,8 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         defaultScale = buttonScale.localScale;
     }
-    
+    // 버튼에 마우스를 가져다 대면 버튼이 커짐
+    // 버튼을 눌렀을 때 case별로 해당 동작을 수행하도록 만듦
     public void OnBtnClick()
     {
         switch (currentType)
@@ -67,11 +68,9 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case BTNType.Sound:
                 if (isSound)
                 {
-                    Debug.Log("사운드OFF");
                 }
                 else
                 {
-                    Debug.Log("사운드ON");
                 }
                 isSound = !isSound;
                 break;
@@ -80,7 +79,6 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;         
             case BTNType.Quit:
                 Application.Quit();
-                Debug.Log("앱종료");
                 break;
         }
 

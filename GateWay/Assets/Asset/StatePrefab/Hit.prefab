@@ -50,7 +50,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4650,7 +4650,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
   m_Name: 
@@ -4667,7 +4667,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 608e29dd5c29230449d30f0b49f8ca92, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

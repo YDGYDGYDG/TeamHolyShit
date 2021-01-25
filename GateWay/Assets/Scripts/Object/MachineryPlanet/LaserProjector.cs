@@ -29,18 +29,16 @@ public class LaserProjector : MonoBehaviour
         laserPos = transform.position;
 
         line.positionCount++;
-        //hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity);
         hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
         if (hit) line.SetPosition(line.positionCount - 1, hit.point);
         else line.SetPosition(line.positionCount - 1, transform.position);
 
-        while (hit && line.positionCount < 50) 
+        while (hit.collider.gameObject.layer == layerMask && line.positionCount < 50) 
         {
             line.positionCount++;
             laserPos = hit.point - (laserDir.normalized);
             laserDir = Vector2.Reflect(laserDir, hit.normal);
-            //hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity);
-            hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask);
+            hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
             if (hit)
                 line.SetPosition(line.positionCount - 1, hit.point);
             else

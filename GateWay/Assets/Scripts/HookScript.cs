@@ -63,12 +63,12 @@ public class HookScript : MonoBehaviour
             }
 
             // 훅이 몹에 닿으면
-            else if (collision.CompareTag("Monster"))
+            else if (collision.CompareTag("Cap"))
             {
                 // 줄 거두기
                 hookShot.HookOFF();
                 // 해당 몹 죽이기
-                //collision.gameObject.SetActive(false);
+                collision.gameObject.SetActive(false);
                 // 이펙트 호출하기
                 
                 // or 해당 몹 데미지 주는 함수 호출하기

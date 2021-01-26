@@ -11397,10 +11397,14 @@ MonoBehaviour:
   linePower: 100
   linePowerRate: 1
   ropeLength: 0
-  cuttedRopeLength: 0
   isAttachWall: 0
   isAttachObject: 0
   hookedObject: {fileID: 0}
+  hookedObjectSize: 0
+  aim: {fileID: 0}
+  aimDir: {x: 0, y: 0}
+  shootDir: {x: 0, y: 0}
+  HookOffBtn: {fileID: 0}
 --- !u!50 &1208929132
 Rigidbody2D:
   serializedVersion: 4

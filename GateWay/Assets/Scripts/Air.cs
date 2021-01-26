@@ -70,10 +70,9 @@ public class Air : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("AAAA");
+        
         if (collision.gameObject.tag == "Water")
         {
-            Debug.Log("물이야");
             isWater = true;
         }
     }
@@ -82,7 +81,6 @@ public class Air : MonoBehaviour
     {
         if (collision.gameObject.tag == "Water")
         {
-            Debug.Log("아니야");
             isWater = false;
         }
           
@@ -91,7 +89,6 @@ public class Air : MonoBehaviour
     // 캐릭터가 죽음
     public void PlayerDead()
     {
-        Debug.Log("캐릭터 사망");
         this.gameObject.SetActive(false);     // 캐릭터 없애주고..(형준)
         hookLine.HookOFF();                   // 훅도 지워줘야지??(형준)
     }

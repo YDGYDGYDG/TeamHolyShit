@@ -10,9 +10,9 @@ public class OpenDoor : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")        // 너 플레이어랑 충돌했니??
         {
-            if(SceneManager.GetActiveScene().name == "LavaStage1")      // 스테이지 이름 확인하고
+            if(SceneManager.GetActiveScene().name == "LavaStage1")      // 현재 스테이지 이름 확인하고
             {
-                SceneManager.LoadScene("LavaStage2");                   // 다음씬으로 넘어가
+                SceneManager.LoadScene("LavaStage2");                   // 맞으면 다음씬으로 넘어가
             }
 
             else if (SceneManager.GetActiveScene().name == "LavaStage2")

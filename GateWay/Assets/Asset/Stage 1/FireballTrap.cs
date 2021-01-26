@@ -9,7 +9,7 @@ public class FireballTrap : MonoBehaviour
     float delta = 0;        // 초기화 시간
 
     Rigidbody2D jump;
-    public float jumpForce = 1000.0f;   // 점프 높이
+    public float jumpForce = 1000.0f;   // 점프 높이(인스펙터에서 변경 쌉가능)
 
     SpriteRenderer flip;                // 이미지 위치 전환
 
@@ -63,12 +63,14 @@ public class FireballTrap : MonoBehaviour
             
             // 투명하게 바꿔라
             flip.material.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
+            circleCollider.enabled = false;     // 투명할때는 플레이어 죽이지마
         }
 
         else if (this.transform.position.y > this.position.y)   // 상승중일때
         {
             // 다시 표시해
             flip.material.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 255 / 255f);
+            circleCollider.enabled = true;      // 표시될땐 당연히 죽여야지?
         }
 
     }

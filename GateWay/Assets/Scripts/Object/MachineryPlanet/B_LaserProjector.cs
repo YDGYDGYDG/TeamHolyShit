@@ -36,23 +36,29 @@ public class B_LaserProjector : MonoBehaviour
             {
                 // 현상 발생 처리
                 //Debug.Log("발동!");
-
             }
+
+            while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50)
+            {
+                laserPos = hit.point - (laserDir.normalized * 0.1f);
+                laserDir = Vector2.Reflect(laserDir, hit.normal);
+                hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
+                if (hit)
+                {
+                    line.positionCount++;
+                    line.SetPosition(line.positionCount - 1, hit.point);
+                }
+            }
+
         }
         else line.SetPosition(line.positionCount - 1, transform.position);
 
-        while (hit.collider.gameObject.layer == 8 && line.positionCount < 50)
-        {
-            line.positionCount++;
-            laserPos = hit.point - (laserDir.normalized);
-            laserDir = Vector2.Reflect(laserDir, hit.normal);
-            hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
-            if (hit)
-                line.SetPosition(line.positionCount - 1, hit.point);
-            else
-                line.positionCount--;
-        }
+        // 기계행성은 무조건 벽으로 둘러싸서 레이저가 어딘가에 부딪히게 하자
+        //// 걸리는 게 없으면 그냥 멀리멀리 그려라
+        //else
+        //{
 
+        //}
     }
 
 

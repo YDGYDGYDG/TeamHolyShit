@@ -19,7 +19,7 @@ public class PlayerState : MonoBehaviour
     // 캐릭터 부활 위치(맵에 따라 다름)
     Vector2 playerStartPosition = new Vector2(48.67f, -4.3f);
 
-
+    
     void playerRevive()     // 부활 함수
     {
         this.gameObject.SetActive(true);            // 플레이어 다시 켜주고
@@ -43,7 +43,8 @@ public class PlayerState : MonoBehaviour
         {
             this.gameObject.SetActive(false);   // 그럼 뒤지삼
             hookLine.HookOFF();                 // 훅도 지워줘야지??
-            Instantiate(playerDeath, transform.position, Quaternion.identity);    // 이펙트도 출력해
+            // 이펙트도 출력해
+            Instantiate(playerDeath, transform.position, Quaternion.identity);
             Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
         }
 
@@ -51,14 +52,16 @@ public class PlayerState : MonoBehaviour
         {
             this.gameObject.SetActive(false);   // 그럼 뒤지삼
             hookLine.HookOFF();                 // 훅도 지워줘야지??
-            Instantiate(playerDeath, transform.position, Quaternion.identity);    // 이펙트도 출력해
+            // 이펙트도 출력해
+            Instantiate(playerDeath, transform.position, Quaternion.identity);
             Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
         }
 
         else if (col.gameObject.tag == "Star")     // 너 동전이랑 충돌했니??
         {
             Coin.SetActive(false);                 // 동전 지워줘
-            Instantiate(takeCoin, transform.position, Quaternion.identity);    // 이펙트도 출력해
+            // 이펙트도 출력해
+            Instantiate(takeCoin, transform.position, Quaternion.identity);    
             openDoor.enabled = true;               // 문 열어~~~
            
         }

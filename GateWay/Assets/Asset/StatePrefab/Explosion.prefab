@@ -18821,6 +18821,7 @@ GameObject:
   - component: {fileID: 199200332811060622}
   - component: {fileID: 114566962382578006}
   - component: {fileID: -5221684631302878012}
+  - component: {fileID: -8745085359483051682}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: FxTemporaire
@@ -23463,7 +23464,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892078723244562}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
   m_Name: 
@@ -23565,3 +23566,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8745085359483051682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892078723244562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b374e08d957f14db7ca7cea028673d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

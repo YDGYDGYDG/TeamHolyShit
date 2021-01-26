@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WindGenerator : MonoBehaviour
 {
+    GameObject player;
     Rigidbody2D rigid;
+
     float timeSpan;  // 경과 시간
     float WindReset; // 바람 초기화
     float LeftWindTime = 3.0f;
@@ -41,8 +43,10 @@ public class WindGenerator : MonoBehaviour
         timeSpan += Time.deltaTime;
         if (timeSpan < LeftWindTime)
         LeftWind();
+     
         if (timeSpan >= RightWindTime)
         RightWind();
+    
         if (timeSpan > WindReset)
         timeSpan = 0;
     } 

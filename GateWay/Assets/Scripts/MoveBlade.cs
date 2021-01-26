@@ -7,8 +7,12 @@ public class MoveBlade : MonoBehaviour
     public Transform startPos;  // 시작 위치
     public Transform endPos;    // 끝나는 위치
     public Transform desPos;
+
     public float speed;
-    PlayerController  playerDeath;     // 죽는거 하자
+
+    PlayerController playerDeath;     // 죽는거 하자
+
+    float bladeRotation;            // 톱날 돌리기
 
     // Start is called before the first frame update
     void Start()
@@ -16,16 +20,26 @@ public class MoveBlade : MonoBehaviour
         transform.position = startPos.position;
         desPos = endPos;
         playerDeath = GameObject.Find("player").GetComponent<PlayerController>();
+        // bladeRotation = transform.rotation(0, 0, 0);
     }
-    public void Moveoff()
-    {
-        this.transform.SetParent(null);
-    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             playerDeath.PlayerDead();
+        }
+    }
+
+
+    private void Update()
+    {
+        bladeRotation = Time.deltaTime;
+        // bladeRotation++;
+        transform.Rotate(0, 0, bladeRotation * 360);
+        if (bladeRotation >= 360)
+        {
+            bladeRotation = 0;
         }
     }
 

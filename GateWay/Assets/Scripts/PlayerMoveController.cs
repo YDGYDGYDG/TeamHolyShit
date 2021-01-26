@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMoveController : MonoBehaviour
 {
     Rigidbody2D rigidBody;  // 강체를 참조하기 위한 변수
-    float jumpForce = 1000.0f;   // 점프에 전달할 힘 값
-    float walkForce = 10.0f;
+    public float jumpForce = 1000.0f;   // 점프에 전달할 힘 값
+    public float walkForce = 10.0f;
 
 
     Animator animator;

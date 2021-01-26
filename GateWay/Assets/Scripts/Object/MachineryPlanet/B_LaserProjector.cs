@@ -40,7 +40,7 @@ public class B_LaserProjector : MonoBehaviour
 
             while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50)
             {
-                laserPos = hit.point - (laserDir.normalized * 0.1f);
+                laserPos = hit.point - (laserDir.normalized * 0.0001f);
                 laserDir = Vector2.Reflect(laserDir, hit.normal);
                 hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
                 if (hit)

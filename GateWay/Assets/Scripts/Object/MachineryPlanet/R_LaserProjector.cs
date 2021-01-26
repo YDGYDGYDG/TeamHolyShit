@@ -40,16 +40,16 @@ public class R_LaserProjector : MonoBehaviour
         }
         else line.SetPosition(line.positionCount - 1, transform.position);
         
-        while (hit.collider.gameObject.layer == 8 && line.positionCount < 50) 
+        while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50) 
         {
-            line.positionCount++;
-            laserPos = hit.point - (laserDir.normalized);
+            laserPos = hit.point - (laserDir.normalized * 0.0001f);
             laserDir = Vector2.Reflect(laserDir, hit.normal);
             hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
             if (hit)
+            {
+                line.positionCount++;
                 line.SetPosition(line.positionCount - 1, hit.point);
-            else
-                line.positionCount--;
+            }
         }
 
     }

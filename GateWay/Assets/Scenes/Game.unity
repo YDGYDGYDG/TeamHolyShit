@@ -414,9 +414,9 @@ GameObject:
   - component: {fileID: 192315583}
   - component: {fileID: 192315582}
   - component: {fileID: 192315581}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: B_LaserProjector
-  m_TagString: LaserProjector
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +428,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192315580}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -783,9 +783,9 @@ GameObject:
   - component: {fileID: 495962518}
   - component: {fileID: 495962517}
   - component: {fileID: 495962516}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_LaserProjector
-  m_TagString: LaserProjector
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -797,7 +797,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495962515}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3493,7 +3493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897129651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.27, y: 6.79, z: 0}
+  m_LocalPosition: {x: 1.27, y: -3.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1108503705}

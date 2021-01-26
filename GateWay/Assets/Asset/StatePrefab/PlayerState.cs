@@ -44,7 +44,7 @@ public class PlayerState : MonoBehaviour
             this.gameObject.SetActive(false);   // 그럼 뒤지삼
             hookLine.HookOFF();                 // 훅도 지워줘야지??
             Instantiate(playerDeath, transform.position, Quaternion.identity);    // 이펙트도 출력해
-            Invoke("playerRevive", 1.0f);       // 2초 뒤에 시작 위치에 부활 시켜
+            Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
         }
 
         else if (col.gameObject.tag == "Trap")        // 너 함정이랑 충돌했니??
@@ -52,7 +52,7 @@ public class PlayerState : MonoBehaviour
             this.gameObject.SetActive(false);   // 그럼 뒤지삼
             hookLine.HookOFF();                 // 훅도 지워줘야지??
             Instantiate(playerDeath, transform.position, Quaternion.identity);    // 이펙트도 출력해
-            Invoke("playerRevive", 1.0f);       // 2초 뒤에 시작 위치에 부활 시켜
+            Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
         }
 
         else if (col.gameObject.tag == "Star")     // 너 동전이랑 충돌했니??

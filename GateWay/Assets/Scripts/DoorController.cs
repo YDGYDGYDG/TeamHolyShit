@@ -8,7 +8,7 @@ public class DoorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        starC = GameObject.Find("Star").GetComponent<StarController>();
+        starC = GameObject.Find("StarPrefab").GetComponent<StarController>();
     }
 
     // Update is called once per frame

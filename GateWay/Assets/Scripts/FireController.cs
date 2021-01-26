@@ -4,23 +4,14 @@ using UnityEngine;
 
 public class FireController : MonoBehaviour
 {
-    PlayerController playerController;
 
     public bool dropFire = false;
     // Start is called before the first frame update
     void Start()
     {
-        // player에 PlayerController 참조
-        playerController = GameObject.Find("player").GetComponent<PlayerController>();
+
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // 캐릭터랑 충돌 시
-        if (other.gameObject.tag == "Player")
-        {
-            playerController.PlayerDead();
-        }
-    }
+
     // Update is called once per frame
     void Update()
     {

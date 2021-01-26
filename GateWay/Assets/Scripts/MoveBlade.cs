@@ -10,7 +10,7 @@ public class MoveBlade : MonoBehaviour
 
     public float speed;
 
-    PlayerController playerDeath;     // 죽는거 하자
+    // PlayerController playerDeath;     // 죽는거 하자
 
     float bladeRotation;            // 톱날 돌리기
 
@@ -19,7 +19,7 @@ public class MoveBlade : MonoBehaviour
     {
         transform.position = startPos.position;
         desPos = endPos;
-        playerDeath = GameObject.Find("player").GetComponent<PlayerController>();
+        // playerDeath = GameObject.Find("player").GetComponent<PlayerController>(); 사망처리 김휘원
         // bladeRotation = transform.rotation(0, 0, 0);
     }
 
@@ -27,7 +27,7 @@ public class MoveBlade : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            playerDeath.PlayerDead();
+            // playerDeath.PlayerDead(); 사망처리 김휘원
         }
     }
 

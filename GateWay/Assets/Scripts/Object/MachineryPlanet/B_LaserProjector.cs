@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserProjector : MonoBehaviour
+public class B_LaserProjector : MonoBehaviour
 {
     Vector2 laserDir;
     Vector2 laserPos;
@@ -15,7 +15,7 @@ public class LaserProjector : MonoBehaviour
         layerMask_ignore = 1 << LayerMask.NameToLayer("LaserProjector");
         layerMask_ignore = ~layerMask_ignore;
         line.positionCount = 1;
-        line.endWidth = line.startWidth = 0.05f;
+        line.endWidth = line.startWidth = 0.2f;
         line.SetPosition(0, transform.position);
         line.useWorldSpace = true;
     }
@@ -28,10 +28,20 @@ public class LaserProjector : MonoBehaviour
 
         line.positionCount++;
         hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
-        if (hit) line.SetPosition(line.positionCount - 1, hit.point);
+        if (hit)
+        {
+            line.SetPosition(line.positionCount - 1, hit.point);
+            // 센서에 레이저가 닿으면
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("LaserCensor"))
+            {
+                // 현상 발생 처리
+                //Debug.Log("발동!");
+
+            }
+        }
         else line.SetPosition(line.positionCount - 1, transform.position);
 
-        while (hit.collider.gameObject.layer == 8 && line.positionCount < 50) 
+        while (hit.collider.gameObject.layer == 8 && line.positionCount < 50)
         {
             line.positionCount++;
             laserPos = hit.point - (laserDir.normalized);

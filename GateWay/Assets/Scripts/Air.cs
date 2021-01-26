@@ -14,10 +14,33 @@ public class Air : MonoBehaviour
     private float time = 0;
     float outTime = 0;
 
+    private bool is_die = false;
+
+    HookShotScript hookLine;    // 훅 연결용 변수(형준)
+
+
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        hookLine = GetComponent<HookShotScript>();  
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (is_die)
+            return;
+
+        Debug.Log($"HP: {airbar.value}");
+
+        if (airbar.value >= 10)
+        {
+            is_die = true;
+            PlayerDead();
+        }
+        
         if (isWater)
         {
             time += Time.deltaTime;
@@ -47,6 +70,7 @@ public class Air : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("AAAA");
         if (collision.gameObject.tag == "Water")
         {
             Debug.Log("물이야");
@@ -62,5 +86,13 @@ public class Air : MonoBehaviour
             isWater = false;
         }
           
+    }
+
+    // 캐릭터가 죽음
+    public void PlayerDead()
+    {
+        Debug.Log("캐릭터 사망");
+        this.gameObject.SetActive(false);     // 캐릭터 없애주고..(형준)
+        hookLine.HookOFF();                   // 훅도 지워줘야지??(형준)
     }
 }

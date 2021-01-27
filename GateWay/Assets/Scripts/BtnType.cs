@@ -24,10 +24,9 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         switch (currentType)
         {
             case BTNType.Newgame:
-                SceneManager.LoadScene("Tutorial1");
+                SceneManager.LoadScene("TutorialStage1");
                 break;
             case BTNType.Continue:
-                SceneManager.LoadScene("Tutorial1");
                 break;
             case BTNType.Level:
                 SceneManager.LoadScene("StageSelectScene");
@@ -79,6 +78,78 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;         
             case BTNType.Quit:
                 Application.Quit();
+                break;
+            case BTNType.Stage1_Level1:
+                SceneManager.LoadScene("LavaStage1");
+                break;
+            case BTNType.Stage1_Level2:
+                SceneManager.LoadScene("LavaStage2");
+                break;
+            case BTNType.Stage1_Level3:
+                SceneManager.LoadScene("LavaStage2");
+                break;
+            case BTNType.Stage1_Level4:
+                SceneManager.LoadScene("LavaStage2");
+                break;
+            case BTNType.Stage1_Level5:
+                SceneManager.LoadScene("LavaStage2");
+                break;
+            case BTNType.Stage1_Level6:
+                SceneManager.LoadScene("LavaStage2");
+                break;
+            case BTNType.Stage2_Level1:
+                SceneManager.LoadScene("WaterStage1");
+                break;
+            case BTNType.Stage2_Level2:
+                SceneManager.LoadScene("WaterStage2");
+                break;
+            case BTNType.Stage2_Level3:
+                SceneManager.LoadScene("WaterStage2");
+                break;
+            case BTNType.Stage2_Level4:
+                SceneManager.LoadScene("WaterStage2");
+                break;
+            case BTNType.Stage2_Level5:
+                SceneManager.LoadScene("WaterStage2");
+                break;
+            case BTNType.Stage2_Level6:
+                SceneManager.LoadScene("WaterStage2");
+                break;
+            case BTNType.Stage3_Level1:
+                SceneManager.LoadScene("MachineryStage1");
+                break;
+            case BTNType.Stage3_Level2:
+                SceneManager.LoadScene("MachineryStage1");
+                break;
+            case BTNType.Stage3_Level3:
+                SceneManager.LoadScene("MachineryStage1");
+                break;
+            case BTNType.Stage3_Level4:
+                SceneManager.LoadScene("MachineryStage1");
+                break;
+            case BTNType.Stage3_Level5:
+                SceneManager.LoadScene("MachineryStage1");
+                break;
+            case BTNType.Stage3_Level6:
+                SceneManager.LoadScene("MachineryStage1");
+                break;
+            case BTNType.Stage4_Level1:
+                SceneManager.LoadScene("InfinityStorm4-1");
+                break;
+            case BTNType.Stage4_Level2:
+                SceneManager.LoadScene("InfinityStorm4-2");
+                break;
+            case BTNType.Stage4_Level3:
+                SceneManager.LoadScene("InfinityStorm4-3");
+                break;
+            case BTNType.Stage4_Level4:
+                SceneManager.LoadScene("InfinityStorm4-3");
+                break;
+            case BTNType.Stage4_Level5:
+                SceneManager.LoadScene("InfinityStorm4-3");
+                break;
+            case BTNType.Stage4_Level6:
+                SceneManager.LoadScene("InfinityStorm4-3");
                 break;
         }
 

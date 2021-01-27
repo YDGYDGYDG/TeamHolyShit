@@ -33,7 +33,7 @@ public class Air : MonoBehaviour
         if (is_die)
             return;
 
-        Debug.Log($"HP: {airbar.value}");
+       
 
         if (airbar.value >= 10)
         {

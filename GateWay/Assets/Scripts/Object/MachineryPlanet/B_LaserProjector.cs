@@ -10,6 +10,8 @@ public class B_LaserProjector : MonoBehaviour
     int layerMask_ignore;
     RaycastHit2D hit;
 
+    public GameObject [] triggerObjects;
+
     void Awake()
     {
         layerMask_ignore = 1 << LayerMask.NameToLayer("LaserProjector");
@@ -34,8 +36,10 @@ public class B_LaserProjector : MonoBehaviour
             // 센서에 레이저가 닿으면
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("LaserCensor"))
             {
-                // 현상 발생 처리
-                //Debug.Log("발동!");
+                for (int i = 0; i < triggerObjects.Length; i++) 
+                {
+                    triggerObjects[i].GetComponent<Trigger_Door>().TriggerOn();
+                }
             }
 
             while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50)
@@ -43,10 +47,14 @@ public class B_LaserProjector : MonoBehaviour
                 laserPos = hit.point - (laserDir.normalized * 0.0001f);
                 laserDir = Vector2.Reflect(laserDir, hit.normal);
                 hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
-                if (hit)
+                line.positionCount++;
+                line.SetPosition(line.positionCount - 1, hit.point);
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("LaserCensor"))
                 {
-                    line.positionCount++;
-                    line.SetPosition(line.positionCount - 1, hit.point);
+                    for (int i = 0; i < triggerObjects.Length; i++)
+                    {
+                        triggerObjects[i].GetComponent<Trigger_Door>().TriggerOn();
+                    }
                 }
             }
 

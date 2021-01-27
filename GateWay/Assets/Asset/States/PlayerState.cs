@@ -59,7 +59,7 @@ public class PlayerState : MonoBehaviour
 
         else if (col.gameObject.tag == "Star")     // 너 동전이랑 충돌했니??
         {
-            Coin.SetActive(false);                 // 동전 지워줘
+            // Coin.SetActive(false);                 // 동전 지워줘
             // 이펙트도 출력해
             Instantiate(takeCoin, transform.position, Quaternion.identity);    
             openDoor.enabled = true;               // 문 열어~~~

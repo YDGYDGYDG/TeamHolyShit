@@ -10,9 +10,9 @@ public class StarController : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             star = true;
             Debug.Log("열쇠 획득");

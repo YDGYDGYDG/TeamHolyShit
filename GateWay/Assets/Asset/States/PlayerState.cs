@@ -17,7 +17,7 @@ public class PlayerState : MonoBehaviour
     CapsuleCollider2D openDoor;            // 문 열어라~
 
     // 캐릭터 부활 위치(맵에 따라 다름)
-    Vector2 playerStartPosition = new Vector2(48.67f, -4.3f);
+    Vector2 playerStartPosition = new Vector2(0f, 0f);
 
     
     void playerRevive()     // 부활 함수

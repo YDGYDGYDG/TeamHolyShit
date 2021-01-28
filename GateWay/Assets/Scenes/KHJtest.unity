@@ -1578,7 +1578,7 @@ PrefabInstance:
     - target: {fileID: 8590263175933002886, guid: 4f6796f21246d63479cebc3ebcd2c77d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f6796f21246d63479cebc3ebcd2c77d, type: 3}
@@ -1736,6 +1736,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ce7c0e447af2e9449516f3dc089ea5a, type: 3}
+--- !u!1 &1535167718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7274603373254219454, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+    type: 3}
+  m_PrefabInstance: {fileID: 425248892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1535167729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535167718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3c32f75e5a5e1439a87890266b6a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takeCoin: {fileID: 100004, guid: 36d12b1941843b34f8aa9a6479ee16d9, type: 3}
 --- !u!1 &1565078684
 GameObject:
   m_ObjectHideFlags: 0

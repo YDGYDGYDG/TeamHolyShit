@@ -11,12 +11,7 @@ public class PlayerState : MonoBehaviour
 
     public GameObject playerDeath;  // 플레이어 죽었을 때
 
-    public GameObject takeCoin;     // 코인 획득했을 때
-    GameObject Coin;                // 코인 연결용
-
-    GameObject Door;                       // 문 연결
-    CapsuleCollider2D openDoor;            // 문 열어라~
-
+    AudioSource audioSource;               // 오디오 소스 연결
     public AudioClip playerDrop;           // 플레이어 추락 사운드
     public AudioClip plyaerMove;           // 플레이어 무브 사운드
     public AudioClip plyaerjump;           // 플레이어 점프 사운드
@@ -42,14 +37,11 @@ public class PlayerState : MonoBehaviour
     void Start()
     {
         hookLine = GameObject.Find("player").GetComponent<HookShotScript>();    // 훅샷 스크립트 연결
-        Coin = GameObject.Find("Coin");     // 코인 연결
-        Door = GameObject.Find("Door");     // 문 연결
-        openDoor = Door.GetComponent<CapsuleCollider2D>();  // 트리거 연결
+        audioSource = GetComponent<AudioSource>();          // 오디오 소스 연결
         playerStartPosition = gameObject.transform.position;
         hookDisWall = GameObject.Find("HookDisWall");
         air = GameObject.Find("player").GetComponent<Air>();
-
-
+        
 
     }
 
@@ -73,13 +65,11 @@ public class PlayerState : MonoBehaviour
             Invoke("playerRevive", 3.0f);       // 3초 뒤에 시작 위치에 부활 시켜
         }
 
-        else if (col.gameObject.tag == "Star")     // 너 동전이랑 충돌했니??
+        else if (col.gameObject.tag == "Drop")     // 너 추락했냐?
         {
-            Coin.SetActive(false);                 // 동전 지워줘
-            // 이펙트도 출력해
-            Instantiate(takeCoin, transform.position, Quaternion.identity);    
-            openDoor.enabled = true;               // 문 열어~~~
-           
+            audioSource.clip = playerDrop;
+            audioSource.Play();                 // 그럼 추락 사운드 재생하고
+            Invoke("playerRevive", 3.0f);       // 3초 뒤에 시작 위치에 부활 시켜
         }
 
     }

@@ -16,8 +16,8 @@ public class PlayerState : MonoBehaviour
     GameObject Door;                       // 문 연결
     CapsuleCollider2D openDoor;            // 문 열어라~
 
-    // 캐릭터 부활 위치(맵에 따라 다름)
-    Vector2 playerStartPosition = new Vector2(0f, 0f);
+    // 캐릭터 부활 위치(맵에 따라 다름 인스펙터에서 조절하세요~~)
+    public Vector2 playerStartPosition = new Vector2(0f, 0f);
 
     
     void playerRevive()     // 부활 함수
@@ -60,7 +60,7 @@ public class PlayerState : MonoBehaviour
 
         else if (col.gameObject.tag == "Star")     // 너 동전이랑 충돌했니??
         {
-            // Coin.SetActive(false);                 // 동전 지워줘
+            Coin.SetActive(false);                 // 동전 지워줘
             // 이펙트도 출력해
             Instantiate(takeCoin, transform.position, Quaternion.identity);    
             openDoor.enabled = true;               // 문 열어~~~

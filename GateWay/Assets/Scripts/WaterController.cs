@@ -68,7 +68,7 @@ public class WaterController : MonoBehaviour
         }
     }
 
-    float time;
+    float time;                                    
     void Update()
     {
         for (int i = 0; i < watering.Length; i++)

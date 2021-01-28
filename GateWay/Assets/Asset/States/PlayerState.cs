@@ -17,6 +17,10 @@ public class PlayerState : MonoBehaviour
     GameObject Door;                       // 문 연결
     CapsuleCollider2D openDoor;            // 문 열어라~
 
+    public AudioClip playerDrop;           // 플레이어 추락 사운드
+    public AudioClip plyaerMove;           // 플레이어 무브 사운드
+    public AudioClip plyaerjump;           // 플레이어 점프 사운드
+
     // 캐릭터 부활 위치(맵에 따라 다름 인스펙터에서 조절하세요~~)
     public Vector2 playerStartPosition = new Vector2(0f, 0f);
 
@@ -66,7 +70,7 @@ public class PlayerState : MonoBehaviour
             hookLine.HookOFF();                 // 훅도 지워줘야지??
             // 이펙트도 출력해
             Instantiate(playerDeath, transform.position, Quaternion.identity);
-            Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
+            Invoke("playerRevive", 3.0f);       // 3초 뒤에 시작 위치에 부활 시켜
         }
 
         else if (col.gameObject.tag == "Star")     // 너 동전이랑 충돌했니??

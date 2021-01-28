@@ -1238,6 +1238,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7274603373254219441, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
+      propertyPath: speed
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603373254219441, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
       propertyPath: walkForce
       value: 50
       objectReference: {fileID: 0}
@@ -2435,8 +2440,8 @@ Transform:
   - {fileID: 910397631}
   - {fileID: 1629548634}
   - {fileID: 1468674237}
-  - {fileID: 496393950}
   - {fileID: 1028799346}
+  - {fileID: 496393950}
   - {fileID: 763693855}
   - {fileID: 1096952179}
   - {fileID: 248819882}

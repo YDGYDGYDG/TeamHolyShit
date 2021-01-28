@@ -297,6 +297,15 @@ public class HookShotScript : MonoBehaviour
         // 들고있던 오브젝트를 자식에서 추방
         hookedObject.transform.SetParent(null);
         // 오브젝트 날리기
+        if (shootDir.y < 0)
+        {
+            if (shootDir.x > 0)
+            {
+                shootDir.x = 1;
+            }
+            else shootDir.x = -1;
+            shootDir.y = 0;
+        }
         hookedObject.GetComponent<Rigidbody2D>().AddForce(shootDir * shootPower);
         isHaveShootableObject = false;
     }

@@ -16,6 +16,9 @@ public class PlayerState : MonoBehaviour
     GameObject Door;                       // 문 연결
     CapsuleCollider2D openDoor;            // 문 열어라~
 
+    AudioSource audioSource;               // 오디오 소스 연결
+    public AudioClip playerDrop;                  // 플레이어 추락 사운드
+
     // 캐릭터 부활 위치(맵에 따라 다름 인스펙터에서 조절하세요~~)
     public Vector2 playerStartPosition = new Vector2(0f, 0f);
 
@@ -35,6 +38,8 @@ public class PlayerState : MonoBehaviour
         Door = GameObject.Find("Door");     // 문 연결
         openDoor = Door.GetComponent<CapsuleCollider2D>();  // 트리거 연결
         playerStartPosition = gameObject.transform.position;
+
+        audioSource = GetComponent<AudioSource>();      // 오디오 소스 연결
         
     }
 
@@ -64,13 +69,16 @@ public class PlayerState : MonoBehaviour
             // 이펙트도 출력해
             Instantiate(takeCoin, transform.position, Quaternion.identity);    
             openDoor.enabled = true;               // 문 열어~~~
-           
+        }
+
+        else if (col.gameObject.tag == "Drop")     // 너 추락했냐?
+        {
+            audioSource.clip = playerDrop;
+            audioSource.Play();
+            Invoke("playerRevive", 3.0f);       // 1초 뒤에 시작 위치에 부활 시켜
         }
 
     }
-
-   
-
 
     // Update is called once per frame
     void Update()

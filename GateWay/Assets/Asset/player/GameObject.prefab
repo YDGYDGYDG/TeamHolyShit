@@ -121,7 +121,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7274603373254219441}
-        m_MethodName: RButtenDown
+        m_MethodName: RBDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7274603373254219441}
-          m_MethodName: Swlwct
+          m_MethodName: RBtriggerON
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7274603373254219441}
-          m_MethodName: NotSwlwct
+          m_MethodName: RBtriggerOFF
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -519,7 +519,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7274603373254219441}
-        m_MethodName: LButtenDown
+        m_MethodName: LBDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -547,7 +547,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7274603373254219441}
-          m_MethodName: Swlwct
+          m_MethodName: LBtriggerON
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -562,7 +562,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7274603373254219441}
-          m_MethodName: NotSwlwct
+          m_MethodName: LBtriggerOFF
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1940,7 +1940,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7274603373254219441}
-        m_MethodName: JButtenDown
+        m_MethodName: JButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2925,7 +2925,7 @@ MonoBehaviour:
   jumpForce: 1000
   brakeForce: 100
   jumpSpeed: 600
-  speed: 100
+  speed: 0.08
 --- !u!114 &2101730982760382385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2941,6 +2941,8 @@ MonoBehaviour:
   playerDeath: {fileID: 100000, guid: ff70816237ea15b44a347f133fe5a416, type: 3}
   takeCoin: {fileID: 100004, guid: 36d12b1941843b34f8aa9a6479ee16d9, type: 3}
   playerDrop: {fileID: 8300000, guid: 6afdb4068e9e2de4ea3a163ac34d562f, type: 3}
+  plyaerMove: {fileID: 0}
+  plyaerjump: {fileID: 0}
   playerStartPosition: {x: 0, y: 0}
 --- !u!61 &5276836769841526232
 BoxCollider2D:

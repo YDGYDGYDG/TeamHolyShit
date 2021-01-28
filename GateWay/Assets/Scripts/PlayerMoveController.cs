@@ -40,7 +40,25 @@ public class PlayerMoveController : MonoBehaviour
     bool jump;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
+    {
+        
+
+
+        // 키보드 이동 
+        if (LBTrigger)
+        {
+            LBDown();
+        }
+        if (RBTrigger)
+        {
+            RBDown();
+        }
+        
+
+
+    }
+    private void Update()
     {
         // 왼쪽으로 이동
         if (Input.GetKeyDown(KeyCode.A))
@@ -61,22 +79,6 @@ public class PlayerMoveController : MonoBehaviour
         {
             RBtriggerOFF();
         }
-
-        // 키보드 이동 
-        if (LBTrigger)
-        {
-            LBDown();
-        }
-        if (RBTrigger)
-        {
-            RBDown();
-        }
-
-
-        Debug.Log(jump);
-        Debug.Log("거리" + hit.distance);
-        Debug.Log("사이즈"+playerSize);
-        
         //======================점프===========================================================
         hit = Physics2D.Raycast(transform.position, Vector2.up * -1, 200, moveLayerMask);
         // 점프 상태
@@ -91,20 +93,20 @@ public class PlayerMoveController : MonoBehaviour
             stopJump = false;
             moveJump = false;
         }
-        
+
         // 이동 점프
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.A) && jump == false)
         {
-            JButtenDown();
+            JButtonDown();
         }
         else if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D) && jump == false)
         {
-            JButtenDown();
+            JButtonDown();
         }
         // 제자리 점프
         else if (Input.GetKeyDown(KeyCode.Space) && jump == false)
         {
-            JButtenDown();
+            JButtonDown();
         }
 
         // 제자리 점프 상태
@@ -162,7 +164,7 @@ public class PlayerMoveController : MonoBehaviour
     }
 
 
-    public void JButtenDown()  // 점프 버튼이 눌렸을 떄 실행
+    public void JButtonDown()  // 점프 버튼이 눌렸을 떄 실행
     {
         if (LBTrigger && jump == false)
         {

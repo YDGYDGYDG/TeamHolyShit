@@ -116,7 +116,7 @@ public class HookShotScript : MonoBehaviour
                     if ((hook.position - transform.position).magnitude > 1)
                     {
                         // 때려서라도 가^^
-                        //getRigid.AddForce(hook.position - transform.position);
+                        getRigid.AddForce(hook.position - transform.position);
                     }
                 }
                 // 다 줄어들었어?

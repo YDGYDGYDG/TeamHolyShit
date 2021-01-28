@@ -34,6 +34,7 @@ public class PlayerState : MonoBehaviour
         Coin = GameObject.Find("Coin");     // 코인 연결
         Door = GameObject.Find("Door");     // 문 연결
         openDoor = Door.GetComponent<CapsuleCollider2D>();  // 트리거 연결
+        playerStartPosition = gameObject.transform.position;
         
     }
 

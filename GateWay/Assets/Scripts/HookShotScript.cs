@@ -59,6 +59,11 @@ public class HookShotScript : MonoBehaviour
     // UI 사용
     public GameObject HookOffBtn;
 
+    // 물건을 들고 있는가
+    public bool isHaveShootableObject = false;
+    public float shootPower = 1000;
+
+
     void Start()
     {
         getRigid = gameObject.GetComponent<Rigidbody2D>();
@@ -77,7 +82,6 @@ public class HookShotScript : MonoBehaviour
         playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
         HookSE = GameObject.Find("Hook");                   // 훅 찾아주고..(형준)
 
-        aimLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
     }
 
     void Update()
@@ -141,6 +145,17 @@ public class HookShotScript : MonoBehaviour
                 // 내 앞까지 이동했으면 줄 끊는다.
                 if (Vector2.Distance(transform.position, hook.position) < hookedObjectSize)
                 {
+                    // 이 때, '던질 수 있는 오브젝트'를 가져왔으면 흡수한다
+                    if (hookedObject.layer == LayerMask.NameToLayer("Shootable"))
+                    {
+                        // 가져온 오브젝트가 플레이어의 자식이 된다
+                        hookedObject.transform.SetParent(transform);
+                        // 그리고 머리위에 고정됨
+                        hookedObject.transform.position = transform.position + Vector3.up;
+                        hookedObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                        // '나 물건 들고 있어요'가 true
+                        isHaveShootableObject = true;
+                    }
                     HookOFF();
                     hookChildJoint2D.connectedBody = null;
                 }
@@ -201,28 +216,48 @@ public class HookShotScript : MonoBehaviour
 
     public void HookAim()
     {
-        // 훅을 사용하지 않는 중이라면
-        if (!isHookActive)
+        // 물건을 들고 있는 중일 때라면
+        if (isHaveShootableObject)
         {
             // 에임을 켜고
             aim.SetActive(true);
-            // 에임 그리기 시퀀스 ---------------------
-            // 에임의 끝점을 구하는 레이캐스트
-            RaycastHit2D hit;
-            hit = Physics2D.Raycast(transform.position, aimDir, Mathf.Infinity, aimLayerMask);
-            // 에임을 그린다
-            // 에임의 레이캐스트 거리 > 에임의 최대 사거리 이면
-            if (hit && lineMax > (transform.position - new Vector3(hit.point.x, hit.point.y, 0)).magnitude)
+            if (aimDir.y < 0)
             {
-                // 에임 위치는 레이캐스트 위치
-                aim.transform.position = hit.point;
+                if(aimDir.x > 0)
+                {
+                    aimDir.x = 1;
+                }
+                else aimDir.x = -1;
+                aimDir.y = 0;
             }
-            else
+            aim.transform.position = new Vector2 (hookedObject.transform.position.x, hookedObject.transform.position.y) + (3 * aimDir);
+        }
+        else
+        {
+            // 훅을 사용하지 않는 중이라면
+            if (!isHookActive)
             {
-                // 최대 사거리 위치 구하기
-                Vector2 newAimPosition = new Vector2(transform.position.x, transform.position.y) + (lineMax * aimDir);
-                // 에임 위치는 최대 사거리 위치
-                aim.transform.position = newAimPosition;
+                // 에임을 켜고
+                aim.SetActive(true);
+                // 에임 그리기 시퀀스 ---------------------
+                // 에임의 끝점을 구하는 레이캐스트
+                RaycastHit2D hit;
+                aimLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
+                hit = Physics2D.Raycast(transform.position, aimDir, Mathf.Infinity, aimLayerMask);
+                // 에임을 그린다
+                // 에임의 레이캐스트 거리 > 에임의 최대 사거리 이면
+                if (hit && lineMax > (transform.position - new Vector3(hit.point.x, hit.point.y, 0)).magnitude)
+                {
+                    // 에임 위치는 레이캐스트 위치
+                    aim.transform.position = hit.point;
+                }
+                else
+                {
+                    // 최대 사거리 위치 구하기
+                    Vector2 newAimPosition = new Vector2(transform.position.x, transform.position.y) + (lineMax * aimDir);
+                    // 에임 위치는 최대 사거리 위치
+                    aim.transform.position = newAimPosition;
+                }
             }
         }
     }
@@ -253,4 +288,16 @@ public class HookShotScript : MonoBehaviour
         }
     }
 
+
+    public void ShootObject()
+    {
+        aim.SetActive(false);
+        // 물리 효과 다시 받게 함
+        hookedObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        // 들고있던 오브젝트를 자식에서 추방
+        hookedObject.transform.SetParent(null);
+        // 오브젝트 날리기
+        hookedObject.GetComponent<Rigidbody2D>().AddForce(shootDir * shootPower);
+        isHaveShootableObject = false;
+    }
 }

@@ -47,8 +47,15 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         lever.anchoredPosition = Vector2.zero;
         player.shootDir = clampedDir.normalized;
-        player.HookShot();
-        HookOffBtn.SetActive(true);
+        if (!player.isHaveShootableObject)
+        {
+            player.HookShot();
+            HookOffBtn.SetActive(true);
+        }
+        else
+        {
+            player.ShootObject();
+        }
     }
 
     void DragControl(PointerEventData eventData)

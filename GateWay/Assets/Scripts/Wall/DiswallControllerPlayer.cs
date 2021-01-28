@@ -6,7 +6,7 @@ public class DiswallControllerPlayer : MonoBehaviour
 {
     
     HookShotScript hook_script;
-    public float playerDiswallTime = 0.3f;
+    public float playerDiswallTime = 0.5f;
 
     void Start()
     {

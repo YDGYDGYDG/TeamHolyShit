@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class PlayerMoveController : MonoBehaviour
 {
     Rigidbody2D rigidBody;  // 강체를 참조하기 위한 변수
-    public float jumpForce = 1000.0f;   // 점프에 전달할 힘 값
+    public float jumpForce = 1500.0f;   // 점프에 전달할 힘 값
     public float brakeForce = 100.0f;    // 브레이크 힘
     public float jumpSpeed = 600.0f;    // 이동 점프 스피드
 

@@ -7,10 +7,9 @@ using UnityEngine.EventSystems;
 public class PlayerMoveController : MonoBehaviour
 {
     Rigidbody2D rigidBody;  // 강체를 참조하기 위한 변수
-    public float jumpForce = 1200.0f;   // 점프에 전달할 힘 값
-    public float walkForce = 50.0f;
-    public float stopForce = 100.0f;    // 제자리 점프 이동
-    public float jumpSpeed = 600.0f;
+    public float jumpForce = 1000.0f;   // 점프에 전달할 힘 값
+    public float brakeForce = 100.0f;    // 브레이크 힘
+    public float jumpSpeed = 600.0f;    // 이동 점프 스피드
 
     RaycastHit2D hit;
 
@@ -22,11 +21,9 @@ public class PlayerMoveController : MonoBehaviour
 
     float playerSize;
 
-    public float maxSpeed;
+    bool stopJump; // 제자리 점프 상태
 
-    bool stopJump;
-
-    float addSpeed = 1;
+    bool moveJump;
 
 
 
@@ -38,176 +35,184 @@ public class PlayerMoveController : MonoBehaviour
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         moveLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
 
-        playerSize = gameObject.GetComponent<CapsuleCollider2D>().bounds.extents.magnitude;
+        playerSize = gameObject.GetComponent<CircleCollider2D>().bounds.extents.magnitude + 0.13f;
     }
     bool jump;
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(addSpeed);
-
         // 왼쪽으로 이동
-        if (Input.GetKey(KeyCode.A) && jump == false)
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            addSpeed += 0.5f;
-            // rigidBody.AddForce(transform.right * -1 * (walkForce * addSpeed));
-            transform.Translate(-0.05f, 0, 0);
- 
-            transform.localScale = new Vector3(-1, 1, 1);
-
-            if (rigidBody.velocity.x < maxSpeed * -1f)
-            {
-                rigidBody.velocity = new Vector2(maxSpeed * -1, rigidBody.velocity.y);
-            }
+            LBtriggerON();
         }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            LBtriggerOFF();
+        }
+
         // 오른쪽 이동
-        else if (Input.GetKey(KeyCode.D) && jump == false)
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            addSpeed += 0.5f;
-            rigidBody.AddForce(transform.right * 1 * (walkForce*addSpeed));    // 힘을줄꼐
-
-            transform.localScale = new Vector3(1, 1, 1);        // 방향을 바꿔
-
-            if (rigidBody.velocity.x > maxSpeed)        // 너무 빠르잖아
-            {
-                rigidBody.velocity = new Vector2(maxSpeed, rigidBody.velocity.y);
-            }
+            RBtriggerON();
         }
-        else
+        else if (Input.GetKeyUp(KeyCode.D))
         {
-            addSpeed = 0;
+            RBtriggerOFF();
         }
 
-        // 이동속도 증가량 맥시멈
-        if (addSpeed >= 10.0f)
+        // 키보드 이동 
+        if (LBTrigger)
         {
-            addSpeed = 10.0f;
+            LBDown();
+        }
+        if (RBTrigger)
+        {
+            RBDown();
         }
 
+
+        Debug.Log(jump);
+        Debug.Log("거리" + hit.distance);
+        Debug.Log("사이즈"+playerSize);
+        
         //======================점프===========================================================
-        hit = Physics2D.Raycast(transform.position, Vector2.up * -1, 100, moveLayerMask);
+        hit = Physics2D.Raycast(transform.position, Vector2.up * -1, 200, moveLayerMask);
         // 점프 상태
         if (hit.distance > playerSize)
         {
             jump = true;
         }
+
         else if (hit.distance <= playerSize)
         {
             jump = false;
             stopJump = false;
+            moveJump = false;
         }
-
-
+        
         // 이동 점프
-        if (Input.GetKey(KeyCode.D))
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && jump == false)
-            {
-                jump = true;
-                rigidBody.AddForce(transform.up * jumpForce);
-                rigidBody.AddForce(transform.right * 1 * jumpSpeed);
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.A) && jump == false)
         {
-            Vector2 LJ = new Vector2(-0.5f, 1f);
-            jump = true;
-            rigidBody.AddForce(LJ * jumpForce);
-            rigidBody.AddForce(transform.right * -1 * jumpSpeed);
+            JButtenDown();
         }
+        else if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D) && jump == false)
+        {
+            JButtenDown();
+        }
+        // 제자리 점프
         else if (Input.GetKeyDown(KeyCode.Space) && jump == false)
         {
-            jump = true;
-            rigidBody.AddForce(transform.up * jumpForce);
-
+            JButtenDown();
         }
-        else if(Input.GetKeyDown(KeyCode.D) && stopJump == false && jump == true)
+
+        // 제자리 점프 상태
+        if (rigidBody.velocity.x == 0 && jump == true)
         {
-            rigidBody.AddForce(transform.right * 1 * 100.0f);    // 힘을줄꼐
-
-            transform.localScale = new Vector3(1, 1, 1);        // 방향을 바꿔
-
-            stopJump = true;        // 한 번만 해줄께
-        }
-        else if(Input.GetKeyDown(KeyCode.A) && stopJump == false && jump == true)
-        {
-            rigidBody.AddForce(transform.right * -1 * 100.0f);
-
-            transform.localScale = new Vector3(-1, 1, 1);
-
             stopJump = true;
         }
+    }
 
-
-
-        // 버튼 UI 입출력 트리거
-        if (select)
+    public float speed = 0.01f;
+    // 키보드 이동
+    public void LBDown()
+    {
+        if (jump == false && stopJump == false)
         {
-            if (eventSystem.currentSelectedGameObject.name == "RButton")
-            {
-                RButtenDown();
+            transform.Translate(speed * -1, 0, 0);
 
-            }
-            else if (eventSystem.currentSelectedGameObject.name == "LButton")
-            {
-                LButtenDown();
-            }
+        }
+        else if(jump == true && stopJump == true)
+        {
+            stopJump = false;
+
+            rigidBody.AddForce(transform.right * -1 * brakeForce);
+
+        }
+        else if(moveJump == false)
+        {
+            moveJump = true;
+
+            rigidBody.AddForce(transform.right * -1 * brakeForce);
+
         }
 
     }
-
-
-    public void LButtenDown()  // 왼쪽 버튼이 눌렸을 때 실행
+    public void RBDown()
     {
-        if(jump == false)
+        if (jump == false && stopJump == false)
         {
-            rigidBody.AddForce(transform.right * -1 * walkForce);
-
-            transform.localScale = new Vector3(-1, 1, 1);
-
-            if (rigidBody.velocity.x < maxSpeed * -1f)
-            {
-                rigidBody.velocity = new Vector2(maxSpeed * -1, rigidBody.velocity.y);
-            }
+            transform.Translate(speed, 0, 0);
         }
-    }
-
-
-    public void RButtenDown()  // 오른쪽 버튼이 눌렸을 떄 실행
-    {
-        if(jump == false)
+        else if(jump == true && stopJump == true)
         {
-            rigidBody.AddForce(transform.right * 1 * walkForce);    // 힘을줄꼐
+            stopJump = false;
 
-            transform.localScale = new Vector3(1, 1, 1);        // 방향을 바꿔
+            rigidBody.AddForce(transform.right * 1 * brakeForce);
 
-            if (rigidBody.velocity.x > maxSpeed)        // 너무 빠르잖아
-            {
-                rigidBody.velocity = new Vector2(maxSpeed, rigidBody.velocity.y);
-            }
         }
+        else if (moveJump == false)
+        {
+            moveJump = true;
+
+            rigidBody.AddForce(transform.right * 1 * brakeForce);
+        }
+
     }
 
 
     public void JButtenDown()  // 점프 버튼이 눌렸을 떄 실행
     {
-        if (jump == false)
+        if (LBTrigger && jump == false)
         {
+            jump = true;
+            Vector2 LJ = new Vector2(-0.5f, 1f);
+            rigidBody.AddForce(LJ * jumpForce);
+        }
+        else if (RBTrigger && jump == false)
+        {
+            jump = true;
+            Vector2 LJ = new Vector2(0.5f, 1f);
+            rigidBody.AddForce(LJ * jumpForce);
+        }
+        else if ( jump == false)
+        {
+            stopJump = true;
+            jump = true;
             rigidBody.AddForce(transform.up * jumpForce);
         }
     }
 
-    // 버튼이 눌러졌는지 아닌지 판단할 변수, false로 자동 초기화
-    bool select;            
-    public void Swlwct()
-    {
-        select = true;
-    }
-    public void NotSwlwct()
-    {
-        select = false;
 
+    // 왼쪽 버튼 스위치
+    bool LBTrigger;            
+    public void LBtriggerON()
+    {
+        LBTrigger = true;
+    }
+    public void LBtriggerOFF()
+    {
+        if (jump == false && stopJump == false)
+        {
+            rigidBody.AddForce(transform.right * -1 * brakeForce);
+        }
+        LBTrigger = false;
+    }
+    
+    // 오른쪽 버튼 스위치
+    bool RBTrigger;            
+    public void RBtriggerON()
+    {
+        RBTrigger = true;
+    }
+    public void RBtriggerOFF()
+    {
+        if (jump == false && stopJump == false)
+        {
+            rigidBody.AddForce(transform.right * 1 * brakeForce);
+        }
+        
+        RBTrigger = false;
     }
 }

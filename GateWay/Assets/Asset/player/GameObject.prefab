@@ -2659,11 +2659,12 @@ GameObject:
   - component: {fileID: 7274603373254219449}
   - component: {fileID: 7274603373254219450}
   - component: {fileID: 7274603373254219444}
-  - component: {fileID: 7274603373254219451}
   - component: {fileID: 7274603373254219445}
   - component: {fileID: 7274603373254219446}
   - component: {fileID: 7274603373254219441}
   - component: {fileID: 2101730982760382385}
+  - component: {fileID: 5276836769841526232}
+  - component: {fileID: 5383115821354238306}
   m_Layer: 10
   m_Name: player
   m_TagString: Player
@@ -2778,6 +2779,7 @@ MonoBehaviour:
   isAttach: 0
   lineMax: 10
   lineSpeed: 20
+  playerlineSpeed: 10
   linePullSpeed: 20
   objectPullSpeed: 20
   linePower: 400
@@ -2793,22 +2795,6 @@ MonoBehaviour:
   HookOffBtn: {fileID: 7274603374396572269}
   isHaveShootableObject: 0
   shootPower: 1000
---- !u!70 &7274603373254219451
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7274603373254219454}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.85, y: 0.0001}
-  m_Direction: 0
 --- !u!82 &7274603373254219445
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2937,10 +2923,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 1000
-  walkForce: 10
-  stopForce: 100
+  brakeForce: 100
   jumpSpeed: 600
-  maxSpeed: 0
+  speed: 0.01
 --- !u!114 &2101730982760382385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2957,6 +2942,48 @@ MonoBehaviour:
   takeCoin: {fileID: 100004, guid: 36d12b1941843b34f8aa9a6479ee16d9, type: 3}
   playerDrop: {fileID: 8300000, guid: 6afdb4068e9e2de4ea3a163ac34d562f, type: 3}
   playerStartPosition: {x: 0, y: 0}
+--- !u!61 &5276836769841526232
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274603373254219454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 09aa4d8267d76d74e8645059123d9239, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.08}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.73, y: 0.73}
+    newSize: {x: 1.5, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.41, y: 0.34}
+  m_EdgeRadius: 0.09
+--- !u!58 &5383115821354238306
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274603373254219454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.13}
+  serializedVersion: 2
+  m_Radius: 0.28
 --- !u!1 &7274603373256149690
 GameObject:
   m_ObjectHideFlags: 0
@@ -3547,7 +3574,7 @@ DistanceJoint2D:
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 0
+  m_AutoConfigureDistance: 1
   m_Distance: 0.005
   m_MaxDistanceOnly: 0
 --- !u!58 &7274603374432610992

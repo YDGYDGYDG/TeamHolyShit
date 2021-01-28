@@ -2754,7 +2754,7 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDrag: 1
   m_AngularDrag: 1
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2777,7 +2777,7 @@ MonoBehaviour:
   isHookActive: 0
   isLineMax: 0
   isAttach: 0
-  lineMax: 10
+  lineMax: 7
   lineSpeed: 20
   playerlineSpeed: 10
   linePullSpeed: 20
@@ -2922,7 +2922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb5489043f39164abcd15020ab88185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 1000
+  jumpForce: 1500
   brakeForce: 100
   jumpSpeed: 600
   speed: 0.08
@@ -2939,7 +2939,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDeath: {fileID: 100000, guid: ff70816237ea15b44a347f133fe5a416, type: 3}
-  takeCoin: {fileID: 100004, guid: 36d12b1941843b34f8aa9a6479ee16d9, type: 3}
   playerDrop: {fileID: 8300000, guid: 6afdb4068e9e2de4ea3a163ac34d562f, type: 3}
   plyaerMove: {fileID: 0}
   plyaerjump: {fileID: 0}

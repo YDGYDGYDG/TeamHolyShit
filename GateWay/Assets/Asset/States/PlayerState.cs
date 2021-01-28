@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-
+    GameObject hookDisWall;
     HookShotScript hookLine;    // 훅 연결용 변수
+    Air air;
 
     public GameObject playerDeath;  // 플레이어 죽었을 때
 
@@ -20,10 +21,16 @@ public class PlayerState : MonoBehaviour
     public Vector2 playerStartPosition = new Vector2(0f, 0f);
 
     
-    void playerRevive()     // 부활 함수
+    public void playerRevive()     // 부활 함수
     {
         this.gameObject.SetActive(true);            // 플레이어 다시 켜주고
         transform.position = playerStartPosition;   // 시작 위치로 이동 시켜
+        ResetPos();
+    }
+    private void ResetPos()
+    {
+        hookDisWall.SetActive(true);
+        air.curAir = 0;
     }
 
 
@@ -35,7 +42,11 @@ public class PlayerState : MonoBehaviour
         Door = GameObject.Find("Door");     // 문 연결
         openDoor = Door.GetComponent<CapsuleCollider2D>();  // 트리거 연결
         playerStartPosition = gameObject.transform.position;
-        
+        hookDisWall = GameObject.Find("HookDisWall");
+        air = GameObject.Find("player").GetComponent<Air>();
+
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)

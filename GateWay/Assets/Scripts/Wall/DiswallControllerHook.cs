@@ -25,7 +25,8 @@ public class DiswallControllerHook : MonoBehaviour
     {
         if (collision.gameObject.tag == "Hook")
         {
-            Destroy(this.gameObject, hookDiswallTime);
+            this.gameObject.SetActive(false);
+            //  Destroy(this.gameObject, hookDiswallTime);
         }
     }
 }

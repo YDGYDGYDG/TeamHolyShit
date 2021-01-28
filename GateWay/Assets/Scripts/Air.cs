@@ -8,8 +8,8 @@ public class Air : MonoBehaviour
     [SerializeField]
     private Slider airbar;
 
-    private float maxAir = 10;
-    private float curAir = 0;
+    public float maxAir = 10;
+    public float curAir = 0;
     bool isWater;
     private float time = 0;
     float outTime = 0;
@@ -17,6 +17,7 @@ public class Air : MonoBehaviour
     private bool is_die = false;
 
     HookShotScript hookLine;    // 훅 연결용 변수(형준)
+    PlayerState playerState;
 
 
 
@@ -24,7 +25,8 @@ public class Air : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hookLine = GetComponent<HookShotScript>();  
+        hookLine = GetComponent<HookShotScript>();
+        playerState = GameObject.Find("player").GetComponent<PlayerState>();
     }
 
     // Update is called once per frame
@@ -91,5 +93,6 @@ public class Air : MonoBehaviour
     {
         this.gameObject.SetActive(false);     // 캐릭터 없애주고..(형준)
         hookLine.HookOFF();                   // 훅도 지워줘야지??(형준)
+        playerState.playerRevive();
     }
 }

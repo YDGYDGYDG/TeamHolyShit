@@ -22,6 +22,8 @@ public class HookShotScript : MonoBehaviour
     public float lineMax = 10;
     // 로프 날아가는 속도
     public float lineSpeed = 30;
+    // 캐릭터 날아가는 속도
+    public float playerlineSpeed = 10;
     // 로프 회수하는 속도
     public float linePullSpeed = 60;
     // 로프로 오브젝트 당기는 속도
@@ -109,12 +111,12 @@ public class HookShotScript : MonoBehaviour
                 // 처음에 빠르게, 가까워지면 천천히 줄어들어서 속도감
                 if (hookJoint2D.distance > 1)
                 {
-                    hookJoint2D.distance -= Time.deltaTime * lineSpeed;
+                    hookJoint2D.distance -= Time.deltaTime * playerlineSpeed;
                     // 뭐? 다 줄였는데 훅이랑 캐릭터랑 멀리있다고?
                     if ((hook.position - transform.position).magnitude > 1)
                     {
                         // 때려서라도 가^^
-                        getRigid.AddForce(hook.position - transform.position);
+                        //getRigid.AddForce(hook.position - transform.position);
                     }
                 }
                 // 다 줄어들었어?

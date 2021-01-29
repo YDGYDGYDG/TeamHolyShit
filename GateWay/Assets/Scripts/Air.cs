@@ -44,7 +44,7 @@ public class Air : MonoBehaviour
         if (airbar.value >= 10)
         {
             is_die = true;
-            PlayerDead();
+            PlayerDrown();
             ResetPos();
         }
         
@@ -93,8 +93,8 @@ public class Air : MonoBehaviour
           
     }
 
-    // 캐릭터가 죽음
-    public void PlayerDead()
+    // 캐릭터 익사
+    public void PlayerDrown()
     {
         this.gameObject.SetActive(false);     // 캐릭터 없애주고..(형준)
         hookLine.HookOFF();                   // 훅도 지워줘야지??(형준)

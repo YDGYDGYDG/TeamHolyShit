@@ -2940,8 +2940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDeath: {fileID: 100000, guid: ff70816237ea15b44a347f133fe5a416, type: 3}
   playerDrop: {fileID: 8300000, guid: 6afdb4068e9e2de4ea3a163ac34d562f, type: 3}
-  plyaerMove: {fileID: 0}
-  plyaerjump: {fileID: 0}
+  plyaerMove: {fileID: 8300000, guid: d4c263a37504cf549aab638270fddedb, type: 3}
+  plyaerjump: {fileID: 8300000, guid: 2a2f517d1a02cf04983d4e295508c9f0, type: 3}
   playerStartPosition: {x: 0, y: 0}
 --- !u!61 &5276836769841526232
 BoxCollider2D:

@@ -191,7 +191,7 @@ public class HookShotScript : MonoBehaviour
 
     public void HookOFF()
     {
-        GetComponent<Animator>().SetBool("isJump", false);    // Idle 애니메이션 출력(형준)
+        
         aim.SetActive(false);
         getRigid.simulated = true;
         getRigid.gravityScale = 2;
@@ -268,8 +268,7 @@ public class HookShotScript : MonoBehaviour
         if (!isHookActive)
         {
             aim.SetActive(false);
-            GetComponent<Animator>().SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
-
+            
             hook.gameObject.SetActive(true);
             isHookActive = true;
             // 훅은 캐릭터 위치에서부터 날아가겠지
@@ -285,6 +284,7 @@ public class HookShotScript : MonoBehaviour
             {
                 // 방향이 오른쪽일때(형준)
                 playerPosition.flipX = false;     // 애니메이션 위치 오른쪽(형준)
+            
             }
         }
     }

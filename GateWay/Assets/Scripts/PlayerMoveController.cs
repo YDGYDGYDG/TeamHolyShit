@@ -31,19 +31,36 @@ public class PlayerMoveController : MonoBehaviour
 
 
     //EventSystem eventSystem;
-    //Animator animator;
+    
+
+    SpriteRenderer playerPosition;      // 애니메이션 방향 판단(형준)
+    Animator animator;                  // 애니메이터(형준)
+
+    AudioSource audioSource;            // SE 재생관리자(형준)
+    PlayerState playerState;            // 캐릭터 상태 스크립트(형준)
+
+
 
 
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        //animator = gameObject.GetComponent<Animator>();
+        
         //eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 
         moveLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
         playerSize = gameObject.GetComponent<CircleCollider2D>().bounds.extents.magnitude;
 
         player = GetComponent<HookShotScript>();
+
+        // 스프라이트 렌더러 연결(형준)
+        playerPosition = GetComponent<SpriteRenderer>();
+        // 애니메이터 연결(형준)
+        animator = GetComponent<Animator>();
+        // SE 재생관리자 연결(형준)
+        audioSource = GetComponent<AudioSource>();
+        // 캐릭터 상태 스크립트 연결(형준)
+        playerState = GetComponent<PlayerState>();
     }
 
     void FixedUpdate()
@@ -52,10 +69,14 @@ public class PlayerMoveController : MonoBehaviour
         if (LBTrigger)
         {
             LBDown();
+            playerPosition.flipX = true;    // 애니메이션 방향 왼쪽(형준)
+            
         }
         if (RBTrigger)
         {
             RBDown();
+            playerPosition.flipX = false;    // 애니메이션 방향 오른쪽(형준)
+            
         }
     }
 
@@ -65,20 +86,26 @@ public class PlayerMoveController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             LBtriggerON();
+            playerPosition.flipX = true;    // 애니메이션 방향 왼쪽(형준)
+            
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
             LBtriggerOFF();
+            
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             RBtriggerON();
+            playerPosition.flipX = false;    // 애니메이션 방향 오른쪽(형준)  
+            
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
             RBtriggerOFF();
-        }
+            
 
+        }
 
         // 점프 검사
         LHit = Physics2D.Raycast(transform.position + new Vector3(playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask);
@@ -102,11 +129,24 @@ public class PlayerMoveController : MonoBehaviour
         {
             stopJump = true;
         }
+
+      //  if (rigidBody.velocity.y == 0)   // 너 점프중이니?(형준)
+      //  {
+      //      animator.SetBool("isJump", false);  // Idle 애니메이션 출력(형준)
+      //  }
+      //  else if (rigidBody.velocity.y < 0 || rigidBody.velocity.y > 0)
+      //  {
+      //      
+      //  }
+        
     }
 
     public void LBtriggerON()
     {
         LBTrigger = true;
+        animator.SetBool("isRun", true);    // 런 애니메이션 출력(형준)
+        audioSource.clip = playerState.plyaerMove;  // 무브 클립(형준)
+        audioSource.Play(); // SE 스탑(형준)
     }
     public void LBtriggerOFF()
     {
@@ -115,18 +155,27 @@ public class PlayerMoveController : MonoBehaviour
             rigidBody.AddForce(-transform.right * brakeForce);
         }
         LBTrigger = false;
+        animator.SetBool("isRun", false);   // Idle 애니메이션 출력(형준)
+        audioSource.Stop(); // SE 스탑(형준)
     }
     public void RBtriggerON()
     {
         RBTrigger = true;
+        animator.SetBool("isRun", true);    // 런 애니메이션 출력(형준)
+        audioSource.clip = playerState.plyaerMove;  // 무브 클립(형준)
+        audioSource.Play(); // SE 스탑(형준)
+
     }
     public void RBtriggerOFF()
     {
         if (!jump)
         {
             rigidBody.AddForce(transform.right * brakeForce);
+            
         }
         RBTrigger = false;
+        animator.SetBool("isRun", false);   // Idle 애니메이션 출력(형준)
+        audioSource.Stop(); // SE 스탑(형준)
     }
 
 
@@ -192,6 +241,11 @@ public class PlayerMoveController : MonoBehaviour
 
     public void JButtonDown()  // 점프 버튼이 눌렸을 떄 실행
     {
+        animator.SetBool("isRun", false);    // 런 애니메이션 정지(형준)
+        audioSource.clip = playerState.plyaerjump;  // 점프 클립(형준)
+        audioSource.Play();
+        animator.SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
+
         if (LBTrigger && jump == false)
         {
             jump = true;
@@ -206,6 +260,7 @@ public class PlayerMoveController : MonoBehaviour
         }
         else if (!jump)
         {
+            
             stopJump = true;
             jump = true;
             rigidBody.AddForce(transform.up * jumpForce);

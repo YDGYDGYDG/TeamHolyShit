@@ -9,14 +9,14 @@ public class CoinGenerator : MonoBehaviour
     GameObject Coin;                // 코인 연결용
 
     GameObject Door;                       // 문 연결
-    CapsuleCollider2D openDoor;            // 문 열어라~
+    BoxCollider2D openDoor;            // 문 열어라~
 
     // Start is called before the first frame update
     void Start()
     {
         Coin = GameObject.Find("Coin");     // 코인 연결
         Door = GameObject.Find("Door");     // 문 연결
-        openDoor = Door.GetComponent<CapsuleCollider2D>();  // 트리거 연결
+        openDoor = Door.GetComponent<BoxCollider2D>();  // 트리거 연결
     }
 
     private void OnTriggerEnter2D(Collider2D col)

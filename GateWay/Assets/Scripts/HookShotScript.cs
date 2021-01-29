@@ -88,7 +88,6 @@ public class HookShotScript : MonoBehaviour
 
     void Update()
     {
-
         // '줄'의 시작점은 캐릭터의 위치로 고정
         line.SetPosition(0, transform.position);
         // 줄의 끝점은 훅의 위치로 고정
@@ -109,29 +108,29 @@ public class HookShotScript : MonoBehaviour
 
                 // 이제 캐릭터를 훅 방향으로 움직인다.(훅의 조인트 길이를 줄인다.)
                 // 처음에 빠르게, 가까워지면 천천히 줄어들어서 속도감
-                if (hookJoint2D.distance > 1)
+                if (Vector2.Distance(hook.position, transform.position) > 1)
                 {
                     hookJoint2D.distance -= Time.deltaTime * playerlineSpeed;
-                    // 뭐? 다 줄였는데 훅이랑 캐릭터랑 멀리있다고?
-                    if ((hook.position - transform.position).magnitude > 1)
-                    {
-                        // 때려서라도 가^^
-                        getRigid.AddForce(hook.position - transform.position);
-                    }
                 }
                 // 다 줄어들었어?
-                if ((hook.position - transform.position).magnitude <= 1)
+                if (Vector2.Distance(hook.position, transform.position) <= 1)
                 {
                     // 달랑거리지 마
                     //getRigid.simulated = false;
                     HookOFF();
-                    float cuttedRopeLength = (transform.position - hook.position).magnitude;
+                    float cuttedRopeLength = Vector2.Distance(hook.position, transform.position);
                     float nowRope = ropeLength - cuttedRopeLength;
                     getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
+                }
 
+                // 줄이 다 줄었는데 어태치월인 상태라면...?
+                if (hookJoint2D.distance <= 0.005)
+                {
+                    // 낀 것 같으니 끊어라
+                    HookOFF();
                 }
             }
-            
+
             // 훅이 오브젝트에 박혔다
             else if (isAttachObject)
             {

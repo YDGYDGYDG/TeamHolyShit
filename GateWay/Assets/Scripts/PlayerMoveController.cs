@@ -22,7 +22,6 @@ public class PlayerMoveController : MonoBehaviour
     // 점프 상태
     bool jump;
     bool stopJump; // 제자리
-    bool moveJump; // 움직이는 도중
     // 버튼 스위치
     bool LBTrigger;
     bool RBTrigger;
@@ -199,14 +198,6 @@ public class PlayerMoveController : MonoBehaviour
                 rigidBody.AddForce(-transform.right * brakeForce);
 
             }
-            else if (moveJump == false)
-            {
-                moveJump = true;
-
-                rigidBody.AddForce(-transform.right * brakeForce);
-
-            }
-
         }
 
     }
@@ -228,12 +219,6 @@ public class PlayerMoveController : MonoBehaviour
                 rigidBody.AddForce(transform.right * brakeForce);
 
             }
-            else if (moveJump == false)
-            {
-                moveJump = true;
-                rigidBody.AddForce(transform.right * brakeForce);
-            }
-
         }
 
     }
@@ -272,7 +257,6 @@ public class PlayerMoveController : MonoBehaviour
     {
         jump = false;
         stopJump = false;
-        moveJump = false;
     }
 
     public void Dead()

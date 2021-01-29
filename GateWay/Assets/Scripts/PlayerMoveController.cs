@@ -15,16 +15,16 @@ public class PlayerMoveController : MonoBehaviour
     // =============================================
     // 점프 변수
     // 바닥에 닿았는지 판단
-    RaycastHit2D hit;
+    RaycastHit2D LHit;
+    RaycastHit2D RHit;
     LayerMask moveLayerMask;
     float playerSize;
     // 점프 상태
     bool jump;
     bool stopJump; // 제자리
     bool moveJump; // 움직이는 도중
-    // 왼쪽 버튼 스위치
+    // 버튼 스위치
     bool LBTrigger;
-    // 왼쪽 버튼 스위치
     bool RBTrigger;
 
     HookShotScript player;
@@ -41,7 +41,7 @@ public class PlayerMoveController : MonoBehaviour
         //eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 
         moveLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
-        playerSize = gameObject.GetComponent<CircleCollider2D>().bounds.extents.magnitude + 0.13f;
+        playerSize = gameObject.GetComponent<CircleCollider2D>().bounds.extents.magnitude;
 
         player = GetComponent<HookShotScript>();
     }
@@ -81,12 +81,13 @@ public class PlayerMoveController : MonoBehaviour
 
 
         // 점프 검사
-        hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, moveLayerMask);
-        if (hit.distance > playerSize)
+        LHit = Physics2D.Raycast(transform.position + new Vector3(playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask);
+        RHit = Physics2D.Raycast(transform.position + new Vector3(-playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask);
+        if (LHit.distance > playerSize && RHit.distance > playerSize)
         {
             jump = true;
         }
-        else if (hit.distance <= playerSize)
+        else if (LHit.distance <= playerSize || RHit.distance <= playerSize)
         {
             ResetMovement();
         }
@@ -139,7 +140,7 @@ public class PlayerMoveController : MonoBehaviour
         {
             if (jump == false && stopJump == false)
             {
-                transform.Translate(speed * -1, 0, 0);
+                transform.Translate(-speed, 0, 0);
 
             }
             else if (jump == true && stopJump == true)
@@ -211,12 +212,17 @@ public class PlayerMoveController : MonoBehaviour
         }
     }
 
-
     
     void ResetMovement()
     {
         jump = false;
         stopJump = false;
         moveJump = false;
+    }
+
+    public void Dead()
+    {
+        LBTrigger = false;
+        RBTrigger = false;
     }
 }

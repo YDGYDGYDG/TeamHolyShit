@@ -18,6 +18,7 @@ public class Air : MonoBehaviour
 
     HookShotScript hookLine;    // 훅 연결용 변수(형준)
     PlayerState playerState;
+    GameObject hookDisWall;
 
 
 
@@ -27,6 +28,9 @@ public class Air : MonoBehaviour
     {
         hookLine = GetComponent<HookShotScript>();
         playerState = GameObject.Find("player").GetComponent<PlayerState>();
+
+        hookDisWall = GameObject.Find("HookDisWall");
+        curAir = 0;
     }
 
     // Update is called once per frame
@@ -41,6 +45,7 @@ public class Air : MonoBehaviour
         {
             is_die = true;
             PlayerDead();
+            ResetPos();
         }
         
         if (isWater)
@@ -94,5 +99,12 @@ public class Air : MonoBehaviour
         this.gameObject.SetActive(false);     // 캐릭터 없애주고..(형준)
         hookLine.HookOFF();                   // 훅도 지워줘야지??(형준)
         playerState.playerRevive();
+        
+    }
+
+    private void ResetPos()
+    {
+        hookDisWall.SetActive(true);
+        curAir = 0;
     }
 }

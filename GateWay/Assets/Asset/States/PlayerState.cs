@@ -34,7 +34,6 @@ public class PlayerState : MonoBehaviour
     {
         hookLine = GameObject.Find("player").GetComponent<HookShotScript>();    // 훅샷 스크립트 연결
         audioSource = GetComponent<AudioSource>();          // 오디오 소스 연결
-        playerStartPosition = gameObject.transform.position;
         hookDisWall = GameObject.Find("HookDisWall");
        
         
@@ -58,7 +57,7 @@ public class PlayerState : MonoBehaviour
             hookLine.HookOFF();                 // 훅도 지워줘야지??
             // 이펙트도 출력해
             Instantiate(playerDeath, transform.position, Quaternion.identity);
-            Invoke("playerRevive", 3.0f);       // 3초 뒤에 시작 위치에 부활 시켜
+            Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
         }
 
         else if (col.gameObject.tag == "Drop")     // 너 추락했냐?

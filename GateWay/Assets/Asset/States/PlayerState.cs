@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    GameObject hookDisWall;
     HookShotScript hookLine;    // 훅 연결용 변수
    
 
@@ -35,7 +34,6 @@ public class PlayerState : MonoBehaviour
     {
         hookLine = GameObject.Find("player").GetComponent<HookShotScript>();    // 훅샷 스크립트 연결
         audioSource = GetComponent<AudioSource>();          // 오디오 소스 연결
-        hookDisWall = GameObject.Find("HookDisWall");
         playerMoveStop = GetComponent<PlayerMoveController>();  // 무브 컨트롤러 연결
         
 

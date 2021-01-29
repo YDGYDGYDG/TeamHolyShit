@@ -154,6 +154,9 @@ public class HookShotScript : MonoBehaviour
                         // 그리고 머리위에 고정됨
                         hookedObject.transform.position = transform.position + Vector3.up;
                         hookedObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                        hookedObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                        hookedObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+                        hookedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                         // '나 물건 들고 있어요'가 true
                         isHaveShootableObject = true;
                     }
@@ -295,6 +298,8 @@ public class HookShotScript : MonoBehaviour
         aim.SetActive(false);
         // 물리 효과 다시 받게 함
         hookedObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        hookedObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+
         // 들고있던 오브젝트를 자식에서 추방
         hookedObject.transform.SetParent(null);
         // 오브젝트 날리기

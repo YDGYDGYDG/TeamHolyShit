@@ -10,41 +10,44 @@ public class PlayerMoveController : MonoBehaviour
     public float jumpForce = 1500.0f;   // 점프에 전달할 힘 값
     public float brakeForce = 100.0f;    // 브레이크 힘
     public float jumpSpeed = 600.0f;    // 이동 점프 스피드
+    public float speed = 0.01f; // 이속
 
+    // =============================================
+    // 점프 변수
+    // 바닥에 닿았는지 판단
     RaycastHit2D hit;
-
-    EventSystem eventSystem;
-
-    Animator animator;
-
     LayerMask moveLayerMask;
-
     float playerSize;
+    // 점프 상태
+    bool jump;
+    bool stopJump; // 제자리
+    bool moveJump; // 움직이는 도중
+    // 왼쪽 버튼 스위치
+    bool LBTrigger;
+    // 왼쪽 버튼 스위치
+    bool RBTrigger;
 
-    bool stopJump; // 제자리 점프 상태
-
-    bool moveJump;
+    HookShotScript player;
 
 
+    //EventSystem eventSystem;
+    //Animator animator;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        animator = gameObject.GetComponent<Animator>();
-        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        //animator = gameObject.GetComponent<Animator>();
+        //eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+
         moveLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
-
         playerSize = gameObject.GetComponent<CircleCollider2D>().bounds.extents.magnitude + 0.13f;
-    }
-    bool jump;
 
-    // Update is called once per frame
+        player = GetComponent<HookShotScript>();
+    }
+
     void FixedUpdate()
     {
-        
-
-
         // 키보드 이동 
         if (LBTrigger)
         {
@@ -54,13 +57,11 @@ public class PlayerMoveController : MonoBehaviour
         {
             RBDown();
         }
-        
-
-
     }
+
     private void Update()
     {
-        // 왼쪽으로 이동
+        // 키보드 이동
         if (Input.GetKeyDown(KeyCode.A))
         {
             LBtriggerON();
@@ -69,8 +70,6 @@ public class PlayerMoveController : MonoBehaviour
         {
             LBtriggerOFF();
         }
-
-        // 오른쪽 이동
         if (Input.GetKeyDown(KeyCode.D))
         {
             RBtriggerON();
@@ -79,36 +78,24 @@ public class PlayerMoveController : MonoBehaviour
         {
             RBtriggerOFF();
         }
-        //======================점프===========================================================
-        hit = Physics2D.Raycast(transform.position, Vector2.up * -1, 200, moveLayerMask);
-        // 점프 상태
+
+
+        // 점프 검사
+        hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, moveLayerMask);
         if (hit.distance > playerSize)
         {
             jump = true;
         }
-
         else if (hit.distance <= playerSize)
         {
-            jump = false;
-            stopJump = false;
-            moveJump = false;
+            ResetMovement();
         }
 
-        // 이동 점프
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.A) && jump == false)
+        // 점프
+        if (Input.GetKeyDown(KeyCode.Space) && jump == false)
         {
             JButtonDown();
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D) && jump == false)
-        {
-            JButtonDown();
-        }
-        // 제자리 점프
-        else if (Input.GetKeyDown(KeyCode.Space) && jump == false)
-        {
-            JButtonDown();
-        }
-
         // 제자리 점프 상태
         if (rigidBody.velocity.x == 0 && jump == true)
         {
@@ -116,49 +103,87 @@ public class PlayerMoveController : MonoBehaviour
         }
     }
 
-    public float speed = 0.01f;
-    // 키보드 이동
+    public void LBtriggerON()
+    {
+        LBTrigger = true;
+    }
+    public void LBtriggerOFF()
+    {
+        if (!jump)
+        {
+            rigidBody.AddForce(-transform.right * brakeForce);
+        }
+        LBTrigger = false;
+    }
+    public void RBtriggerON()
+    {
+        RBTrigger = true;
+    }
+    public void RBtriggerOFF()
+    {
+        if (!jump)
+        {
+            rigidBody.AddForce(transform.right * brakeForce);
+        }
+        RBTrigger = false;
+    }
+
+
     public void LBDown()
     {
-        if (jump == false && stopJump == false)
+        if (player.isAttachWall) 
         {
-            transform.Translate(speed * -1, 0, 0);
-
+            ResetMovement();
         }
-        else if(jump == true && stopJump == true)
+        else
         {
-            stopJump = false;
+            if (jump == false && stopJump == false)
+            {
+                transform.Translate(speed * -1, 0, 0);
 
-            rigidBody.AddForce(transform.right * -1 * brakeForce);
+            }
+            else if (jump == true && stopJump == true)
+            {
+                stopJump = false;
 
-        }
-        else if(moveJump == false)
-        {
-            moveJump = true;
+                rigidBody.AddForce(-transform.right * brakeForce);
 
-            rigidBody.AddForce(transform.right * -1 * brakeForce);
+            }
+            else if (moveJump == false)
+            {
+                moveJump = true;
+
+                rigidBody.AddForce(-transform.right * brakeForce);
+
+            }
 
         }
 
     }
     public void RBDown()
     {
-        if (jump == false && stopJump == false)
+        if (player.isAttachWall)
         {
-            transform.Translate(speed, 0, 0);
+            ResetMovement();
         }
-        else if(jump == true && stopJump == true)
+        else
         {
-            stopJump = false;
+            if (jump == false && stopJump == false)
+            {
+                transform.Translate(speed, 0, 0);
+            }
+            else if (jump == true && stopJump == true)
+            {
+                stopJump = false;
+                rigidBody.AddForce(transform.right * brakeForce);
 
-            rigidBody.AddForce(transform.right * 1 * brakeForce);
+            }
+            else if (moveJump == false)
+            {
+                moveJump = true;
+                rigidBody.AddForce(transform.right * brakeForce);
+            }
 
-        }
-        else if (moveJump == false)
-        {
-            moveJump = true;
-
-            rigidBody.AddForce(transform.right * 1 * brakeForce);
         }
 
     }
@@ -169,16 +194,16 @@ public class PlayerMoveController : MonoBehaviour
         if (LBTrigger && jump == false)
         {
             jump = true;
-            Vector2 LJ = new Vector2(-0.5f, 1f);
+            Vector2 LJ = new Vector2(-1, 2).normalized;
             rigidBody.AddForce(LJ * jumpForce);
         }
         else if (RBTrigger && jump == false)
         {
             jump = true;
-            Vector2 LJ = new Vector2(0.5f, 1f);
+            Vector2 LJ = new Vector2(1, 2).normalized;
             rigidBody.AddForce(LJ * jumpForce);
         }
-        else if ( jump == false)
+        else if (!jump)
         {
             stopJump = true;
             jump = true;
@@ -187,34 +212,11 @@ public class PlayerMoveController : MonoBehaviour
     }
 
 
-    // 왼쪽 버튼 스위치
-    bool LBTrigger;            
-    public void LBtriggerON()
-    {
-        LBTrigger = true;
-    }
-    public void LBtriggerOFF()
-    {
-        if (jump == false && stopJump == false)
-        {
-            rigidBody.AddForce(transform.right * -1 * brakeForce);
-        }
-        LBTrigger = false;
-    }
     
-    // 오른쪽 버튼 스위치
-    bool RBTrigger;            
-    public void RBtriggerON()
+    void ResetMovement()
     {
-        RBTrigger = true;
-    }
-    public void RBtriggerOFF()
-    {
-        if (jump == false && stopJump == false)
-        {
-            rigidBody.AddForce(transform.right * 1 * brakeForce);
-        }
-        
-        RBTrigger = false;
+        jump = false;
+        stopJump = false;
+        moveJump = false;
     }
 }

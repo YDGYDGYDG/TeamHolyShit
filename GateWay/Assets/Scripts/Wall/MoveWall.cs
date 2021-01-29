@@ -8,25 +8,42 @@ public class MoveWall : MonoBehaviour
     public Transform endPos;    // 끝나는 위치
     public Transform desPos;
     public float speed;
+
+    GameObject playerTrans;
+    PlayerMoveController playerMove;
+    Vector3 playerPos;
+    Vector3 distance;
+    bool isGraounded;
     // Start is called before the first frame update
     void Start()
     {
         transform.position = startPos.position;
         desPos = endPos;
+        playerMove = GameObject.Find("player").GetComponent<PlayerMoveController>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player"))
+        // if (collision.transform.CompareTag("Player"))
+        // {
+        //     collision.transform.SetParent(transform);
+        // }
+        if (collision.contacts[0].normal.y == -1)
         {
-            collision.transform.SetParent(transform);
+            if (collision.gameObject.tag == "Player")
+            {
+                playerTrans = collision.gameObject;
+                playerPos = playerTrans.transform.position;
+                distance = transform.position - playerPos;
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player"))
-        {
-            collision.transform.SetParent(null);
-        }
+        // if (collision.transform.CompareTag("Player"))
+        // {
+        //     collision.transform.SetParent(null);
+        // }
+        playerTrans = null;
     }
     public void Moveoff()
     {
@@ -36,7 +53,7 @@ public class MoveWall : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position, desPos.position, Time.deltaTime*speed);
+        transform.position = Vector2.MoveTowards(transform.position, desPos.position, Time.deltaTime * speed);
         if (Vector2.Distance(transform.position, desPos.position) <= 0.05f)
         {
             if (desPos == endPos)
@@ -48,6 +65,13 @@ public class MoveWall : MonoBehaviour
                 desPos = endPos;
             }
 
+        }
+        if (playerTrans != null)
+        {
+            if (playerMove.jump == false && playerMove.LBTrigger == false && playerMove.RBTrigger == false)
+            {
+                playerTrans.transform.position = transform.position - distance;
+            }
         }
     }
 }

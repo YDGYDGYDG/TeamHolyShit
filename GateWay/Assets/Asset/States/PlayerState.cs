@@ -9,7 +9,8 @@ public class PlayerState : MonoBehaviour
     HookShotScript hookLine;    // 훅 연결용 변수
    
 
-    public GameObject playerDeath;  // 플레이어 죽었을 때
+    public GameObject playerDeath;         // 플레이어 죽었을 때
+    PlayerMoveController playerMoveStop;   // 무브 컨트롤러 연결
 
     AudioSource audioSource;               // 오디오 소스 연결
     public AudioClip playerDrop;           // 플레이어 추락 사운드
@@ -24,7 +25,7 @@ public class PlayerState : MonoBehaviour
     {
         this.gameObject.SetActive(true);            // 플레이어 다시 켜주고
         transform.position = playerStartPosition;   // 시작 위치로 이동 시켜
-       
+        playerMoveStop.Dead();                      // 이동 정지해
     }
     
 
@@ -35,7 +36,7 @@ public class PlayerState : MonoBehaviour
         hookLine = GameObject.Find("player").GetComponent<HookShotScript>();    // 훅샷 스크립트 연결
         audioSource = GetComponent<AudioSource>();          // 오디오 소스 연결
         hookDisWall = GameObject.Find("HookDisWall");
-       
+        playerMoveStop = GetComponent<PlayerMoveController>();  // 무브 컨트롤러 연결
         
 
     }

@@ -15,7 +15,7 @@ public class CoinGenerator : MonoBehaviour
     void Start()
     {
         Coin = GameObject.Find("Coin");     // 코인 연결
-        Door = GameObject.Find("Door");     // 문 연결
+        Door = GameObject.Find("Finish");     // 문 연결
         openDoor = Door.GetComponent<BoxCollider2D>();  // 트리거 연결
     }
 

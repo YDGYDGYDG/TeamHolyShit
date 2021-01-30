@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.transform.position = portalOut.transform.position + Vector3.up;
+            collision.transform.position = portalOut.transform.position + portalOut.transform.up;
         }
     }
 }

@@ -49,6 +49,7 @@ public class HookShotScript : MonoBehaviour
     Animator jumpAnim;                  // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
     SpriteRenderer playerPosition;      // 캐릭터 이동방향 판단(형준)
     GameObject HookSE;                  // 훅 SE 재생용(형준)
+    GameObject player;                  // 플레이어 찾아줘(형준)
     
 
     // 에임 표시
@@ -83,6 +84,8 @@ public class HookShotScript : MonoBehaviour
 
         playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
         HookSE = GameObject.Find("Hook");                   // 훅 찾아주고..(형준)
+        player = GameObject.Find("player");                 // 플레이어 연결(형준)
+        jumpAnim = player.GetComponent<Animator>();         // 애니메이션 연결(형준)
 
     }
 
@@ -159,9 +162,13 @@ public class HookShotScript : MonoBehaviour
                         hookedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                         // '나 물건 들고 있어요'가 true
                         isHaveShootableObject = true;
+                        // 애니메이션도 바꿔줘(형준)
+                        player.GetComponent<Animator>().SetBool("isJump", true);
                     }
                     HookOFF();
                     hookChildJoint2D.connectedBody = null;
+                    
+                        
                 }
             }
 
@@ -302,6 +309,8 @@ public class HookShotScript : MonoBehaviour
 
         // 들고있던 오브젝트를 자식에서 추방
         hookedObject.transform.SetParent(null);
+        // 애니메이션 원래대로(형준)
+        player.GetComponent<Animator>().SetBool("isJump", false);
         // 오브젝트 날리기
         if (shootDir.y < 0)
         {

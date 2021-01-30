@@ -82,28 +82,23 @@ public class PlayerMoveController : MonoBehaviour
     private void Update()
     {
         // 키보드 이동
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             LBtriggerON();
             playerPosition.flipX = true;    // 애니메이션 방향 왼쪽(형준)
-            
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
             LBtriggerOFF();
-            
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             RBtriggerON();
             playerPosition.flipX = false;    // 애니메이션 방향 오른쪽(형준)  
-            
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
             RBtriggerOFF();
-            
-
         }
 
         // 점프 검사

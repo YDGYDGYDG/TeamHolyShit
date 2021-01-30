@@ -26,25 +26,20 @@ public class OpenDoor : MonoBehaviour
             {
                 SceneManager.LoadScene("LavaStage4");   // 4 스테이지 이동
             }
-
-            else if (SceneManager.GetActiveScene().name == "LavaStage4")
-            {
-                SceneManager.LoadScene("LavaStage5");   // 5 스테이지 이동
-            }
-
-            else if (SceneManager.GetActiveScene().name == "LavaStage5")
-            {
-                SceneManager.LoadScene("LavaStage6");   // 6 스테이지 이동
-            }
             //=============================================================================
 
 
 
 
             // =========================== 김나연(물) =====================================
-            else if (SceneManager.GetActiveScene().name == "WaterStage1")
+            else if (SceneManager.GetActiveScene().name == "WaterPlanet1")
             {
-                SceneManager.LoadScene("WaterStage2");  // 2 스테이지 이동
+                SceneManager.LoadScene("WaterPlanet2");  // 2 스테이지 이동
+            }
+
+            else if (SceneManager.GetActiveScene().name == "WaterPlanet2")
+            {
+                SceneManager.LoadScene("WaterPlanet3");  // 3 스테이지 이동
             }
             //=============================================================================
 

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class Air : MonoBehaviour
 {
     [SerializeField]
-    private Slider airbar;
+    private Image airbar;
 
-    public float maxAir = 10;
-    public float curAir = 0;
+    public float maxAir = 100;
+    public float curAir = 100;
     bool isWater;
     private float time = 0;
     float outTime = 0;
@@ -19,6 +19,7 @@ public class Air : MonoBehaviour
     HookShotScript hookLine;    // 훅 연결용 변수(형준)
     PlayerState playerState;
     GameObject hookDisWall;
+    public GameObject star;
 
 
 
@@ -30,22 +31,24 @@ public class Air : MonoBehaviour
         playerState = GameObject.Find("player").GetComponent<PlayerState>();
 
         hookDisWall = GameObject.Find("HookDisWall");
-        curAir = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (is_die)
             return;
 
        
 
-        if (airbar.value >= 10)
+        if (curAir <= 0)
         {
             is_die = true;
+            ResetObject();
             PlayerDrown();
-            ResetPos();
+            
         }
         
         if (isWater)
@@ -55,24 +58,24 @@ public class Air : MonoBehaviour
                 if (time > 0.5)
                 {
                     time = 0;
-                    curAir += 5.0f;
-                    airbar.value = curAir / maxAir;
+                    curAir -= 5.0f;
                 }
         }
         else
         {
             outTime += Time.deltaTime;
 
-            if(curAir > 0)
+            if(curAir < 100)
             {
                 if (outTime > 1.0)
                 {
                     outTime = 0;
-                    curAir -= 3.0f;
-                    airbar.value = curAir / maxAir;
+                    curAir += 3.0f;
                 }
             }
         }
+        airbar.fillAmount = curAir / maxAir;
+        Debug.Log(curAir);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -90,7 +93,11 @@ public class Air : MonoBehaviour
         {
             isWater = false;
         }
-          
+    }
+
+    void Revive()
+    {
+        playerState.playerRevive();
     }
 
     // 캐릭터 익사
@@ -98,13 +105,15 @@ public class Air : MonoBehaviour
     {
         this.gameObject.SetActive(false);     // 캐릭터 없애주고..(형준)
         hookLine.HookOFF();                   // 훅도 지워줘야지??(형준)
-        playerState.playerRevive();
-        
+        Invoke("Revive", 1.0f);
+        is_die = false;
     }
 
-    private void ResetPos()
+    private void ResetObject()
     {
+        Debug.Log("tq");
         hookDisWall.SetActive(true);
-        curAir = 0;
+        curAir = 100;
+        star.SetActive(true);
     }
 }

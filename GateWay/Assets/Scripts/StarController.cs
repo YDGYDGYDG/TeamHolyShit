@@ -18,7 +18,7 @@ public class StarController : MonoBehaviour
             star = true;
             Debug.Log("열쇠 획득");
             // this.gameObject.GetComponent<AudioSource>().Play();     // 별 획득 사운드 재생
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
 
         }
     }

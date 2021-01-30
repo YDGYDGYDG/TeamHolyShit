@@ -75,7 +75,6 @@ public class Air : MonoBehaviour
             }
         }
         airbar.fillAmount = curAir / maxAir;
-        Debug.Log(curAir);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -50,6 +50,15 @@ public class PlayerState : MonoBehaviour
             Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
         }
 
+        else if (col.gameObject.tag == "Boss")        // 너 보스랑 충돌했니??
+        {
+            this.gameObject.SetActive(false);   // 그럼 뒤지삼
+            hookLine.HookOFF();                 // 훅도 지워줘야지??
+            // 이펙트도 출력해
+            Instantiate(playerDeath, transform.position, Quaternion.identity);
+            Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
+        }
+
         else if (col.gameObject.tag == "Trap")        // 너 함정이랑 충돌했니??
         {
             this.gameObject.SetActive(false);   // 그럼 뒤지삼

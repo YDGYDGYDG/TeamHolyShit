@@ -41,6 +41,16 @@ public class OpenDoor : MonoBehaviour
             {
                 SceneManager.LoadScene("WaterPlanet3");  // 3 스테이지 이동
             }
+
+            else if (SceneManager.GetActiveScene().name == "WaterPlanet3")
+            {
+                SceneManager.LoadScene("WaterPlanet4");  // 4 스테이지 이동
+            }
+
+            else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
+            {
+                SceneManager.LoadScene("WaterPlanet5");  // 5 스테이지 이동
+            }
             //=============================================================================
 
 
@@ -55,6 +65,16 @@ public class OpenDoor : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == "TutorialStage2")
             {
                 SceneManager.LoadScene("TutorialStage3");   // 3 스테이지 이동
+            }
+
+            else if (SceneManager.GetActiveScene().name == "TutorialStage3")
+            {
+                SceneManager.LoadScene("TutorialStage4");   // 4 스테이지 이동
+            }
+
+            else if (SceneManager.GetActiveScene().name == "TutorialStage4")
+            {
+                SceneManager.LoadScene("TutorialStage5");   // 5 스테이지 이동
             }
             //=============================================================================
 
@@ -95,6 +115,16 @@ public class OpenDoor : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == "MachineryStage1")
             {
                 SceneManager.LoadScene("MachineryStage2"); // 2 스테이지 이동
+            }
+
+            else if (SceneManager.GetActiveScene().name == "MachineryStage2")
+            {
+                SceneManager.LoadScene("MachineryStage3"); // 3 스테이지 이동
+            }
+
+            else if (SceneManager.GetActiveScene().name == "MachineryStage3")
+            {
+                SceneManager.LoadScene("MachineryStage4"); // 4 스테이지 이동
             }
             //=============================================================================
         }

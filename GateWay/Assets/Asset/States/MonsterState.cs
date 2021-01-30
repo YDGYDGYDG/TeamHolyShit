@@ -12,8 +12,8 @@ public class MonsterState : MonoBehaviour
     public GameObject monsterDeath;
 
     GameObject box;             // 박스 연결
+    Rigidbody2D boxRigid;       // 박스 물리
 
-    //Rigidbody2D boxRigibody2D;  // 박스 물리 연결(임시)
 
     // Start is called before the first frame update
     void Start()
@@ -23,32 +23,52 @@ public class MonsterState : MonoBehaviour
        
 
         box = GameObject.FindGameObjectWithTag("Object");   // 박스 태그를 찾고
-        //box.layer = LayerMask.NameToLayer("shootable");     // 레이어 이름 값을 찾아(임시)
-        //boxRigibody2D = box.GetComponent<Rigidbody2D>();     // 박스 리지드 연결하고?(임시)
+        boxRigid = box.GetComponent<Rigidbody2D>();                    // 물리 연결
 
     }
 
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Hook")        // 너 밧줄이랑 충돌했니??
+        if(this.gameObject.tag == "Monster")
         {
+            if (col.gameObject.tag == "Hook")        // 너 밧줄이랑 충돌했니??
+            {
+                this.gameObject.SetActive(false);   // 그럼 뒤지삼
+                Instantiate(monsterDeath, transform.position, Quaternion.identity);  // 이펙트도 출력해
+                hookLine.HookOFF();                 // 훅도 지워줘야지??
+            }
 
-            this.gameObject.SetActive(false);   // 그럼 뒤지삼
-            Instantiate(monsterDeath, transform.position, Quaternion.identity);  // 이펙트도 출력해
-            hookLine.HookOFF() ;                 // 훅도 지워줘야지??
-
+            else if (col.gameObject.tag == "Object")
+            {
+                // 박스 속도가 0이 아닐때만 죽여
+                if (boxRigid.velocity.x != 0 || boxRigid.velocity.y != 0)
+                {
+                    this.gameObject.SetActive(false);   // 그럼 뒤지삼
+                    Instantiate(monsterDeath, transform.position, Quaternion.identity);  // 이펙트도 출력해
+                    Destroy(box);       // 충돌한 박스는 없애
+                }
+            }
         }
 
-        else if (col.gameObject.tag == "Object")       
+
+        else if(this.gameObject.tag == "Boss")
         {
+            if (col.gameObject.tag == "Object")
+            {
+                // 박스 속도가 0이 아닐때만 죽여
+                if (boxRigid.velocity.x != 0 || boxRigid.velocity.y != 0)
+                {
+                    this.gameObject.SetActive(false);   // 그럼 뒤지삼
+                    Instantiate(monsterDeath, transform.position, Quaternion.identity);  // 이펙트도 출력해
+                    Destroy(box);       // 충돌한 박스는 없애
+                }
+            }
 
-            this.gameObject.SetActive(false);   // 그럼 뒤지삼
-            Instantiate(monsterDeath, transform.position, Quaternion.identity);  // 이펙트도 출력해
-            Destroy(box);       // 충돌한 박스는 없애
-           
-            
-
+            else if (col.gameObject.tag == "Hook")
+            {
+                hookLine.HookOFF();     // 훅만 지워
+            }
         }
     }
 

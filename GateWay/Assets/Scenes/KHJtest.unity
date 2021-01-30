@@ -1167,7 +1167,7 @@ GameObject:
   - component: {fileID: 939581504}
   - component: {fileID: 939581503}
   m_Layer: 0
-  m_Name: FireMonster (2)
+  m_Name: FireMonster
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,8 +1329,8 @@ GameObject:
   - component: {fileID: 953205050}
   - component: {fileID: 953205049}
   m_Layer: 0
-  m_Name: FireMonster (1)
-  m_TagString: Monster
+  m_Name: FireBoss
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1470,7 +1470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953205048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.3, y: -4.5, z: 0}
+  m_LocalPosition: {x: 52.55, y: -4.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1961,12 +1961,12 @@ PrefabInstance:
     - target: {fileID: 3825063693797989668, guid: 1ce7c0e447af2e9449516f3dc089ea5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.1766586
+      value: 2.01
       objectReference: {fileID: 0}
     - target: {fileID: 3825063693797989668, guid: 1ce7c0e447af2e9449516f3dc089ea5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0261922
+      value: -2.09
       objectReference: {fileID: 0}
     - target: {fileID: 3825063693797989668, guid: 1ce7c0e447af2e9449516f3dc089ea5a,
         type: 3}

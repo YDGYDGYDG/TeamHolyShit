@@ -20,11 +20,11 @@ public class PlayerMoveController : MonoBehaviour
     LayerMask moveLayerMask;
     float playerSize;
     // 점프 상태
-    bool jump;
+    public bool jump;
     bool stopJump; // 제자리
     // 버튼 스위치
-    bool LBTrigger;
-    bool RBTrigger;
+    public bool LBTrigger;
+    public bool RBTrigger;
 
     HookShotScript player;
 

@@ -16,11 +16,15 @@ public class DiswallControllerPlayer : MonoBehaviour
     // 캐릭터랑 충돌 시 사라지는 벽
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.contacts[0].normal.y == -1)
         {
-            Destroy(this.gameObject, playerDiswallTime);
-            hook_script.HookOFF();
+            if (collision.gameObject.tag == "Player")
+            {
+                Destroy(this.gameObject, playerDiswallTime);
+                hook_script.HookOFF();
+            }
         }
+
 
     }
     // Update is called once per frame

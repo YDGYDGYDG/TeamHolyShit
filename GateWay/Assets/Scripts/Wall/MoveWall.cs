@@ -13,7 +13,6 @@ public class MoveWall : MonoBehaviour
     PlayerMoveController playerMove;
     Vector3 playerPos;
     Vector3 distance;
-    bool isGraounded;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,30 +20,32 @@ public class MoveWall : MonoBehaviour
         desPos = endPos;
         playerMove = GameObject.Find("player").GetComponent<PlayerMoveController>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // if (collision.transform.CompareTag("Player"))
-        // {
-        //     collision.transform.SetParent(transform);
-        // }
-        if (collision.contacts[0].normal.y == -1)
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                playerTrans = collision.gameObject;
-                playerPos = playerTrans.transform.position;
-                distance = transform.position - playerPos;
-            }
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        // if (collision.transform.CompareTag("Player"))
-        // {
-        //     collision.transform.SetParent(null);
-        // }
-        playerTrans = null;
-    }
+    // 충돌 시 캐릭터가 벽을 따라다니게 하기 (보류)
+
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     // if (collision.transform.CompareTag("Player"))
+    //     // {
+    //     //     collision.transform.SetParent(transform);
+    //     // }
+    //     if (collision.contacts[0].normal.y == -1)
+    //     {
+    //         if (collision.gameObject.tag == "Player")
+    //         {
+    //             playerTrans = collision.gameObject;
+    //             playerPos = playerTrans.transform.position;
+    //             distance = transform.position - playerPos;
+    //         }
+    //     }
+    // }
+    // private void OnCollisionExit2D(Collision2D collision)
+    // {
+    //     // if (collision.transform.CompareTag("Player"))
+    //     // {
+    //     //     collision.transform.SetParent(null);
+    //     // }
+    //     playerTrans = null;
+    // }
     public void Moveoff()
     {
         this.transform.SetParent(null);
@@ -66,12 +67,13 @@ public class MoveWall : MonoBehaviour
             }
 
         }
-        if (playerTrans != null)
-        {
-            if (playerMove.jump == false && playerMove.LBTrigger == false && playerMove.RBTrigger == false)
-            {
-                playerTrans.transform.position = transform.position - distance;
-            }
-        }
+        // 캐릭터가 벽을 따라다니게 하기 (보류)
+        // if (playerTrans != null)
+        // {
+        //     if (playerMove.jump == false && playerMove.LBTrigger == false && playerMove.RBTrigger == false)
+        //     {
+        //         playerTrans.transform.position = transform.position - distance;
+        //     }
+        // }
     }
 }

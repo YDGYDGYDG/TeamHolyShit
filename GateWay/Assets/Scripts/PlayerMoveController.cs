@@ -18,6 +18,7 @@ public class PlayerMoveController : MonoBehaviour
     RaycastHit2D LHit;
     RaycastHit2D RHit;
     LayerMask moveLayerMask;
+    LayerMask waterLayerMask;
     float playerSize;
     // 점프 상태
     public bool jump;
@@ -44,10 +45,11 @@ public class PlayerMoveController : MonoBehaviour
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        
+
         //eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 
         moveLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
+        waterLayerMask = ~(1 << LayerMask.NameToLayer("Water"));
         playerSize = gameObject.GetComponent<CircleCollider2D>().bounds.extents.magnitude;
 
         player = GetComponent<HookShotScript>();
@@ -102,8 +104,8 @@ public class PlayerMoveController : MonoBehaviour
         }
 
         // 점프 검사
-        LHit = Physics2D.Raycast(transform.position + new Vector3(playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask);
-        RHit = Physics2D.Raycast(transform.position + new Vector3(-playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask);
+        LHit = Physics2D.Raycast(transform.position + new Vector3(playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask, waterLayerMask);
+        RHit = Physics2D.Raycast(transform.position + new Vector3(-playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask, waterLayerMask);
         if (LHit.distance > playerSize && RHit.distance > playerSize)
         {
             jump = true;

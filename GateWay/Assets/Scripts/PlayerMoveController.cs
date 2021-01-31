@@ -104,8 +104,9 @@ public class PlayerMoveController : MonoBehaviour
         }
 
         // 점프 검사
-        LHit = Physics2D.Raycast(transform.position + new Vector3(playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask, waterLayerMask);
-        RHit = Physics2D.Raycast(transform.position + new Vector3(-playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask, waterLayerMask);
+        LHit = Physics2D.Raycast(transform.position + new Vector3(playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask);
+        RHit = Physics2D.Raycast(transform.position + new Vector3(-playerSize, -0.13f), Vector2.down, Mathf.Infinity, moveLayerMask);
+
         if (LHit.distance > playerSize && RHit.distance > playerSize)
         {
             jump = true;

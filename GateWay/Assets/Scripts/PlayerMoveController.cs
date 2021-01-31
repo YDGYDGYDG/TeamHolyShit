@@ -108,9 +108,9 @@ public class PlayerMoveController : MonoBehaviour
         {
             jump = true;
         }
-        else if (LHit.distance <= playerSize || RHit.distance <= playerSize)
+        else if ((LHit.distance <= playerSize && LHit.distance > 0) || (RHit.distance <= playerSize && RHit.distance > 0))
         {
-            ResetMovement();
+                ResetMovement();
         }
 
         // 점프

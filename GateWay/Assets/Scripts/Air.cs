@@ -18,8 +18,6 @@ public class Air : MonoBehaviour
 
     HookShotScript hookLine;    // 훅 연결용 변수(형준)
     PlayerState playerState;
-    GameObject hookDisWall;
-    public GameObject star;
 
 
 
@@ -30,7 +28,6 @@ public class Air : MonoBehaviour
         hookLine = GetComponent<HookShotScript>();
         playerState = GameObject.Find("player").GetComponent<PlayerState>();
 
-        hookDisWall = GameObject.Find("HookDisWall");
     }
 
     // Update is called once per frame
@@ -110,9 +107,6 @@ public class Air : MonoBehaviour
 
     private void ResetObject()
     {
-        Debug.Log("tq");
-        hookDisWall.SetActive(true);
         curAir = 100;
-        star.SetActive(true);
     }
 }

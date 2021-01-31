@@ -6119,12 +6119,12 @@ PrefabInstance:
     - target: {fileID: 7991654645862466034, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.35
+      value: 25.07
       objectReference: {fileID: 0}
     - target: {fileID: 7991654645862466034, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.99
+      value: -4.25
       objectReference: {fileID: 0}
     - target: {fileID: 7991654645862466034, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
@@ -7315,7 +7315,7 @@ PrefabInstance:
     - target: {fileID: 5077862326471955035, guid: 8c873fa103e27af4e970adce4b439c57,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c873fa103e27af4e970adce4b439c57, type: 3}
@@ -9669,7 +9669,6 @@ MonoBehaviour:
   airbar: {fileID: 896986459}
   maxAir: 100
   curAir: 0
-  star: {fileID: 596785010}
 --- !u!1001 &2021364048
 PrefabInstance:
   m_ObjectHideFlags: 0

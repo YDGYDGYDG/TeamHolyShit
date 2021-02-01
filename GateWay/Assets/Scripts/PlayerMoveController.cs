@@ -31,11 +31,10 @@ public class PlayerMoveController : MonoBehaviour
 
 
     //EventSystem eventSystem;
-    
+
 
     SpriteRenderer playerPosition;      // 애니메이션 방향 판단(형준)
     Animator animator;                  // 애니메이터(형준)
-
     AudioSource audioSource;            // SE 재생관리자(형준)
     PlayerState playerState;            // 캐릭터 상태 스크립트(형준)
 
@@ -127,23 +126,66 @@ public class PlayerMoveController : MonoBehaviour
             stopJump = true;
         }
 
-      //  if (rigidBody.velocity.y == 0)   // 너 점프중이니?(형준)
-      //  {
-      //      animator.SetBool("isJump", false);  // Idle 애니메이션 출력(형준)
-      //  }
-      //  else if (rigidBody.velocity.y < 0 || rigidBody.velocity.y > 0)
-      //  {
-      //      
-      //  }
-        
+
+        // 바닥에 충돌했을 때 다시 Idle 애니메이션으로 전환(형준)
+        if (rigidBody.velocity.y < 0)
+        {
+            RaycastHit2D rayDownHit = Physics2D.Raycast(rigidBody.position, Vector3.down, 1, LayerMask.GetMask("Wall"));
+            if (rayDownHit.collider != null)
+            {
+                if (rayDownHit.distance < 1.0f)
+                {
+                    animator.SetBool("isJump", false);
+
+                }
+            }
+        }
+
+        // 달리는 중에 점프할 시 처리(형준)
+        if (jump == true && animator.GetBool("isJump"))
+        {
+            if (animator.GetBool("isRun") && jump == true && LBTrigger == true && rigidBody.velocity.y > 2)
+            {
+                animator.SetBool("isRun", false);
+
+                audioSource.Stop();
+                audioSource.clip = playerState.plyaerjump;
+                audioSource.Play();
+            }
+            else if (animator.GetBool("isRun") && jump == true && RBTrigger == true && rigidBody.velocity.y > 2)
+            {
+                animator.SetBool("isRun", false);
+
+                audioSource.Stop();
+                audioSource.clip = playerState.plyaerjump;
+                audioSource.Play();
+            }
+        }
     }
 
     public void LBtriggerON()
     {
         LBTrigger = true;
-        animator.SetBool("isRun", true);    // 런 애니메이션 출력(형준)
-        audioSource.clip = playerState.plyaerMove;  // 무브 클립(형준)
-        audioSource.Play(); // SE 스탑(형준)
+
+        // 애니메이션 중복재생 방지(형준)
+        if (!animator.GetBool("isJump"))
+        {
+            animator.SetBool("isRun", true);
+        }
+
+        // SE 중복재생 방지(형준)
+        if (audioSource.isPlaying == false && rigidBody.velocity.y > -2 && rigidBody.velocity.y < 2)
+        {
+            audioSource.clip = playerState.plyaerMove;
+            audioSource.Play();
+        }
+
+        // 동시에 눌릴땐 재생하지마(형준)
+        if (LBTrigger == true && RBTrigger == true)
+        {
+            audioSource.Stop();
+            animator.SetBool("isRun", false);
+        }
     }
     public void LBtriggerOFF()
     {
@@ -158,9 +200,26 @@ public class PlayerMoveController : MonoBehaviour
     public void RBtriggerON()
     {
         RBTrigger = true;
-        animator.SetBool("isRun", true);    // 런 애니메이션 출력(형준)
-        audioSource.clip = playerState.plyaerMove;  // 무브 클립(형준)
-        audioSource.Play(); // SE 스탑(형준)
+
+        // 애니메이션 중복재생 방지(형준)
+        if (!animator.GetBool("isJump"))
+        {
+            animator.SetBool("isRun", true);
+        }
+
+        // SE 중복재생 방지(형준)
+        if (audioSource.isPlaying == false && rigidBody.velocity.y > -2 && rigidBody.velocity.y < 2)
+        {
+            audioSource.clip = playerState.plyaerMove;
+            audioSource.Play();
+        }
+
+        // 동시에 눌릴땐 재생하지마(형준)
+        if (LBTrigger == true && RBTrigger == true)
+        {
+            audioSource.Stop();
+            animator.SetBool("isRun", false);
+        }
 
     }
     public void RBtriggerOFF()
@@ -181,6 +240,8 @@ public class PlayerMoveController : MonoBehaviour
         if (player.isAttachWall) 
         {
             ResetMovement();
+
+            animator.SetBool("isRun", false);   // Idle 애니메이션 출력(형준)
         }
         else
         {
@@ -204,6 +265,8 @@ public class PlayerMoveController : MonoBehaviour
         if (player.isAttachWall)
         {
             ResetMovement();
+
+            animator.SetBool("isRun", false);   // Idle 애니메이션 출력(형준)
         }
         else
         {
@@ -224,22 +287,23 @@ public class PlayerMoveController : MonoBehaviour
 
     public void JButtonDown()  // 점프 버튼이 눌렸을 떄 실행
     {
-        animator.SetBool("isRun", false);    // 런 애니메이션 정지(형준)
-        audioSource.clip = playerState.plyaerjump;  // 점프 클립(형준)
-        audioSource.Play();
-        animator.SetBool("isJump", true);    // 점프 애니메이션 출력(형준)
+        
 
         if (LBTrigger && jump == false)
         {
             jump = true;
             Vector2 LJ = new Vector2(-1, 2).normalized;
             rigidBody.AddForce(LJ * jumpForce);
+
+            jumpAni();  // 형준
         }
         else if (RBTrigger && jump == false)
         {
             jump = true;
             Vector2 LJ = new Vector2(1, 2).normalized;
             rigidBody.AddForce(LJ * jumpForce);
+
+            jumpAni();  // 형준
         }
         else if (!jump)
         {
@@ -247,10 +311,24 @@ public class PlayerMoveController : MonoBehaviour
             stopJump = true;
             jump = true;
             rigidBody.AddForce(transform.up * jumpForce);
+
+            jumpAni();  // 형준
         }
     }
 
-    
+    void jumpAni()      // 점프 액션(형준)
+    {
+        animator.SetBool("isJump", true);
+
+        // SE 중복재생 방지
+        if (audioSource.isPlaying == false)
+        {
+            audioSource.Stop();
+            audioSource.clip = playerState.plyaerjump;
+            audioSource.Play();
+        }
+    }
+
     void ResetMovement()
     {
         jump = false;

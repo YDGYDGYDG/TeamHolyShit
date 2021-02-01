@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2984763031247534211}
   - component: {fileID: 2984763031247534212}
-  - component: {fileID: 2984763031247534210}
+  - component: {fileID: 2860636329784627950}
   m_Layer: 0
   m_Name: Portal_Out
   m_TagString: Wall
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 2984763031247534213}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.07, z: 1}
+  m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4863808166981803962}
   m_RootOrder: 1
@@ -102,9 +102,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: dcdfa91e207fae549b14213c5001f7bd, type: 3}
-  m_Color: {r: 0.5447297, g: 0, b: 1, a: 1}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 223de801380156f43a51a9ee8ca70dc3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2984763031247534210
+--- !u!61 &2860636329784627950
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,14 +131,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.83, y: 5.09}
+    oldSize: {x: 3, y: 0.5}
     newSize: {x: 4.83, y: 5.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.83, y: 5.09}
+  m_Size: {x: 3, y: 0.5}
   m_EdgeRadius: 0
 --- !u!1 &2984763032373086885
 GameObject:
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 2984763032373086884}
   - component: {fileID: 2984763032373086881}
   - component: {fileID: 2984763032373086882}
-  - component: {fileID: 2984763032373086880}
+  - component: {fileID: 6125597747969525008}
   m_Layer: 0
   m_Name: Portal_In
   m_TagString: Wall
@@ -169,7 +169,7 @@ Transform:
   m_GameObject: {fileID: 2984763032373086885}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.07, z: 1}
+  m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4863808166981803962}
   m_RootOrder: 0
@@ -212,9 +212,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: dcdfa91e207fae549b14213c5001f7bd, type: 3}
-  m_Color: {r: 0.5447297, g: 0, b: 1, a: 1}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 223de801380156f43a51a9ee8ca70dc3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -241,14 +241,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.83, y: 5.09}
+    oldSize: {x: 3, y: 0.5}
     newSize: {x: 4.83, y: 5.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 5.09}
+  m_Size: {x: 1, y: 0.54}
   m_EdgeRadius: 0
 --- !u!114 &2984763032373086882
 MonoBehaviour:
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalOut: {fileID: 2984763031247534213}
---- !u!61 &2984763032373086880
+--- !u!61 &6125597747969525008
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,12 +280,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.83, y: 5.09}
+    oldSize: {x: 3, y: 0.5}
     newSize: {x: 4.83, y: 5.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.83, y: 5.08}
+  m_Size: {x: 3, y: 0.5}
   m_EdgeRadius: 0

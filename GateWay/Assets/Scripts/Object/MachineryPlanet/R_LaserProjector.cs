@@ -41,7 +41,7 @@ public class R_LaserProjector : MonoBehaviour
                 // 플레이어 죽음 처리
                 player.PlayerDead();
             }
-                while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50)
+            while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50)
             {
                 laserPos = hit.point - (laserDir.normalized * 0.0001f);
                 laserDir = Vector2.Reflect(laserDir, hit.normal);
@@ -50,6 +50,11 @@ public class R_LaserProjector : MonoBehaviour
                 {
                     line.positionCount++;
                     line.SetPosition(line.positionCount - 1, hit.point);
+                    if (hit.collider.gameObject.tag == "Player")
+                    {
+                        // 플레이어 죽음 처리
+                        player.PlayerDead();
+                    }
                 }
             }
 

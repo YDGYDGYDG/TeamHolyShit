@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 8646918389026603380, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.14
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8646918389026603380, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
@@ -151,7 +151,7 @@ PrefabInstance:
     - target: {fileID: 8646918389026603380, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.184
+      value: 5.344
       objectReference: {fileID: 0}
     - target: {fileID: 8646918389026603380, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
@@ -196,12 +196,12 @@ PrefabInstance:
     - target: {fileID: 8646918389026603382, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
       propertyPath: m_Name
-      value: Mirror (1)
+      value: Mirror
       objectReference: {fileID: 0}
     - target: {fileID: 8646918389026603382, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 848dd33df266ed04d9dbe69ea692461f, type: 3}
@@ -2938,7 +2938,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124160463}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3455,6 +3455,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7274603373254219444, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
+      propertyPath: lineSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603373254219444, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
       propertyPath: shootPower
       value: 1000
       objectReference: {fileID: 0}
@@ -3468,6 +3473,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7274603373256149684, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7274603373767903346, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
       propertyPath: orthographic size
@@ -3477,6 +3487,47 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603374432610996, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603374432610997, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603374432610998, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603374432610998, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603374432610999, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 22a79d1c1a759444598bdb9e451fd5bf,
+        type: 3}
+    - target: {fileID: 7274603374432610999, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603374432610999, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274603374432610999, guid: c187bfe9f40b18c45942fbf6771b9ffc,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7991654645862466034, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
@@ -7568,7 +7619,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951955188}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -7596,7 +7647,7 @@ PrefabInstance:
     - target: {fileID: 8646918389026603380, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.14
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8646918389026603380, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
@@ -7611,7 +7662,7 @@ PrefabInstance:
     - target: {fileID: 8646918389026603380, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.25
+      value: 8.41
       objectReference: {fileID: 0}
     - target: {fileID: 8646918389026603380, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
@@ -7661,7 +7712,7 @@ PrefabInstance:
     - target: {fileID: 8646918389026603382, guid: 848dd33df266ed04d9dbe69ea692461f,
         type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 848dd33df266ed04d9dbe69ea692461f, type: 3}

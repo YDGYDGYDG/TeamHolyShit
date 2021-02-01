@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class R_LaserProjector : MonoBehaviour
 {
+    PlayerState player;
+
     Vector2 laserDir;
     Vector2 laserPos;
     public LineRenderer line;
@@ -18,6 +20,8 @@ public class R_LaserProjector : MonoBehaviour
         line.endWidth = line.startWidth = 0.2f;
         line.SetPosition(0, transform.position);
         line.useWorldSpace = true;
+
+        player = GameObject.Find("player").GetComponent<PlayerState>();
     }
 
     void Update()
@@ -35,7 +39,7 @@ public class R_LaserProjector : MonoBehaviour
             if (hit.collider.gameObject.tag == "Player")
             {
                 // 플레이어 죽음 처리
-                //Debug.Log("쥬금");
+                player.PlayerDead();
             }
                 while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50)
             {

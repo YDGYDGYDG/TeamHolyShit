@@ -43,29 +43,17 @@ public class PlayerState : MonoBehaviour
     {
         if (col.gameObject.tag == "Monster")        // 너 몬스터랑 충돌했니??
         {
-            this.gameObject.SetActive(false);   // 그럼 뒤지삼
-            hookLine.HookOFF();                 // 훅도 지워줘야지??
-            // 이펙트도 출력해
-            Instantiate(playerDeath, transform.position, Quaternion.identity);
-            Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
+            PlayerDead();
         }
 
         else if (col.gameObject.tag == "Boss")        // 너 보스랑 충돌했니??
         {
-            this.gameObject.SetActive(false);   // 그럼 뒤지삼
-            hookLine.HookOFF();                 // 훅도 지워줘야지??
-            // 이펙트도 출력해
-            Instantiate(playerDeath, transform.position, Quaternion.identity);
-            Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
+            PlayerDead();
         }
 
         else if (col.gameObject.tag == "Trap")        // 너 함정이랑 충돌했니??
         {
-            this.gameObject.SetActive(false);   // 그럼 뒤지삼
-            hookLine.HookOFF();                 // 훅도 지워줘야지??
-            // 이펙트도 출력해
-            Instantiate(playerDeath, transform.position, Quaternion.identity);
-            Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
+            PlayerDead();
         }
 
         else if (col.gameObject.tag == "Drop")     // 너 추락했냐?
@@ -89,10 +77,13 @@ public class PlayerState : MonoBehaviour
 
 
 
-    // Update is called once per frame
-    void Update()
+    public void PlayerDead()
     {
-        
+        this.gameObject.SetActive(false);   // 그럼 뒤지삼
+        hookLine.HookOFF();                 // 훅도 지워줘야지??
+                                            // 이펙트도 출력해
+        Instantiate(playerDeath, transform.position, Quaternion.identity);
+        Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
     }
 
 

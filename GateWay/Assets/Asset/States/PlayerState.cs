@@ -75,9 +75,18 @@ public class PlayerState : MonoBehaviour
             Invoke("playerRevive", 3.0f);       // 3초 뒤에 시작 위치에 부활 시켜
         }
 
+        else if (col.gameObject.tag == "TriggerWall")     // 올라갈순있고 내려갈순없는 벽(건희)
+        {
+            GetComponent<CircleCollider2D>().isTrigger = true;
+        }
+
     }
 
-   
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        GetComponent<CircleCollider2D>().isTrigger = false;
+    }
+
 
 
     // Update is called once per frame

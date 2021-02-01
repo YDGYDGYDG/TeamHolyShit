@@ -18,29 +18,24 @@ public class WaterOpendoor : MonoBehaviour
         {
             if (col.gameObject.tag == "Player")        // 너 플레이어랑 충돌했니??
             {
-                if (SceneManager.GetActiveScene().name == "WaterStage1")      // 현재 스테이지 이름 확인하고
+                if (SceneManager.GetActiveScene().name == "WaterPlanet1")      // 현재 스테이지 이름 확인하고
                 {
-                    SceneManager.LoadScene("WaterStage2");                   // 맞으면 다음씬으로 넘어가
+                    SceneManager.LoadScene("WaterPlanet2");                   // 맞으면 다음씬으로 넘어가
                 }
 
-                else if (SceneManager.GetActiveScene().name == "WaterStage2")
+                else if (SceneManager.GetActiveScene().name == "WaterPlanet2")
                 {
-                    SceneManager.LoadScene("WaterStage3");
+                    SceneManager.LoadScene("WaterPlanet3");
                 }
 
-                else if (SceneManager.GetActiveScene().name == "WaterStage3")
+                else if (SceneManager.GetActiveScene().name == "WaterPlanet3")
                 {
-                    SceneManager.LoadScene("WaterStage4");
+                    SceneManager.LoadScene("WaterPlanet4");
                 }
 
-                else if (SceneManager.GetActiveScene().name == "WaterStage4")
+                else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
                 {
-                    SceneManager.LoadScene("WaterStage5");
-                }
-
-                else if (SceneManager.GetActiveScene().name == "WaterStage5")
-                {
-                    SceneManager.LoadScene("WaterStage6");
+                    SceneManager.LoadScene("WaterPlanet5");
                 }
 
             }

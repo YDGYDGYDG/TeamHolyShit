@@ -68,6 +68,7 @@ public class PlayerState : MonoBehaviour
             GetComponent<CircleCollider2D>().isTrigger = true;
         }
 
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

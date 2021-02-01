@@ -11,8 +11,7 @@ public class TornadoGenerator : MonoBehaviour
     public GameObject rightTornado_1;
     public GameObject rightTornado_2;
     public GameObject rightTornado_3;
-    public GameObject rightTornado_4;
-    public GameObject rightTornado_5;
+
 
     float timeSpan;  // 경과 시간
     float WindReset; // 바람 초기화
@@ -27,8 +26,7 @@ public class TornadoGenerator : MonoBehaviour
         rightTornado_1.gameObject.SetActive(false);
         rightTornado_2.gameObject.SetActive(false);
         rightTornado_3.gameObject.SetActive(false);
-        rightTornado_4.gameObject.SetActive(false);
-        rightTornado_5.gameObject.SetActive(false);
+
     }
 
     void rightTornado()
@@ -40,8 +38,7 @@ public class TornadoGenerator : MonoBehaviour
         rightTornado_1.gameObject.SetActive(false);
         rightTornado_2.gameObject.SetActive(false);
         rightTornado_3.gameObject.SetActive(false);
-        rightTornado_4.gameObject.SetActive(false);
-        rightTornado_5.gameObject.SetActive(false);
+  
     }
 
     void leftTornado()
@@ -53,8 +50,7 @@ public class TornadoGenerator : MonoBehaviour
         rightTornado_1.gameObject.SetActive(true);
         rightTornado_2.gameObject.SetActive(true);
         rightTornado_3.gameObject.SetActive(true);
-        rightTornado_4.gameObject.SetActive(true);
-        rightTornado_5.gameObject.SetActive(true);
+  
     }
     // Update is called once per frame
     void Update()

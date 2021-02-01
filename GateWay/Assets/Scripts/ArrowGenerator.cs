@@ -5,20 +5,29 @@ using UnityEngine;
 
 public class ArrowGenerator : MonoBehaviour
 {
-    public GameObject arrowPrefab;  //프리팹을 이용해 만들 객체
-    GameObject arrow;   
-    float span = 0.3f;
-    float timeStack = 0;
+    [SerializeField]
+    public GameObject Lightning;  //프리팹을 이용해 만들 객체
+
     void Start()
     {
-
+        StartCoroutine(CreateLightningRoutine());
     }
 
-    void Update()
+    IEnumerator CreateLightningRoutine()
     {
-        if (timeStack > span) // span에서 지정한 값보다 커짐 (시간이 초과)
-            timeStack = 0; // 축적된 시간을 초기화
-        arrow = Instantiate(arrowPrefab) as GameObject;
-        arrow.transform.position = new Vector3(20.0f, Random.Range(38, 45), 0);
+        while (true)
+        {
+            CreateLightning();
+            yield return new WaitForSeconds(1);
+        }
     }
+
+    private void CreateLightning()
+    {
+        Vector3 pos = (new Vector3(UnityEngine.Random.Range(0.0f, 48.0f), 25f, 0));
+        pos.z = 0.0f;
+        Instantiate(Lightning, pos, Quaternion.identity);
+    }
+
+
 }

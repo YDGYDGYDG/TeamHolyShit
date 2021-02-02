@@ -201,7 +201,6 @@ public class HookShotScript : MonoBehaviour
 
     public void HookOFF()
     {
-        
         aim.SetActive(false);
         getRigid.simulated = true;
         getRigid.gravityScale = 2;
@@ -303,12 +302,7 @@ public class HookShotScript : MonoBehaviour
     public void ShootObject()
     {
         aim.SetActive(false);
-        // 물리 효과 다시 받게 함
-        hookedObject.GetComponent<Rigidbody2D>().isKinematic = false;
-        hookedObject.GetComponent<Rigidbody2D>().freezeRotation = false;
-
-        // 들고있던 오브젝트를 자식에서 추방
-        hookedObject.transform.SetParent(null);
+        BreakShootableObject();
         // 애니메이션 원래대로(형준)
         player.GetComponent<Animator>().SetBool("isJump", false);
         // 오브젝트 날리기
@@ -322,6 +316,16 @@ public class HookShotScript : MonoBehaviour
             shootDir.y = 0;
         }
         hookedObject.GetComponent<Rigidbody2D>().AddForce(shootDir * shootPower);
+    }
+    public void BreakShootableObject()
+    {
         isHaveShootableObject = false;
+
+        // 물리 효과 다시 받게 함
+        hookedObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        hookedObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+
+        // 들고있던 오브젝트를 자식에서 추방
+        hookedObject.transform.SetParent(null);
     }
 }

@@ -6,6 +6,7 @@ public class WindJump : MonoBehaviour
 {
     GameObject player;
     Rigidbody2D rigid;
+    public float power = 20f;
 
     void Start()
     {
@@ -15,19 +16,20 @@ public class WindJump : MonoBehaviour
     {
         if (collision.gameObject.tag == "UpWind")
         {
-            rigid.AddForce(Vector3.up * 40f, ForceMode2D.Impulse);
+            rigid.AddForce(Vector3.up * power, ForceMode2D.Impulse);
         }
         if (collision.gameObject.tag == "DownWind")
         {
-            rigid.AddForce(Vector3.down * 40f, ForceMode2D.Impulse);
+            rigid.AddForce(Vector3.down * power, ForceMode2D.Impulse);
         }
         if (collision.gameObject.tag == "RightWind")
         {
-            rigid.AddForce(Vector3.right * 40f, ForceMode2D.Impulse);
+            rigid.AddForce(Vector3.right * power, ForceMode2D.Impulse);
         }
         if (collision.gameObject.tag == "LeftWind")
         {
-            rigid.AddForce(Vector3.left * 40f, ForceMode2D.Impulse);
+            rigid.AddForce(Vector3.left * power, ForceMode2D.Impulse);
         }
     }
+ 
 }

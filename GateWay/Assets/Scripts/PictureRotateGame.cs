@@ -10,10 +10,16 @@ public class PictureRotateGame : MonoBehaviour
     [SerializeField]
     private GameObject winText;
 
+    [SerializeField]
+    private GameObject solvepuzzle;
+
     public static bool youWin;
+    public GameObject RemoveWall;
+
 
     void Start()
     {
+        solvepuzzle.SetActive(true);
         winText.SetActive(false);
         youWin = false;
         for (int i = 0; i < 9; i++)
@@ -36,9 +42,11 @@ public class PictureRotateGame : MonoBehaviour
         pictures[8].rotation.z < 0.1)        
         {
             youWin = true;
+            solvepuzzle.SetActive(false);
             winText.SetActive(true);
+            RemoveWall.SetActive(false);
         }
-        
+       
         
     }
 }

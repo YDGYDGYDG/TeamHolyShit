@@ -66,16 +66,6 @@ public class OpenDoor : MonoBehaviour
             {
                 SceneManager.LoadScene("TutorialStage3");   // 3 스테이지 이동
             }
-
-            else if (SceneManager.GetActiveScene().name == "TutorialStage3")
-            {
-                SceneManager.LoadScene("TutorialStage4");   // 4 스테이지 이동
-            }
-
-            else if (SceneManager.GetActiveScene().name == "TutorialStage4")
-            {
-                SceneManager.LoadScene("TutorialStage5");   // 5 스테이지 이동
-            }
             //=============================================================================
 
 
@@ -107,11 +97,6 @@ public class OpenDoor : MonoBehaviour
 
 
             // =========================== 윤도균(기계) =====================================
-            else if (SceneManager.GetActiveScene().name == "MachineryStage0")
-            {
-                SceneManager.LoadScene("MachineryStage1"); // 1 스테이지 이동
-            }
-
             else if (SceneManager.GetActiveScene().name == "MachineryStage1")
             {
                 SceneManager.LoadScene("MachineryStage2"); // 2 스테이지 이동
@@ -125,6 +110,11 @@ public class OpenDoor : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == "MachineryStage3")
             {
                 SceneManager.LoadScene("MachineryStage4"); // 4 스테이지 이동
+            }
+
+            else if (SceneManager.GetActiveScene().name == "MachineryStage4")
+            {
+                SceneManager.LoadScene("MachineryStage5"); // 5 스테이지 이동
             }
             //=============================================================================
         }

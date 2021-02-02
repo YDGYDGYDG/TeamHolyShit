@@ -85,16 +85,6 @@ public class MainUIbgm : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        else if (SceneManager.GetActiveScene().name == "TutorialStage4")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "TutorialStage5")
-        {
-            Destroy(this.gameObject);
-        }
-
         else if (SceneManager.GetActiveScene().name == "InfinityStorm4-1")
         {
             Destroy(this.gameObject);
@@ -120,11 +110,6 @@ public class MainUIbgm : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        else if (SceneManager.GetActiveScene().name == "MachineryStage0")
-        {
-            Destroy(this.gameObject);
-        }
-
         else if (SceneManager.GetActiveScene().name == "MachineryStage1")
         {
             Destroy(this.gameObject);
@@ -141,6 +126,11 @@ public class MainUIbgm : MonoBehaviour
         }
 
         else if (SceneManager.GetActiveScene().name == "MachineryStage4")
+        {
+            Destroy(this.gameObject);
+        }
+
+        else if (SceneManager.GetActiveScene().name == "MachineryStage5")
         {
             Destroy(this.gameObject);
         }

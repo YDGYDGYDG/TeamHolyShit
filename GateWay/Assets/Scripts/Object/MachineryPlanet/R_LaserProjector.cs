@@ -26,6 +26,7 @@ public class R_LaserProjector : MonoBehaviour
 
     void Update()
     {
+        line.SetPosition(0, transform.position);
         line.positionCount = 1;
         laserDir = transform.right;
         laserPos = transform.position;

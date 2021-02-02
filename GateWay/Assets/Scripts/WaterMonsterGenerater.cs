@@ -5,8 +5,8 @@ using UnityEngine;
 public class WaterMonsterGenerater : MonoBehaviour
 {
     GameObject player;
-    GameObject rangeLeft;
-    GameObject rangeRight;
+    public GameObject rangeLeft;
+    public GameObject rangeRight;
 
 
     public GameObject waterMonsterPrefab;
@@ -18,8 +18,6 @@ public class WaterMonsterGenerater : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("player");
-        rangeLeft = GameObject.Find("rangeLeft");
-        rangeRight = GameObject.Find("rangeRight");
     }
 
     void Update()

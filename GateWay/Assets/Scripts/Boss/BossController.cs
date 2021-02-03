@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class BossController : MonoBehaviour
     ObjectBlueController bBox;
     ObjectGreyController gBox;
     ObjectWhiteController wBox;
+
+    int scene;
     
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,11 @@ public class BossController : MonoBehaviour
             mod = Random.Range(1, 5);
         }
     }
+
+    private void Awake()
+    {
+        GameObject.DontDestroyOnLoad(gameObject);
+    }
     // Update is called once per frame
     private void OnCollisionEnter2D(Collision2D collider)
     {
@@ -41,6 +49,24 @@ public class BossController : MonoBehaviour
                 HP -= 1;
                 Destroy(collider.gameObject);
                 rBox.red = false;
+                scene = Random.Range(1, 4);
+                Debug.Log(scene);
+                if (scene == 1)
+                {
+                    SceneManager.LoadScene("TestSceneBlue");
+                    Debug.Log("a");
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.LoadScene("TestSceneGrey");
+                    Debug.Log("b");
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.LoadScene("TestSceneWhite");
+                    Debug.Log("c");
+                }
+                
             }
         }
         if (collider.gameObject.name == "BlueBox(Clone)")
@@ -50,6 +76,19 @@ public class BossController : MonoBehaviour
                 HP -= 1;
                 Destroy(collider.gameObject);
                 bBox.blue = false;
+                scene = Random.Range(1, 4);
+                if (scene == 1)
+                {
+                    SceneManager.LoadScene("TestSceneRed");
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.LoadScene("TestSceneGrey");
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.LoadScene("TestSceneWhite");
+                }
             }
         }
         if (collider.gameObject.name == "WhiteBox(Clone)")
@@ -59,6 +98,19 @@ public class BossController : MonoBehaviour
                 HP -= 1;
                 Destroy(collider.gameObject);
                 wBox.white = false;
+                scene = Random.Range(1, 4);
+                if (scene == 1)
+                {
+                    SceneManager.LoadScene("TestSceneRed");
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.LoadScene("TestSceneBlue");
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.LoadScene("TestSceneGrey");
+                }
             }
         }
         if (collider.gameObject.name == "GreyBox(Clone)")
@@ -68,6 +120,19 @@ public class BossController : MonoBehaviour
                 HP -= 1;
                 Destroy(collider.gameObject);
                 gBox.grey = false;
+                scene = Random.Range(1, 4);
+                if (scene == 1)
+                {
+                    SceneManager.LoadScene("TestSceneRed");
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.LoadScene("TestSceneBlue");
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.LoadScene("TestSceneWhite");
+                }
             }
         }
 
@@ -83,17 +148,14 @@ public class BossController : MonoBehaviour
         else if (mod == 2)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
-
         }
         else if (mod == 3)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.white;
-
         }
         else if (mod == 4)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
-
         }
 
         // 사망처리

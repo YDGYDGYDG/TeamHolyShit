@@ -10,11 +10,17 @@ public class BossController : MonoBehaviour
     public int HP = 10;
 
     ObjectRedController rBox;
+    ObjectBlueController bBox;
+    ObjectGreyController gBox;
+    ObjectWhiteController wBox;
     
     // Start is called before the first frame update
     void Start()
     {
         rBox = GameObject.Find("RedBoxPos").GetComponent<ObjectRedController>();
+        bBox = GameObject.Find("BlueBoxPos").GetComponent<ObjectBlueController>();
+        gBox = GameObject.Find("GreyBoxPos").GetComponent<ObjectGreyController>();
+        wBox = GameObject.Find("WhiteBoxPos").GetComponent<ObjectWhiteController>();
     }
     void Change()
     {
@@ -37,28 +43,31 @@ public class BossController : MonoBehaviour
                 rBox.red = false;
             }
         }
-        if (collider.gameObject.name == "BlueBox")
+        if (collider.gameObject.name == "BlueBox(Clone)")
         {
             if (mod == 2)
             {
                 HP -= 1;
                 Destroy(collider.gameObject);
+                bBox.blue = false;
             }
         }
-        if (collider.gameObject.name == "WhiteBox")
+        if (collider.gameObject.name == "WhiteBox(Clone)")
         {
             if (mod == 3)
             {
                 HP -= 1;
                 Destroy(collider.gameObject);
+                wBox.white = false;
             }
         }
-        if (collider.gameObject.name == "GreyBox")
+        if (collider.gameObject.name == "GreyBox(Clone)")
         {
             if (mod == 4)
             {
                 HP -= 1;
                 Destroy(collider.gameObject);
+                gBox.grey = false;
             }
         }
 

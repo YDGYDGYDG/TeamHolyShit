@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectBlueController : MonoBehaviour
+public class ObjectWhiteController : MonoBehaviour
 {
-    public bool blue;
+    public bool white;
 
-    public GameObject blueBox;
+    public GameObject whiteBox;
 
     GameObject box;
 
@@ -20,11 +20,11 @@ public class ObjectBlueController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!blue)
+        if (!white)
         {
-            blue = true;
+            white = true;
             // 불덩이 프리팹 생성
-            box = Instantiate(blueBox) as GameObject;
+            box = Instantiate(whiteBox) as GameObject;
             // 불덩이가 캐릭터를 따라다니네
             box.transform.position = transform.position;
 

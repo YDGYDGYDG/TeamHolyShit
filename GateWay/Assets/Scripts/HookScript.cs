@@ -80,6 +80,14 @@ public class HookScript : MonoBehaviour
                 // attackHook.GetComponent<AudioSource>().Play();     -->      충돌 사운드 재생(형준)
             }
 
+            else if (collision.CompareTag("Monster"))
+            {
+                // 줄 거두기
+                collision.gameObject.SetActive(false);
+                hookShot.HookOFF();
+            }
+
+
             // ~ 물체에 닿으면
             //else if (collision.CompareTag(""))
             //{

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Monster_Patrol : MonoBehaviour
 {
-    public Transform startPos; 
-    public Transform endPos;   
+    public Transform startPos;
+    public Transform endPos;
     public Transform desPos;
     public float speed;
+
+    public GameObject monsterDeathEffect;
 
     void Start()
     {
@@ -27,8 +29,23 @@ public class Monster_Patrol : MonoBehaviour
             {
                 desPos = endPos;
             }
+        }
 
+        if (desPos.position.x - transform.position.x > 0) 
+        {
+            this.transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            this.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Hook")      
+        {
+            Instantiate(monsterDeathEffect, transform.position, Quaternion.identity); 
+        }
+    }
 }

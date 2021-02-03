@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LaserPower : MonoBehaviour
 {
-    public GameObject powerDownObject;
+    public R_LaserProjector laserProjector;
+    public GameObject laser;
     public GameObject powerVisual;
     public GameObject powerDownEffect;
 
@@ -13,7 +14,8 @@ public class LaserPower : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Shootable"))
         {
             powerVisual.SetActive(false);
-            powerDownObject.SetActive(false);
+            laser.SetActive(false);
+            laserProjector.PowerOff();
             Instantiate(powerDownEffect, transform.position, Quaternion.identity);
         }
     }

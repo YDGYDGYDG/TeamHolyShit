@@ -12,6 +12,8 @@ public class R_LaserProjector : MonoBehaviour
     int layerMask_ignore;
     RaycastHit2D hit;
 
+    bool isOn = true;
+
     void Awake()
     {
         layerMask_ignore = 1 << LayerMask.NameToLayer("LaserProjector");
@@ -35,30 +37,32 @@ public class R_LaserProjector : MonoBehaviour
         hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
         if (hit)
         {
-            line.SetPosition(line.positionCount - 1, hit.point);
-            // 플레이어가 레이저에 닿으면
-            if (hit.collider.gameObject.tag == "Player")
+            if (isOn)
             {
-                // 플레이어 죽음 처리
-                player.PlayerDead();
-            }
-            while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50)
-            {
-                laserPos = hit.point - (laserDir.normalized * 0.0001f);
-                laserDir = Vector2.Reflect(laserDir, hit.normal);
-                hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
-                if (hit)
+                line.SetPosition(line.positionCount - 1, hit.point);
+                // 플레이어가 레이저에 닿으면
+                if (hit.collider.gameObject.tag == "Player")
                 {
-                    line.positionCount++;
-                    line.SetPosition(line.positionCount - 1, hit.point);
-                    if (hit.collider.gameObject.tag == "Player")
+                    // 플레이어 죽음 처리
+                    player.PlayerDead();
+                }
+                while (hit.collider.gameObject.layer == LayerMask.NameToLayer("Mirror") && line.positionCount < 50)
+                {
+                    laserPos = hit.point - (laserDir.normalized * 0.0001f);
+                    laserDir = Vector2.Reflect(laserDir, hit.normal);
+                    hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
+                    if (hit)
                     {
-                        // 플레이어 죽음 처리
-                        player.PlayerDead();
+                        line.positionCount++;
+                        line.SetPosition(line.positionCount - 1, hit.point);
+                        if (hit.collider.gameObject.tag == "Player")
+                        {
+                            // 플레이어 죽음 처리
+                            player.PlayerDead();
+                        }
                     }
                 }
             }
-
         }
         else line.SetPosition(line.positionCount - 1, transform.position);
 
@@ -68,5 +72,10 @@ public class R_LaserProjector : MonoBehaviour
         //{
 
         //}
+    }
+
+    public void PowerOff()
+    {
+        isOn = false;
     }
 }

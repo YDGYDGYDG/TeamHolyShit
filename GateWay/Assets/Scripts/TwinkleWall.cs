@@ -6,8 +6,8 @@ public class TwinkleWall : MonoBehaviour
 {
     float timeSpan;  // 경과 시간
     float WallReset; // 벽 초기화
-    float A_WallTime = 2.0f;
-    float B_WallTime = 2.0f;
+    float A_WallTime = 1.0f;
+    float B_WallTime = 1.0f;
     public GameObject Awall_0;
     public GameObject Awall_1;
     public GameObject Awall_2;

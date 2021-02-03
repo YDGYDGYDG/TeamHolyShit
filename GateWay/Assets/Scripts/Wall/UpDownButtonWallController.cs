@@ -6,7 +6,7 @@ public class UpDownButtonWallController : MonoBehaviour
 {
     public UpDownButtonController buttonOn;
     float move = 0.01f;
-    public float moveMax;
+    float moveMax;
 
     public float movePos;
 

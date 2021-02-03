@@ -11,6 +11,7 @@ public class WallJump : MonoBehaviour
     private bool isGrounded;
     private Rigidbody2D rb;
     public LayerMask groundMask;
+    public PlayerMoveController playerMoveController;
 
     private bool isTouchingLeft;
     private bool isTouchingright;
@@ -30,6 +31,7 @@ public class WallJump : MonoBehaviour
         
         if(Input.GetKeyDown("space") && isGrounded)
         {
+            playerMoveController.JButtonDown();
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         }
 

@@ -6,6 +6,7 @@ public class LaserPower : MonoBehaviour
 {
     public GameObject powerDownObject;
     public GameObject powerVisual;
+    public GameObject powerDownEffect;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,6 +14,7 @@ public class LaserPower : MonoBehaviour
         {
             powerVisual.SetActive(false);
             powerDownObject.SetActive(false);
+            Instantiate(powerDownEffect, transform.position, Quaternion.identity);
         }
     }
 }

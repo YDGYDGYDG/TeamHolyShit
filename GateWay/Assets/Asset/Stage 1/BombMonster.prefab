@@ -248,7 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3080af2379fa601478ef2b006c15d0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movePower: 2.5
+  movePower: 1.5
+  movementFlag: 0
 --- !u!58 &5032407658107040746
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -256,7 +257,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7843413404750862651}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -264,7 +265,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -3, y: 0.3}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.4
 --- !u!1 &7843505081762105741
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: e96c6a06fe0a83b4188cf0e05b6c6092, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: e96c6a06fe0a83b4188cf0e05b6c6092, type: 3}
       propertyPath: m_LocalRotation.w

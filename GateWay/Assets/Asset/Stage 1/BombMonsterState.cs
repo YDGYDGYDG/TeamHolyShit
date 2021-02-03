@@ -49,16 +49,12 @@ public class BombMonsterState : MonoBehaviour
 
             else if (col.gameObject.tag == "Player")        // 너 플레이어랑 충돌?
             {
-                Destroy(bombMonster2);
+                Destroy(bombMonster2);  // 자폭 ㄱㄱㄱㄱ
                 Instantiate(bomb, transform.position, Quaternion.identity);  // 이펙트도 출력해
                 hookLine2.HookOFF();                 // 훅도 지워줘야지??
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

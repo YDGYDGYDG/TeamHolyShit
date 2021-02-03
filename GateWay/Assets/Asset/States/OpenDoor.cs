@@ -66,6 +66,11 @@ public class OpenDoor : MonoBehaviour
             {
                 SceneManager.LoadScene("TutorialStage3");   // 3 스테이지 이동
             }
+
+            else if (SceneManager.GetActiveScene().name == "TutorialStage3")
+            {
+                SceneManager.LoadScene("MainScene");   // 메인 로비 이동
+            }
             //=============================================================================
 
 

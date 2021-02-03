@@ -138,5 +138,8 @@ public class MainUIsound : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        PlayerPrefs.DeleteAll();
+
     }
 }

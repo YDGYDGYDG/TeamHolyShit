@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerState : MonoBehaviour
 {
+    // 현재 씬 저장
+    string Now_Scene;
+
     HookShotScript hookLine;    // 훅 연결용 변수
-   
 
     public GameObject playerDeath;         // 플레이어 죽었을 때
     PlayerMoveController playerMoveStop;   // 무브 컨트롤러 연결
@@ -19,24 +22,39 @@ public class PlayerState : MonoBehaviour
     // 캐릭터 부활 위치(맵에 따라 다름 인스펙터에서 조절하세요~~)
     public Vector2 playerStartPosition = new Vector2(0f, 0f);
 
-    
+
     public void playerRevive()     // 부활 함수
     {
-        this.gameObject.SetActive(true);            // 플레이어 다시 켜주고
-        transform.position = playerStartPosition;   // 시작 위치로 이동 시켜
-        playerMoveStop.Dead();                      // 이동 정지해
+        //this.gameObject.SetActive(true);         
+        //// 스폰 시 저장된 위치가 있다면 그곳으로
+        //Vector2 loadSavedPositon = new Vector2(PlayerPrefs.GetFloat("SavedPlayerX"), PlayerPrefs.GetFloat("SavedPlayerY"));
+        //if (loadSavedPositon != null)
+        //{
+        //    transform.position = loadSavedPositon;
+        //}
+        //else
+        //{
+        //    transform.position = Vector2.zero;
+        //}
+        SceneManager.LoadScene(Now_Scene);
     }
     
 
 
-    // Start is called before the first frame update
     void Start()
     {
+        Now_Scene = SceneManager.GetActiveScene().name;
+
         hookLine = GameObject.Find("player").GetComponent<HookShotScript>();    // 훅샷 스크립트 연결
         audioSource = GetComponent<AudioSource>();          // 오디오 소스 연결
         playerMoveStop = GetComponent<PlayerMoveController>();  // 무브 컨트롤러 연결
-        
 
+        // 스폰 시 저장된 위치가 있다면 그곳으로
+        Vector2 loadSavedPositon = new Vector2(PlayerPrefs.GetFloat("SavedPlayerX"), PlayerPrefs.GetFloat("SavedPlayerY"));
+        if(loadSavedPositon != null)
+        {
+            transform.position = loadSavedPositon;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -86,12 +104,11 @@ public class PlayerState : MonoBehaviour
         {
             hookLine.BreakShootableObject();
         }
+        playerMoveStop.Dead();                      // 이동 정지해
 
         // 이펙트도 출력해
         Instantiate(playerDeath, transform.position, Quaternion.identity);
         Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
     }
-
-
 
 }

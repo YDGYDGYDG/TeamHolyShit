@@ -14,12 +14,14 @@ public class MoveBlade : MonoBehaviour
 
     float bladeRotation;            // 톱날 돌리기
 
+    PlayerState playerDeath;
+
     // Start is called before the first frame update
     void Start()
     {
         transform.position = startPos.position;
         desPos = endPos;
-        // playerDeath = GameObject.Find("player").GetComponent<PlayerController>(); 사망처리 김휘원
+        playerDeath = GameObject.Find("player").GetComponent<PlayerState>();
         // bladeRotation = transform.rotation(0, 0, 0);
     }
 
@@ -27,7 +29,7 @@ public class MoveBlade : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // playerDeath.PlayerDead(); 사망처리 김휘원
+            playerDeath.PlayerDead(); 
         }
     }
 

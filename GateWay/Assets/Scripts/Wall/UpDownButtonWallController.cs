@@ -8,6 +8,8 @@ public class UpDownButtonWallController : MonoBehaviour
     float move = 0.01f;
     public float moveMax;
 
+    public float movePos;
+
     public float speed = 0.01f;
 
     public bool doorUp;
@@ -18,7 +20,7 @@ public class UpDownButtonWallController : MonoBehaviour
     void Start()
     {
         startPos = gameObject.transform.position;
-        moveMax = gameObject.transform.localScale.y;
+        moveMax = gameObject.transform.localScale.y*movePos;
     }
 
     // Update is called once per frame

@@ -11,7 +11,6 @@ public class TornadoLever : MonoBehaviour
     public GameObject Tornado2;
     public GameObject Tornado3;
     public GameObject Tornado4;
-    public GameObject Tornado5;
 
     void Start()
     {
@@ -21,7 +20,6 @@ public class TornadoLever : MonoBehaviour
         Tornado2.gameObject.SetActive(false);
         Tornado3.gameObject.SetActive(false);
         Tornado4.gameObject.SetActive(false);
-        Tornado5.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,7 +32,6 @@ public class TornadoLever : MonoBehaviour
             Tornado2.gameObject.SetActive(true);
             Tornado3.gameObject.SetActive(true);
             Tornado4.gameObject.SetActive(true);
-            Tornado5.gameObject.SetActive(true);
         }
     }
 }

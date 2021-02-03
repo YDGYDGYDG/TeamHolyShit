@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Trigger_ : MonoBehaviour
 {
-    public Trigger_Door triggerObject;
-    public Trigger_MovingObject movingObject;
+    public Trigger_Door [] triggerObject;
+    public Trigger_MovingObject [] movingObject;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            if(triggerObject) triggerObject.TriggerOn();
-            if(movingObject) movingObject.TriggerOn();
+            for (int i = 0; i < triggerObject.Length; i++)
+            {
+                if (triggerObject[i])
+                {
+                    triggerObject[i].TriggerOn();
+                }
+            }
+            for (int i = 0; i < movingObject.Length; i++)
+            {
+                if (movingObject[i]) 
+                {
+                    movingObject[i].TriggerOn();
+                }
+            }
             this.gameObject.SetActive(false);
         }
     }

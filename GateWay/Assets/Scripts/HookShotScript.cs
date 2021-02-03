@@ -155,7 +155,7 @@ public class HookShotScript : MonoBehaviour
                         // 가져온 오브젝트가 플레이어의 자식이 된다
                         hookedObject.transform.SetParent(transform);
                         // 그리고 머리위에 고정됨
-                        hookedObject.transform.position = transform.position + Vector3.up;
+                        hookedObject.transform.position = transform.position + (new Vector3(0, hookedObject.GetComponent<BoxCollider2D>().bounds.extents.y) + new Vector3(0, 0.4f, 0));
                         hookedObject.GetComponent<Rigidbody2D>().isKinematic = true;
                         hookedObject.transform.rotation = Quaternion.Euler(0, 0, 0);
                         hookedObject.GetComponent<Rigidbody2D>().freezeRotation = true;

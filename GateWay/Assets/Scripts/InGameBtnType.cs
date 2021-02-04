@@ -16,19 +16,20 @@ public class InGameBtnType : MonoBehaviour
     public GameObject menuSet;
     public GameObject Player;
    
-    public void GameSave()
-    {
-        PlayerPrefs.SetFloat("PlayerX", Player.transform.position.x);
-        PlayerPrefs.SetFloat("PlayerY", Player.transform.position.y);
-        PlayerPrefs.Save();
-    }
+    //public void GameSave()
+    //{
+    //    PlayerPrefs.SetFloat("PlayerX", Player.transform.position.x);
+    //    PlayerPrefs.SetFloat("PlayerY", Player.transform.position.y);
+    //    PlayerPrefs.Save();
+    //}
     public void GameLoad()
     {
-        if (!PlayerPrefs.HasKey("PlayerX"))
-            return;
-        float x = PlayerPrefs.GetFloat("PlayerX");
-        float y = PlayerPrefs.GetFloat("PlayerY");
-        Player.transform.position = new Vector3(x, y, 0);
+        //if (!PlayerPrefs.HasKey("PlayerX"))
+        //    return;
+        //float x = PlayerPrefs.GetFloat("PlayerX");
+        //float y = PlayerPrefs.GetFloat("PlayerY");
+        //Player.transform.position = new Vector3(x, y, 0);
+        Player.GetComponent<PlayerState>().playerRevive();
     }
     public void InGameOnBtnClick()
     {
@@ -37,8 +38,8 @@ public class InGameBtnType : MonoBehaviour
             case InGameBTNType.GameContinue:
                 menuSet.SetActive(false);
                 break;
-            case InGameBTNType.GameSave:
-                GameSave();
+            //case InGameBTNType.GameSave:
+            //    GameSave();
                 break; 
             case InGameBTNType.GameQuit:
                 SceneManager.LoadScene("MainScene");

@@ -615,8 +615,6 @@ MonoBehaviour:
   buttonScale: {fileID: 88086593}
   isSound: 0
   isButtonSound: 0
-  uiSE: {fileID: 58315181}
-  uiBGM: {fileID: 497320951}
 --- !u!1 &118986655
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,8 +814,6 @@ MonoBehaviour:
   buttonScale: {fileID: 286384101}
   isSound: 0
   isButtonSound: 0
-  uiSE: {fileID: 0}
-  uiBGM: {fileID: 0}
 --- !u!114 &286384103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,10 +1308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2206,8 +2202,6 @@ MonoBehaviour:
   buttonScale: {fileID: 1707434941}
   isSound: 0
   isButtonSound: 0
-  uiSE: {fileID: 58315181}
-  uiBGM: {fileID: 497320951}
 --- !u!1 &1731009656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,8 +2495,6 @@ MonoBehaviour:
   buttonScale: {fileID: 1795073453}
   isSound: 0
   isButtonSound: 0
-  uiSE: {fileID: 58315181}
-  uiBGM: {fileID: 497320951}
 --- !u!1 &1799297716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2560,8 +2552,6 @@ MonoBehaviour:
   buttonScale: {fileID: 1799297717}
   isSound: 0
   isButtonSound: 0
-  uiSE: {fileID: 0}
-  uiBGM: {fileID: 0}
 --- !u!114 &1799297719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2871,8 +2861,6 @@ MonoBehaviour:
   buttonScale: {fileID: 2027490473}
   isSound: 0
   isButtonSound: 0
-  uiSE: {fileID: 58315181}
-  uiBGM: {fileID: 497320951}
 --- !u!1 &2061335650
 GameObject:
   m_ObjectHideFlags: 0

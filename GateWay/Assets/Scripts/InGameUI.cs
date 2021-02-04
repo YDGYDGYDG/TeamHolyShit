@@ -11,7 +11,8 @@ public enum InGameBTNType
     GameSave,
     GameQuit,
     Xbtn,
-    Reset
+    Reset,
+    Level
 }
 public class InGameUI : MonoBehaviour
 {

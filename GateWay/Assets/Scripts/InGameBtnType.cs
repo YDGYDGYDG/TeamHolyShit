@@ -53,6 +53,9 @@ public class InGameBtnType : MonoBehaviour
             case InGameBTNType.Reset:
                 GameLoad();
                 break;
+            case InGameBTNType.Level:
+                SceneManager.LoadScene("StageSelectScene");
+                break;
         }
 
     }

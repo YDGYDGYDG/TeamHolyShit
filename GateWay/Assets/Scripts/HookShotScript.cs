@@ -23,7 +23,7 @@ public class HookShotScript : MonoBehaviour
     // 로프 날아가는 속도
     public float lineSpeed = 30;
     // 캐릭터 날아가는 속도
-    public float playerlineSpeed = 10;
+    public float playerlineSpeed = 0.4f;
     // 로프 회수하는 속도
     public float linePullSpeed = 60;
     // 로프로 오브젝트 당기는 속도
@@ -37,7 +37,6 @@ public class HookShotScript : MonoBehaviour
     // 현재 로프의 최대 길이
     public float ropeLength;
 
-    DistanceJoint2D hookJoint2D;
     DistanceJoint2D hookChildJoint2D;
 
     public bool isAttachWall;
@@ -46,11 +45,11 @@ public class HookShotScript : MonoBehaviour
     public GameObject hookedObject;
     public float hookedObjectSize;
 
+
     Animator jumpAnim;                  // 줄 생성 중일 때 점프 애니메이션 전환용(형준)
     SpriteRenderer playerPosition;      // 캐릭터 이동방향 판단(형준)
     GameObject HookSE;                  // 훅 SE 재생용(형준)
-    GameObject player;                  // 플레이어 찾아줘(형준)
-    
+
 
     // 에임 표시
     public GameObject aim;
@@ -79,14 +78,37 @@ public class HookShotScript : MonoBehaviour
         line.useWorldSpace = true;
 
         hook.gameObject.SetActive(false);
-        hookJoint2D = hook.GetComponent<DistanceJoint2D>();
         hookChildJoint2D = hook.GetChild(2).GetComponent<DistanceJoint2D>();
 
         playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
         HookSE = GameObject.Find("Hook");                   // 훅 찾아주고..(형준)
-        player = GameObject.Find("player");                 // 플레이어 연결(형준)
-        jumpAnim = player.GetComponent<Animator>();         // 애니메이션 연결(형준)
+        jumpAnim = GetComponent<Animator>();         // 애니메이션 연결(형준)
 
+    }
+
+    private void FixedUpdate()
+    {
+        // 훅 처리=============================================================================
+        // 훅과 연결된 캐릭터 처리-------------------------------------------------------------
+        // 훅이 박혔는지 판단
+        if (isAttach)
+        {
+            // 훅이 벽에 박혔다
+            if (isAttachWall)
+            {
+                // 캐릭터가 중력을 받지 않게됨
+                getRigid.gravityScale = 0;
+                // 이전에 받고 있던 힘 삭제
+                getRigid.velocity = Vector2.zero;
+
+                // 이제 캐릭터를 훅 방향으로 움직인다.(훅의 조인트 길이를 줄인다.)
+                if (Vector2.Distance(hook.position, transform.position) > 1f)
+                {
+                    // DIstance Joint 2D를 쓰지 말자
+                    transform.position = Vector3.MoveTowards(transform.position, hook.position, playerlineSpeed);
+                }
+            }
+        }
     }
 
     void Update()
@@ -104,19 +126,8 @@ public class HookShotScript : MonoBehaviour
             // 훅이 벽에 박혔다
             if (isAttachWall)
             {
-                // 캐릭터가 중력을 받지 않게됨
-                getRigid.gravityScale = 0;
-                // 이전에 받고 있던 힘 삭제
-                getRigid.velocity = Vector2.zero;
-
-                // 이제 캐릭터를 훅 방향으로 움직인다.(훅의 조인트 길이를 줄인다.)
-                // 처음에 빠르게, 가까워지면 천천히 줄어들어서 속도감
-                if (Vector2.Distance(hook.position, transform.position) > 1)
-                {
-                    hookJoint2D.distance -= Time.deltaTime * playerlineSpeed;
-                }
                 // 다 줄어들었어?
-                if (Vector2.Distance(hook.position, transform.position) <= 1)
+                if (Vector2.Distance(hook.position, transform.position) <= 1f)
                 {
                     // 달랑거리지 마
                     //getRigid.simulated = false;
@@ -125,19 +136,11 @@ public class HookShotScript : MonoBehaviour
                     float nowRope = ropeLength - cuttedRopeLength;
                     getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
                 }
-
-                // 줄이 다 줄었는데 어태치월인 상태라면...?
-                if (hookJoint2D.distance <= 0.005)
-                {
-                    // 낀 것 같으니 끊어라
-                    HookOFF();
-                }
             }
 
             // 훅이 오브젝트에 박혔다
             else if (isAttachObject)
             {
-                hookJoint2D.enabled = false;
                 // 오브젝트의 위치는 훅을 맞은 직후 표면에 훅을 붙힌 채로 딸려옴
                 //hookedObject.transform.position = hook.position;
 
@@ -163,7 +166,7 @@ public class HookShotScript : MonoBehaviour
                         // '나 물건 들고 있어요'가 true
                         isHaveShootableObject = true;
                         // 애니메이션도 바꿔줘(형준)
-                        player.GetComponent<Animator>().SetBool("isJump", true);
+                        GetComponent<Animator>().SetBool("isJump", true);
                     }
                     HookOFF();
                     hookChildJoint2D.connectedBody = null;
@@ -178,9 +181,6 @@ public class HookShotScript : MonoBehaviour
         // 훅온일 때, 최대사거리아니고, 안붙었으면 = 날아감
         if (isHookActive && !isLineMax && !isAttach)
         {
-            // 훅 날릴 때 몸 안딸려가게 하기
-            hookJoint2D.enabled = false;
-
             hook.Translate(shootDir * Time.deltaTime * lineSpeed);
             if (Vector2.Distance(transform.position, hook.position) > lineMax)
             {
@@ -304,7 +304,7 @@ public class HookShotScript : MonoBehaviour
         aim.SetActive(false);
         BreakShootableObject();
         // 애니메이션 원래대로(형준)
-        player.GetComponent<Animator>().SetBool("isJump", false);
+        GetComponent<Animator>().SetBool("isJump", false);
         // 오브젝트 날리기
         if (shootDir.y < 0)
         {

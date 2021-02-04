@@ -7,7 +7,6 @@ public class HookScript : MonoBehaviour
     GameObject player;
 
     HookShotScript hookShot;
-    DistanceJoint2D joint2D;
 
     GameObject attackHook;      // 충돌 사운드 재생용(형준)
 
@@ -20,7 +19,6 @@ public class HookScript : MonoBehaviour
     {
         player = GameObject.Find("player");
         hookShot = player.GetComponent<HookShotScript>();
-        joint2D = GetComponent<DistanceJoint2D>();
 
          attackHook = GameObject.Find("HookSE");     // 훅 사운드 컴포넌트 연결(형준)
          hookSE = GameObject.Find("Hook");         // 훅 컴포넌트 연결(형준)
@@ -34,7 +32,6 @@ public class HookScript : MonoBehaviour
             // 훅이 벽에 닿으면
             if (collision.CompareTag("Wall"))
             {
-                joint2D.enabled = true;
                 hookShot.isAttach = true;
                 hookShot.isAttachWall = true;
 
@@ -53,7 +50,6 @@ public class HookScript : MonoBehaviour
             // 훅이 오브젝트에 닿으면
             else if (collision.CompareTag("Object"))
             {
-                joint2D.enabled = true;
                 hookShot.isAttach = true;
                 hookShot.isAttachObject = true;
                 hookShot.hookedObject = collision.gameObject;

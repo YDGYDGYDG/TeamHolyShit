@@ -130,10 +130,10 @@ public class PlayerMoveController : MonoBehaviour
         // 바닥에 충돌했을 때 다시 Idle 애니메이션으로 전환(형준)
         if (rigidBody.velocity.y < 0)
         {
-            RaycastHit2D rayDownHit = Physics2D.Raycast(rigidBody.position, Vector3.down, 1, LayerMask.GetMask("Wall"));
+            RaycastHit2D rayDownHit = Physics2D.Raycast(transform.position + new Vector3(playerSize - 0.4f, -0.5f), Vector3.down, 0.3f);
             if (rayDownHit.collider != null)
             {
-                if (rayDownHit.distance < 1.0f)
+                if (rayDownHit.distance < 1)
                 {
                     animator.SetBool("isJump", false);
 

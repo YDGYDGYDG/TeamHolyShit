@@ -19,7 +19,7 @@ public class BombMonsterState : MonoBehaviour
         hookLine2 = GameObject.Find("player").GetComponent<HookShotScript>();
 
         box = GameObject.FindGameObjectWithTag("Object");
-        boxRigid = box.GetComponent<Rigidbody2D>();
+        // boxRigid = box.GetComponent<Rigidbody2D>();
 
         bombMonster2 = GameObject.Find("BombMonster");
         bombScript = bombMonster2.GetComponent<BombMonster>();
@@ -31,7 +31,7 @@ public class BombMonsterState : MonoBehaviour
         {
             if (col.gameObject.tag == "Hook")        // 너 밧줄이랑 충돌했니??
             {
-                Destroy(bombMonster2);
+                Destroy(transform.parent.gameObject);
                 Instantiate(bomb, transform.position, Quaternion.identity);  // 이펙트도 출력해
                 hookLine2.HookOFF();                 // 훅도 지워줘야지??
             }
@@ -41,7 +41,7 @@ public class BombMonsterState : MonoBehaviour
                 // 박스 속도가 0이 아닐때만 죽여
                 if (boxRigid.velocity.x != 0 || boxRigid.velocity.y != 0)
                 {
-                    Destroy(bombMonster2);
+                    Destroy(transform.parent.gameObject);
                     Instantiate(bomb, transform.position, Quaternion.identity);  // 이펙트도 출력해
                     Destroy(box);       // 충돌한 박스는 없애
                 }
@@ -49,7 +49,7 @@ public class BombMonsterState : MonoBehaviour
 
             else if (col.gameObject.tag == "Player")        // 너 플레이어랑 충돌?
             {
-                Destroy(bombMonster2);  // 자폭 ㄱㄱㄱㄱ
+                Destroy(transform.parent.gameObject);  // 자폭 ㄱㄱㄱㄱ
                 Instantiate(bomb, transform.position, Quaternion.identity);  // 이펙트도 출력해
                 hookLine2.HookOFF();                 // 훅도 지워줘야지??
             }

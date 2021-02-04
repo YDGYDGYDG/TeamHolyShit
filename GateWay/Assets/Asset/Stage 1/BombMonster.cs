@@ -100,7 +100,7 @@ public class BombMonster : MonoBehaviour
 
 
         // 바닥이 있는지 체크
-        Vector2 frontVec = new Vector2(rigid.position.x + movementFlag, rigid.position.y);
+        Vector2 frontVec = new Vector2(rigid.position.x + (movementFlag * 0.4f), rigid.position.y);
         Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 2, LayerMask.GetMask("Wall"));
 

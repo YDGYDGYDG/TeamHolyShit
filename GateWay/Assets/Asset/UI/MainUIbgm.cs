@@ -134,6 +134,7 @@ public class MainUIbgm : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+             
 
         PlayerPrefs.DeleteAll();
 

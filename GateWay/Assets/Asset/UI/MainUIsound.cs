@@ -21,9 +21,7 @@ public class MainUIsound : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
-        
-
+        DontDestroyOnLoad(this.gameObject);      
     }
 
     // Update is called once per frame
@@ -133,11 +131,7 @@ public class MainUIsound : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        else if (SceneManager.GetActiveScene().name == "MachineryStage5")
-        {
-            Destroy(this.gameObject);
-        }
+        
 
         PlayerPrefs.DeleteAll();
 

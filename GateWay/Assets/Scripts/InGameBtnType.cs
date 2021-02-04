@@ -40,7 +40,7 @@ public class InGameBtnType : MonoBehaviour
                 break;
             //case InGameBTNType.GameSave:
             //    GameSave();
-                break; 
+            //    break; 
             case InGameBTNType.GameQuit:
                 SceneManager.LoadScene("MainScene");
                 break;

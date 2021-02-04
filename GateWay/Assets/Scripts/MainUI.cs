@@ -46,7 +46,11 @@ public enum BTNType
     Stage4_Level3,
     Stage4_Level4,
     Stage4_Level5,
-    Stage4_Level6,   
+    Stage4_Level6,
+    ButtonSound_On,
+    ButtonSound_Off,
+    BGM_On,
+    BGM_Off
 }
 
 public class MainUI : MonoBehaviour

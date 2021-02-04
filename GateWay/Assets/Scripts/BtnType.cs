@@ -13,19 +13,22 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Transform buttonScale;
     Vector3 defaultScale;
     public bool isSound;
+    public bool isButtonSound;
 
     AudioSource audioSource;        // 오디오 소스(형준)
-    GameObject uiSE;        // 오디오 매니저(형준)
+    GameObject uiSE;                // 오디오 매니저(형준)
+    GameObject uiBGM;
     MainUIsound mainUIsound;        // 오디오 매니저 스크립트(형준)
-    
     public void Awake()
     {
         defaultScale = buttonScale.localScale;
 
         uiSE = GameObject.Find("UI SE");   // 오디오 매니저 연결(형준)
+        uiBGM = GameObject.Find("UI BGM");   // 오디오 매니저 연결(형준)
         audioSource = uiSE.GetComponent<AudioSource>(); // 오디오 소스 연결(형준)
         mainUIsound = uiSE.GetComponent<MainUIsound>(); // 오디오 매니저 스크립트 연결(형준)
     }
+
     // 버튼에 마우스를 가져다 대면 버튼이 커짐
     // 버튼을 눌렀을 때 case별로 해당 동작을 수행하도록 만듦
     public void OnBtnClick()
@@ -84,16 +87,10 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Credit:
                 btnClick();
-                SceneManager.LoadScene("CreditScene");                           
+                SceneManager.LoadScene("CreditScene");
                 break;
             case BTNType.Sound:
-                if (isSound)
-                {
-                }
-                else
-                {
-                }
-                isSound = !isSound;
+                btnClick();    
                 break;
             case BTNType.Back:
                 btnClick();
@@ -198,6 +195,22 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case BTNType.Stage4_Level6:
                 btnClick();
                 SceneManager.LoadScene("InfinityStorm4-3");
+                break;
+            case BTNType.ButtonSound_On:
+                btnClick();
+                // 버튼음실행
+                break;
+            case BTNType.ButtonSound_Off:
+                btnClick();
+                // 버튼음중단
+                break;
+            case BTNType.BGM_On:
+                btnClick();
+                // BGM실행
+                break;
+            case BTNType.BGM_Off:
+                btnClick();
+                // BGM중단
                 break;
         }
 

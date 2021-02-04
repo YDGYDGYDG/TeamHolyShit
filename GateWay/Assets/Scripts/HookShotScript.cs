@@ -23,7 +23,8 @@ public class HookShotScript : MonoBehaviour
     // 로프 날아가는 속도
     public float lineSpeed = 30;
     // 캐릭터 날아가는 속도
-    public float playerlineSpeed = 0.4f;
+    [SerializeField, Range(0.1f, 0.9f)]
+    private float playerlineSpeed = 0.4f;
     // 로프 회수하는 속도
     public float linePullSpeed = 60;
     // 로프로 오브젝트 당기는 속도

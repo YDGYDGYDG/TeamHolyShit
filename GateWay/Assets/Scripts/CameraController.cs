@@ -90,7 +90,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            Debug.Log("카메라 오류);
+            Debug.Log("카메라 오류");
         }
     }
 }

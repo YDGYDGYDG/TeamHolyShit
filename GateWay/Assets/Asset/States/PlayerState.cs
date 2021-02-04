@@ -111,4 +111,9 @@ public class PlayerState : MonoBehaviour
         Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
     }
 
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
 }

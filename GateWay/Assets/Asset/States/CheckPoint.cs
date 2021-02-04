@@ -17,8 +17,4 @@ public class CheckPoint : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
-    {
-        PlayerPrefs.DeleteAll();
-    }
 }

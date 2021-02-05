@@ -5,6 +5,8 @@ using UnityEngine;
 public class TurnMirror45 : MonoBehaviour
 {
     int count = 0;
+    public GameObject touchEffect;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Hook")
@@ -12,6 +14,7 @@ public class TurnMirror45 : MonoBehaviour
             count += 1;
             transform.rotation = Quaternion.Euler(0, 0, 45 * count);
             if (count >= 6) count = 0;
+            Instantiate(touchEffect, collision.transform.position, Quaternion.identity);
         }
     }
 }

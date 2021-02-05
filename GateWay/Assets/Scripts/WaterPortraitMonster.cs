@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaterPortraitMonster : MonoBehaviour
 {
-    int monsterSpeed = 100;
+    public float monsterSpeed = 1.0f;
 
     private void OnTriggerExit2D(Collider2D collision)
     {

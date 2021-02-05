@@ -1894,7 +1894,7 @@ PrefabInstance:
     - target: {fileID: 6588857223142194455, guid: eb8e5f471821c4f48afe18b6d129433f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6588857223142194455, guid: eb8e5f471821c4f48afe18b6d129433f,
         type: 3}
@@ -1904,7 +1904,7 @@ PrefabInstance:
     - target: {fileID: 6588857224099992601, guid: eb8e5f471821c4f48afe18b6d129433f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6588857224099992601, guid: eb8e5f471821c4f48afe18b6d129433f,
         type: 3}
@@ -2349,7 +2349,7 @@ PrefabInstance:
     - target: {fileID: 7274603372973736802, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7274603372973736831, guid: c187bfe9f40b18c45942fbf6771b9ffc,
         type: 3}
@@ -12349,6 +12349,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterRMonsterGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 496787926550431356, guid: 0555aea2421b4364c82d2290f84af326,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 496787927713103385, guid: 0555aea2421b4364c82d2290f84af326,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12747,6 +12752,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2120992373}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2130751569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6588857222863285372, guid: eb8e5f471821c4f48afe18b6d129433f,
+    type: 3}
+  m_PrefabInstance: {fileID: 821671763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2130751570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130751569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796a5da87fb600c41a28a64d214031b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeLeft: {fileID: 1755461664}
+  rangeRight: {fileID: 1917973072}
+  waterMonsterPrefab: {fileID: 8256813046742007072, guid: b1e0d74ad1e63b64295b13ef34fbbb90,
+    type: 3}
+  monsterSpeed: 100
+  span: 1.5
 --- !u!1001 &2130837396
 PrefabInstance:
   m_ObjectHideFlags: 0

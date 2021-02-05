@@ -15,6 +15,8 @@ public class FireballTrap : MonoBehaviour
 
     CircleCollider2D circleCollider;    // 충돌 트리거
 
+    public float time = 2f;     // 점프 시간 퍼블릭으로 수정 (김휘원)
+
     Vector2 position = new Vector2();   // 투명도 조절 기준 위치
     
     
@@ -31,7 +33,7 @@ public class FireballTrap : MonoBehaviour
 
         circleCollider = GetComponent<CircleCollider2D>();  // 원형 충돌체크 트리거 연결
 
-        InvokeRepeating("jumping", 0, 2.0f);        // 2초마다 반복해서 점핑해
+        InvokeRepeating("jumping", 0, time);        // 2초마다 반복해서 점핑해 + 점프 시간 변수로 변경 (김휘원)
 
     }
 

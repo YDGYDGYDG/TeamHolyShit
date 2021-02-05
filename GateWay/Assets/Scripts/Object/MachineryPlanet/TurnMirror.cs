@@ -11,7 +11,6 @@ public class TurnMirror : MonoBehaviour
         {
             count += 1;
             transform.rotation = Quaternion.Euler(0, 0, 60 * count);
-            Debug.Log(count);
             if (count >= 6) count = 0;
         }
     }

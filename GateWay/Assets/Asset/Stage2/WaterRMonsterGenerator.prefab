@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 496787926550431346}
-  - component: {fileID: 9036598748021317428}
+  - component: {fileID: 3472120912233474602}
   m_Layer: 0
   m_Name: WaterRMonsterGenerator
   m_TagString: Untagged
@@ -63,7 +63,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9036598748021317428
+--- !u!114 &3472120912233474602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,10 +77,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeLeft: {fileID: 496787927713103386}
   rangeRight: {fileID: 496787926288275216}
-  monsterSpeed: -200
   waterMonsterPrefab: {fileID: 2125512032971474707, guid: 63e91247d800b684bb3a0e3f3f4d4782,
     type: 3}
-  span: 3
+  monsterSpeed: 0
+  span: 1.5
 --- !u!1 &496787927713103386
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class WaterRPortraitMonster : MonoBehaviour
 {
-    public float monsterSpeed = 100;
-    public WaterPortraitMonsterGenerater waterPor;
+    public float monsterSpeed = -1.0f;
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Water")
+        if (collision.gameObject.tag == "Water")
         {
             Destroy(gameObject);
         }
@@ -19,15 +18,12 @@ public class WaterRPortraitMonster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waterPor = GameObject.Find("WaterRMonsterGenerator").GetComponent<WaterPortraitMonsterGenerater>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //monsterSpeed = waterPor.monsterSpeed;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(monsterSpeed, 0));
-        
+        gameObject.transform.Translate(monsterSpeed, 0, 0);
     }
 }

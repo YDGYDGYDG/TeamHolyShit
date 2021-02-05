@@ -26,7 +26,7 @@ public class WaterRPortraitMonster : MonoBehaviour
     void Update()
     {
 
-        monsterSpeed = waterPor.monsterSpeed;
+        //monsterSpeed = waterPor.monsterSpeed;
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(monsterSpeed, 0));
         
     }

@@ -8,10 +8,9 @@ public class WaterPortraitMonsterGenerater : MonoBehaviour
     public GameObject rangeLeft;
     public GameObject rangeRight;
 
-    public float monsterSpeed;
-
     public GameObject waterMonsterPrefab;
-    public float span = 3f;
+    public float monsterSpeed;
+    public float span = 1.5f;
     float delta = 0;
 
 
@@ -24,12 +23,14 @@ public class WaterPortraitMonsterGenerater : MonoBehaviour
     void Update()
     {
         delta += Time.deltaTime;
-        if (delta > span)
+        if (player.transform.position.y >= rangeLeft.transform.position.y && player.transform.position.y <= rangeRight.transform.position.y)
         {
-            delta = 0;
-            float ran = Random.Range(rangeLeft.transform.position.y, rangeRight.transform.position.y);
-            GameObject waterMonster = Instantiate(waterMonsterPrefab) as GameObject;
-            waterMonster.transform.position = new Vector2(rangeLeft.transform.position.x, ran);
+            if (delta > span)
+            {
+                delta = 0;
+                GameObject waterMonster = Instantiate(waterMonsterPrefab) as GameObject;
+                waterMonster.transform.position = new Vector2(rangeLeft.transform.position.x, player.transform.position.y);
+            }
         }
     }
 }

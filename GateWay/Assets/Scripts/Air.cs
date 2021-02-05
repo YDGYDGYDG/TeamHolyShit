@@ -67,7 +67,7 @@ public class Air : MonoBehaviour
                 if (outTime > 1.0)
                 {
                     outTime = 0;
-                    curAir += 3.0f;
+                    curAir += 10.0f;
                 }
             }
         }

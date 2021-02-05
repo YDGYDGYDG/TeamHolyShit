@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WaterPortraitMonster : MonoBehaviour
 {
-    public float monsterSpeed = 100;
-    public WaterPortraitMonsterGenerater waterPor;
+    int monsterSpeed = 100;
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -19,13 +18,12 @@ public class WaterPortraitMonster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waterPor = GameObject.Find("WaterPorMonsterGenerator").GetComponent<WaterPortraitMonsterGenerater>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        monsterSpeed = waterPor.monsterSpeed;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(monsterSpeed, 0));
+        gameObject.transform.Translate(monsterSpeed,0,0);
     }
 }

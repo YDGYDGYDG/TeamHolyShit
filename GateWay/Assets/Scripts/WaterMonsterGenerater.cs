@@ -10,7 +10,7 @@ public class WaterMonsterGenerater : MonoBehaviour
 
 
     public GameObject waterMonsterPrefab;
-    float span = 3f;
+    public float span = 3f;
     float delta = 0;
 
 

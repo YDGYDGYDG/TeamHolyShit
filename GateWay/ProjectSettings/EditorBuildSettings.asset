@@ -6,20 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 6a642769d4efa0c49bc20e5de41bb4ad
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: b3bfcbf6804b8854b8f2f826b73734a3
-  - enabled: 1
-    path: Assets/Scenes/CreditScene.unity
-    guid: 769a586efac7d364389c272212c41c4d
-  - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: b6d492e79828f3841b5c5c848273c5df
   - enabled: 1
     path: Assets/Scenes/OptionScene.unity
     guid: 4710fae31d44d2542b767f4ac3bdfa5a
   - enabled: 1
-    path: Assets/Scenes/StageSelectScene.unity
-    guid: fe7ed7c28d0d26543878f95dbc8a9a86
+    path: Assets/Scenes/CreditScene.unity
+    guid: 769a586efac7d364389c272212c41c4d
   - enabled: 1
     path: Assets/Scenes/Stage1_LevelScene.unity
     guid: 04397fd95698df141b0fe4141a0c86ea
@@ -32,18 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage4_LevelScene.unity
     guid: 0ead0ccec51c22b41a33890e4dfdd02d
-  - enabled: 0
-    path: Assets/Scenes/LavaStageDemo.unity
-    guid: 0361a4c219ae3984481f04133a5d95ac
   - enabled: 1
-    path: Assets/Scenes/MachineryStage1.unity
-    guid: 37eddeff54fc4c64a81308c82695c64f
-  - enabled: 1
-    path: Assets/Scenes/MachineryStage5.unity
-    guid: 914babfc9bda4764ebd518731e20579f
-  - enabled: 1
-    path: Assets/Scenes/MachineryStage2.unity
-    guid: 364276ff0c167384bbe7d8f88b89f547
+    path: Assets/Scenes/StageSelectScene.unity
+    guid: fe7ed7c28d0d26543878f95dbc8a9a86
   - enabled: 1
     path: Assets/Scenes/TutorialStage1.unity
     guid: 3d2bb2bf6c25afe45a36c930be42d0db
@@ -54,17 +42,44 @@ EditorBuildSettings:
     path: Assets/Scenes/TutorialStage3.unity
     guid: 7c5b3c75e6e207340baad9816a8f4e80
   - enabled: 1
+    path: Assets/Scenes/LavaStage1.unity
+    guid: 0bdcaab08692bc44186ebf2a1c1cc656
+  - enabled: 1
+    path: Assets/Scenes/LavaStage2.unity
+    guid: abf217bd21994144b910a0aa34c158c3
+  - enabled: 1
     path: Assets/Scenes/WaterPlanet1.unity
     guid: 7d757e07aa477f44d9fd83c6885adae4
   - enabled: 1
     path: Assets/Scenes/WaterPlanet2.unity
     guid: b3fc83ac08135ea4982aeff51e5ed7c2
   - enabled: 1
-    path: Assets/Scenes/InfinityStorm4-2.unity
-    guid: be80481db32ed61408b71d8c8f09dde9
+    path: Assets/Scenes/WaterPlanet3.unity
+    guid: 03997c38a56534e4a9f8cc9a9fd3f2e7
+  - enabled: 1
+    path: Assets/Scenes/WaterPlanet4.unity
+    guid: d21b0cf31c67f444db6e50953766edaa
+  - enabled: 1
+    path: Assets/Scenes/MachineryStage1.unity
+    guid: 37eddeff54fc4c64a81308c82695c64f
+  - enabled: 1
+    path: Assets/Scenes/MachineryStage2.unity
+    guid: 364276ff0c167384bbe7d8f88b89f547
+  - enabled: 1
+    path: Assets/Scenes/MachineryStage3.unity
+    guid: 95b1dadbb7f59b94291698a3ad2dd768
+  - enabled: 1
+    path: Assets/Scenes/MachineryStage4.unity
+    guid: ca28375aa56bb1b4080764fb5cc45e9c
+  - enabled: 1
+    path: Assets/Scenes/MachineryStage5.unity
+    guid: 914babfc9bda4764ebd518731e20579f
   - enabled: 1
     path: Assets/Scenes/InfinityStorm4-1.unity
     guid: bb13f2a8881555846aa4aeb51d8011f6
+  - enabled: 1
+    path: Assets/Scenes/InfinityStorm4-2.unity
+    guid: be80481db32ed61408b71d8c8f09dde9
   - enabled: 1
     path: Assets/Scenes/InfinityStorm4-3.unity
     guid: 62ce55de7204a104e8efdfd72a9003f3
@@ -75,15 +90,15 @@ EditorBuildSettings:
     path: Assets/Scenes/InfinityStorm4-5.unity
     guid: a3aff33c9aac1ef4db03718ab138db7f
   - enabled: 1
-    path: Assets/Scenes/WaterPlanet4.unity
-    guid: d21b0cf31c67f444db6e50953766edaa
+    path: Assets/Scenes/BossStageBlue.unity
+    guid: 7a7e8fcba3d57f94b90b31d50ac78d36
   - enabled: 1
-    path: Assets/Scenes/WaterPlanet3.unity
-    guid: 03997c38a56534e4a9f8cc9a9fd3f2e7
+    path: Assets/Scenes/BossStageGrey.unity
+    guid: 0659c27ce83f3744bb8573c2bcd44248
   - enabled: 1
-    path: Assets/Scenes/LavaStage1.unity
-    guid: 0bdcaab08692bc44186ebf2a1c1cc656
+    path: Assets/Scenes/BossStageRed.unity
+    guid: 17e17d462cf27c547b31a32eee88d878
   - enabled: 1
-    path: Assets/Scenes/LavaStage2.unity
-    guid: abf217bd21994144b910a0aa34c158c3
+    path: Assets/Scenes/BossStageWhite.unity
+    guid: 2e42a81623ad12d439e2e518c027faeb
   m_configObjects: {}

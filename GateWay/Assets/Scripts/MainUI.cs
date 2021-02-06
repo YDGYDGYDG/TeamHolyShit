@@ -50,7 +50,8 @@ public enum BTNType
     ButtonSound_On,
     ButtonSound_Off,
     BGM_On,
-    BGM_Off
+    BGM_Off,
+    BossStage
 }
 
 public class MainUI : MonoBehaviour

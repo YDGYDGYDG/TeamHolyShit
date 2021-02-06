@@ -110,19 +110,19 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Stage1_Level3:
                 btnClick();
-                SceneManager.LoadScene("LavaStage2");
+                SceneManager.LoadScene("LavaStage3");
                 break;
             case BTNType.Stage1_Level4:
                 btnClick();
-                SceneManager.LoadScene("LavaStage2");
+                SceneManager.LoadScene("LavaStage4");
                 break;
             case BTNType.Stage1_Level5:
                 btnClick();
-                SceneManager.LoadScene("LavaStage2");
+                SceneManager.LoadScene("LavaStage5");
                 break;
             case BTNType.Stage1_Level6:
                 btnClick();
-                SceneManager.LoadScene("LavaStage2");
+                SceneManager.LoadScene("LavaStage6");
                 break;
             case BTNType.Stage2_Level1:
                 btnClick();
@@ -134,19 +134,19 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Stage2_Level3:
                 btnClick();
-                SceneManager.LoadScene("WaterStage2");
+                SceneManager.LoadScene("WaterStage3");
                 break;
             case BTNType.Stage2_Level4:
                 btnClick();
-                SceneManager.LoadScene("WaterStage2");
+                SceneManager.LoadScene("WaterStage4");
                 break;
             case BTNType.Stage2_Level5:
                 btnClick();
-                SceneManager.LoadScene("WaterStage2");
+                SceneManager.LoadScene("WaterStage5");
                 break;
             case BTNType.Stage2_Level6:
                 btnClick();
-                SceneManager.LoadScene("WaterStage2");
+                SceneManager.LoadScene("WaterStage6");
                 break;
             case BTNType.Stage3_Level1:
                 btnClick();
@@ -154,23 +154,23 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Stage3_Level2:
                 btnClick();
-                SceneManager.LoadScene("MachineryStage1");
+                SceneManager.LoadScene("MachineryStage2");
                 break;
             case BTNType.Stage3_Level3:
                 btnClick();
-                SceneManager.LoadScene("MachineryStage1");
+                SceneManager.LoadScene("MachineryStage3");
                 break;
             case BTNType.Stage3_Level4:
                 btnClick();
-                SceneManager.LoadScene("MachineryStage1");
+                SceneManager.LoadScene("MachineryStage4");
                 break;
             case BTNType.Stage3_Level5:
                 btnClick();
-                SceneManager.LoadScene("MachineryStage1");
+                SceneManager.LoadScene("MachineryStage5");
                 break;
             case BTNType.Stage3_Level6:
                 btnClick();
-                SceneManager.LoadScene("MachineryStage1");
+                SceneManager.LoadScene("MachineryStage6");
                 break;
             case BTNType.Stage4_Level1:
                 btnClick();
@@ -186,15 +186,15 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Stage4_Level4:
                 btnClick();
-                SceneManager.LoadScene("InfinityStorm4-3");
+                SceneManager.LoadScene("InfinityStorm4-4");
                 break;
             case BTNType.Stage4_Level5:
                 btnClick();
-                SceneManager.LoadScene("InfinityStorm4-3");
+                SceneManager.LoadScene("InfinityStorm4-5");
                 break;
             case BTNType.Stage4_Level6:
                 btnClick();
-                SceneManager.LoadScene("InfinityStorm4-3");
+                SceneManager.LoadScene("InfinityStorm4-6");
                 break;
             case BTNType.ButtonSound_On:
                 btnClick();
@@ -211,6 +211,9 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case BTNType.BGM_Off:
                 btnClick();
                 // BGM중단
+                break;
+            case BTNType.BossStage:
+                SceneManager.LoadScene("BossStageBlue");
                 break;
         }
 

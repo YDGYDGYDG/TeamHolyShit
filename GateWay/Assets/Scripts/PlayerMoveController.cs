@@ -256,7 +256,7 @@ public class PlayerMoveController : MonoBehaviour
             {
                 stopJump = false;
 
-                rigidBody.AddForce(-transform.right * brakeForce);
+                rigidBody.AddForce(-transform.right * 100);
 
             }
         }
@@ -281,7 +281,7 @@ public class PlayerMoveController : MonoBehaviour
             else if (jump == true && stopJump == true && (LHit.distance > 2 || RHit.distance > 2))
             {
                 stopJump = false;
-                rigidBody.AddForce(transform.right * brakeForce);
+                rigidBody.AddForce(transform.right * 100);
 
             }
         }

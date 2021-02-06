@@ -9,45 +9,48 @@ public class GravityChange : MonoBehaviour
     float NonGravityTime = 1.5f;
     float timeSpan;  // 경과 시간
     float GravityReset; // 중력 초기화시간
-    public bool GravityStart = false;
+    public bool IsGravity;
     public GameObject AlphaWallOn;
 
     // Start is called before the first frame update
     void Start()
     {
+        IsGravity = true;
         rigid = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (GravityStart)
+        if (IsGravity) // 평상시 상황
         {
-            GravityReset = GravityTime + NonGravityTime;
-            timeSpan += Time.deltaTime;
-            if (timeSpan < GravityTime)
-            {
-                rigid.gravityScale = -1;
-            }
-            if (timeSpan >= NonGravityTime)
-            {
-                rigid.gravityScale = 1;
-            }
-            if (timeSpan > GravityReset)
-                timeSpan = 0;
+            rigid.gravityScale = 2;              // 그대로
         }
+        if (!IsGravity) // 위로 올라가는 상황
+        {
+            rigid.gravityScale = -2;            // 올라가야지
+        }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Lever")
+        // 반대로
+        if (collision.gameObject.tag == "Lever") // 레버에 부딪치면
         {
-            GravityStart = true;
-            AlphaWallOn.SetActive(true);
+            IsGravity = false;                   // 공중에 상승하는 상태로 바꿔주고
+            AlphaWallOn.SetActive(true);         //뒤로 못가게 알파벽 세워주고
         }
+
+        if (collision.gameObject.tag == "Gravity") // 중력레버에 부딪치면
+        {
+            IsGravity = true;                   // 중력 상태로 바꿔주고
+            AlphaWallOn.SetActive(false);        // 알파벽 꺼주고
+        }
+
         if (collision.gameObject.tag == "Trap")
         {
-            GravityStart = false;
+            IsGravity = false;
             AlphaWallOn.SetActive(false);
         }
     }

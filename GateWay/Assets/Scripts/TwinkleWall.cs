@@ -20,7 +20,36 @@ public class TwinkleWall : MonoBehaviour
     public GameObject Bwall_9;
     public GameObject Bwall_10;
     public GameObject Bwall_11;
+    //--------------------------------------------
+    public GameObject Awall_12;
+    public GameObject Awall_13;
+    public GameObject Awall_14;
+    public GameObject Awall_15;
+    public GameObject Awall_16;
+    public GameObject Awall_17;
+    public GameObject Awall_18;
+    public GameObject Awall_19;
 
+    public GameObject Bwall_12;
+    public GameObject Bwall_13;
+    public GameObject Bwall_14;
+    public GameObject Bwall_15;
+    public GameObject Bwall_16;
+    public GameObject Bwall_17;
+    public GameObject Bwall_18;
+    public GameObject Bwall_19;
+    //---------------------------------------------
+    public GameObject Finish_wall0;
+    public GameObject Finish_wall1;
+    public GameObject Finish_wall2;
+    public GameObject Finish_wall3;
+    public GameObject Finish_wall4;
+    public GameObject Finish_wall5;
+    public GameObject Finish_wall6;
+    public GameObject Finish_wall7;
+    public GameObject Finish_wall8;
+    public GameObject Finish_wall9;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +65,34 @@ public class TwinkleWall : MonoBehaviour
         Bwall_9.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
         Bwall_10.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
         Bwall_11.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+
+        Awall_12.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_13.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_14.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_15.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_16.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_17.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_18.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_19.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_12.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_13.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_14.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_15.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_16.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_17.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_18.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_19.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+
+        Finish_wall0.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall1.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall2.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall3.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall4.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall5.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall6.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall7.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall8.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall9.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);   
     }
 
     void AWall()
@@ -64,6 +121,59 @@ public class TwinkleWall : MonoBehaviour
         Bwall_10.gameObject.tag = "Untagged";
         Bwall_11.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
         Bwall_11.gameObject.tag = "Untagged";
+        //--------------------------------------------------------------------------------------
+        Awall_12.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Awall_12.gameObject.tag = "Wall";
+        Awall_13.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Awall_13.gameObject.tag = "Wall";
+        Awall_14.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Awall_14.gameObject.tag = "Wall";
+        Awall_15.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Awall_15.gameObject.tag = "Wall";
+        Awall_16.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Awall_16.gameObject.tag = "Wall";
+        Awall_17.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Awall_17.gameObject.tag = "Wall";
+        Awall_18.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Awall_18.gameObject.tag = "Wall";
+        Awall_19.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Awall_19.gameObject.tag = "Wall";
+        Bwall_12.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_12.gameObject.tag = "Untagged";
+        Bwall_13.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_13.gameObject.tag = "Untagged";
+        Bwall_14.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_14.gameObject.tag = "Untagged";
+        Bwall_15.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_15.gameObject.tag = "Untagged";
+        Bwall_16.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_16.gameObject.tag = "Untagged";
+        Bwall_17.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_17.gameObject.tag = "Untagged";
+        Bwall_18.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_18.gameObject.tag = "Untagged";
+        Bwall_19.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Bwall_19.gameObject.tag = "Untagged";
+        Finish_wall0.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall0.gameObject.tag = "Wall";
+        Finish_wall1.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall1.gameObject.tag = "Wall";
+        Finish_wall2.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall2.gameObject.tag = "Wall";
+        Finish_wall3.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall3.gameObject.tag = "Wall";
+        Finish_wall4.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall4.gameObject.tag = "Wall";
+        Finish_wall5.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall5.gameObject.tag = "Wall";
+        Finish_wall6.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall6.gameObject.tag = "Wall";
+        Finish_wall7.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall7.gameObject.tag = "Wall";
+        Finish_wall8.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall8.gameObject.tag = "Wall";
+        Finish_wall9.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Finish_wall9.gameObject.tag = "Wall";
     }
     void BWall()
     {
@@ -91,6 +201,59 @@ public class TwinkleWall : MonoBehaviour
         Bwall_10.gameObject.tag = "Wall";
         Bwall_11.GetComponent<SpriteRenderer>().material.color = Color.white;
         Bwall_11.gameObject.tag = "Wall";
+        //--------------------------------------------------------------------------------------
+        Awall_12.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0); ;
+        Awall_12.gameObject.tag = "Untagged";
+        Awall_13.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_13.gameObject.tag = "Untagged";
+        Awall_14.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_14.gameObject.tag = "Untagged";
+        Awall_15.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_15.gameObject.tag = "Untagged";
+        Awall_16.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_16.gameObject.tag = "Untagged";
+        Awall_17.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_17.gameObject.tag = "Untagged";
+        Awall_18.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_18.gameObject.tag = "Untagged";
+        Awall_19.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Awall_19.gameObject.tag = "Untagged";
+        Bwall_12.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Bwall_12.gameObject.tag = "Wall";
+        Bwall_13.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Bwall_13.gameObject.tag = "Wall";
+        Bwall_14.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Bwall_14.gameObject.tag = "Wall";
+        Bwall_15.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Bwall_15.gameObject.tag = "Wall";
+        Bwall_16.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Bwall_16.gameObject.tag = "Wall";
+        Bwall_17.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Bwall_17.gameObject.tag = "Wall";
+        Bwall_18.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Bwall_18.gameObject.tag = "Wall";
+        Bwall_19.GetComponent<SpriteRenderer>().material.color = Color.white;
+        Bwall_19.gameObject.tag = "Wall";
+        Finish_wall0.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall0.gameObject.tag = "Untagged";
+        Finish_wall1.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall1.gameObject.tag = "Untagged";
+        Finish_wall2.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall2.gameObject.tag = "Untagged";
+        Finish_wall3.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall3.gameObject.tag = "Untagged";
+        Finish_wall4.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall4.gameObject.tag = "Untagged";
+        Finish_wall5.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall5.gameObject.tag = "Untagged";
+        Finish_wall6.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall6.gameObject.tag = "Untagged";
+        Finish_wall7.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall7.gameObject.tag = "Untagged";
+        Finish_wall8.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall8.gameObject.tag = "Untagged";
+        Finish_wall9.GetComponent<SpriteRenderer>().material.color = new Color(255, 255, 255, 0);
+        Finish_wall9.gameObject.tag = "Untagged";
     }
     // Update is called once per frame
     void Update()

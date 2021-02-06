@@ -24,6 +24,7 @@ public class B_LaserProjector : MonoBehaviour
 
     void Update()
     {
+        line.SetPosition(0, transform.position);
         line.positionCount = 1;
         laserDir = transform.right;
         laserPos = transform.position;
@@ -47,15 +48,20 @@ public class B_LaserProjector : MonoBehaviour
                 laserPos = hit.point - (laserDir.normalized * 0.0001f);
                 laserDir = Vector2.Reflect(laserDir, hit.normal);
                 hit = Physics2D.Raycast(laserPos, laserDir, Mathf.Infinity, layerMask_ignore);
-                line.positionCount++;
-                line.SetPosition(line.positionCount - 1, hit.point);
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("LaserCensor"))
+                if (hit)
                 {
-                    for (int i = 0; i < triggerObjects.Length; i++)
+
+                    line.positionCount++;
+                    line.SetPosition(line.positionCount - 1, hit.point);
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("LaserCensor"))
                     {
-                        triggerObjects[i].GetComponent<Trigger_Door>().TriggerOn();
+                        for (int i = 0; i < triggerObjects.Length; i++)
+                        {
+                            triggerObjects[i].GetComponent<Trigger_Door>().TriggerOn();
+                        }
                     }
                 }
+                else break;
             }
 
         }

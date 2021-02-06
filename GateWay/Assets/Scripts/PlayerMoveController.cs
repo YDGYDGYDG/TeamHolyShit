@@ -8,7 +8,8 @@ public class PlayerMoveController : MonoBehaviour
 {
     Rigidbody2D rigidBody;  // 강체를 참조하기 위한 변수
     public float jumpForce = 1500.0f;   // 점프에 전달할 힘 값
-    public float brakeForce = 100.0f;    // 브레이크 힘
+    public float walkForce = 400.0f;    // 달리기 힘
+    public float brakeForce = -400f;    // 브레이크 힘
     public float jumpSpeed = 600.0f;    // 이동 점프 스피드
     public float speed = 0.01f; // 이속
 
@@ -247,8 +248,9 @@ public class PlayerMoveController : MonoBehaviour
         {
             if (jump == false && stopJump == false)
             {
-                transform.Translate(-speed, 0, 0);
-
+                //transform.Translate(-speed, 0, 0);
+                rigidBody.AddForce(new Vector2(-walkForce, 0));
+                rigidBody.velocity = Vector2.zero;
             }
             else if (jump == true && stopJump == true && (LHit.distance > 2 || RHit.distance > 2))
             {
@@ -272,7 +274,9 @@ public class PlayerMoveController : MonoBehaviour
         {
             if (jump == false && stopJump == false)
             {
-                transform.Translate(speed, 0, 0);
+                //transform.Translate(speed, 0, 0);
+                rigidBody.AddForce(new Vector2(walkForce, 0));
+                rigidBody.velocity = Vector2.zero;
             }
             else if (jump == true && stopJump == true && (LHit.distance > 2 || RHit.distance > 2))
             {

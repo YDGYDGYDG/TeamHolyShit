@@ -203,7 +203,7 @@ public class HookShotScript : MonoBehaviour
     public void HookOFF()
     {
         aim.SetActive(false);
-        getRigid.simulated = true;
+        //getRigid.simulated = true;
         getRigid.gravityScale = 2;
         isHookActive = false;
         isLineMax = false;

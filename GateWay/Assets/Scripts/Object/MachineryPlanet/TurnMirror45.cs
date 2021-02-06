@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class TurnMirror45 : MonoBehaviour
 {
-    int count = 0;
+    public int count = 0;
     public GameObject touchEffect;
+
+    private void Start()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 60 * count);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

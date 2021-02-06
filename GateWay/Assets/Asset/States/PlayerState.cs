@@ -18,7 +18,7 @@ public class PlayerState : MonoBehaviour
     public AudioClip playerDrop;           // 플레이어 추락 사운드
     public AudioClip plyaerMove;           // 플레이어 무브 사운드
     public AudioClip plyaerjump;           // 플레이어 점프 사운드
-    public AudioClip playerTornado;        // 플레이어 토네이도 사운드
+    
 
     // 캐릭터 부활 위치(맵에 따라 다름 인스펙터에서 조절하세요~~)
     public Vector2 playerStartPosition = new Vector2(0f, 0f);
@@ -80,12 +80,6 @@ public class PlayerState : MonoBehaviour
             audioSource.clip = playerDrop;
             audioSource.Play();                 // 그럼 추락 사운드 재생하고
             Invoke("playerRevive", 3.0f);       // 3초 뒤에 시작 위치에 부활 시켜
-        }
-
-        else if (col.gameObject.tag == "Tornado")     // 토네이도 충돌
-        {
-            audioSource.clip = playerTornado;
-            audioSource.Play();                       // 사운드 재생
         }
 
         else if (col.gameObject.tag == "TriggerWall")     // 올라갈순있고 내려갈순없는 벽(건희)

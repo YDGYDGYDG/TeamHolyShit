@@ -18,6 +18,7 @@ public class PlayerState : MonoBehaviour
     public AudioClip playerDrop;           // 플레이어 추락 사운드
     public AudioClip plyaerMove;           // 플레이어 무브 사운드
     public AudioClip plyaerjump;           // 플레이어 점프 사운드
+    
 
     // 캐릭터 부활 위치(맵에 따라 다름 인스펙터에서 조절하세요~~)
     public Vector2 playerStartPosition = new Vector2(0f, 0f);
@@ -85,16 +86,12 @@ public class PlayerState : MonoBehaviour
         {
             GetComponent<CircleCollider2D>().isTrigger = true;
         }
-
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         GetComponent<CircleCollider2D>().isTrigger = false;
     }
-
-
 
     public void PlayerDead()
     {

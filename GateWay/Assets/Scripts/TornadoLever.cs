@@ -11,9 +11,12 @@ public class TornadoLever : MonoBehaviour
     public GameObject Tornado2;
     public GameObject Tornado3;
     public GameObject Tornado4;
+    AudioSource audioSource;               // 오디오 소스 연결
+    public AudioClip playerTornado;        // 플레이어 토네이도 사운드
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();          // 오디오 소스 연결
         LeverUp.gameObject.SetActive(false);
         LeverDown.gameObject.SetActive(true);
         Tornado1.gameObject.SetActive(false);
@@ -33,5 +36,13 @@ public class TornadoLever : MonoBehaviour
             Tornado3.gameObject.SetActive(true);
             Tornado4.gameObject.SetActive(true);
         }
+
+        if (collision.gameObject.tag == "Tornado")     // 토네이도 충돌
+        {
+            audioSource.clip = playerTornado;
+            audioSource.Play();                       // 사운드 재생
+        }
     }
+
+
 }

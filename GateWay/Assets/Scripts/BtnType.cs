@@ -213,7 +213,7 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 // BGM중단
                 break;
             case BTNType.BossStage:
-                SceneManager.LoadScene("BossStageBlue");
+                SceneManager.LoadScene("BossStage");
                 break;
         }
 

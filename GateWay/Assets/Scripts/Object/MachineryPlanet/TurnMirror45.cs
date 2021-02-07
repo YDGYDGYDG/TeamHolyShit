@@ -9,7 +9,7 @@ public class TurnMirror45 : MonoBehaviour
 
     private void Start()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 60 * count);
+        transform.rotation = Quaternion.Euler(0, 0, 45 * count);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,7 +18,7 @@ public class TurnMirror45 : MonoBehaviour
         {
             count += 1;
             transform.rotation = Quaternion.Euler(0, 0, 45 * count);
-            if (count >= 6) count = 0;
+            if (count >= 8) count = 0;
             Instantiate(touchEffect, collision.transform.position, Quaternion.identity);
         }
     }

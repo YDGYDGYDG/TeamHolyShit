@@ -15,6 +15,8 @@ public class BossController : MonoBehaviour
     ObjectGreyController gBox;
     ObjectWhiteController wBox;
 
+    BossSetActiveController modtime;
+
     int scene;
     
     // Start is called before the first frame update
@@ -24,6 +26,8 @@ public class BossController : MonoBehaviour
         bBox = GameObject.Find("BlueBoxPos").GetComponent<ObjectBlueController>();
         gBox = GameObject.Find("GreyBoxPos").GetComponent<ObjectGreyController>();
         wBox = GameObject.Find("WhiteBoxPos").GetComponent<ObjectWhiteController>();
+        mod = 1;
+        modtime = GameObject.Find("Boss").GetComponent<BossSetActiveController>();
     }
     void Change()
     {
@@ -35,10 +39,7 @@ public class BossController : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        GameObject.DontDestroyOnLoad(gameObject);
-    }
+
     // Update is called once per frame
     private void OnCollisionEnter2D(Collision2D collider)
     {
@@ -47,26 +48,10 @@ public class BossController : MonoBehaviour
             if (mod == 1)
             {
                 HP -= 1;
+                modtime.time = 0;
                 Destroy(collider.gameObject);
                 rBox.red = false;
-                scene = Random.Range(1, 4);
-                Debug.Log(scene);
-                if (scene == 1)
-                {
-                    SceneManager.LoadScene("TestSceneBlue");
-                    Debug.Log("a");
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.LoadScene("TestSceneGrey");
-                    Debug.Log("b");
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.LoadScene("TestSceneWhite");
-                    Debug.Log("c");
-                }
-                
+                mod = Random.Range(1, 5);
             }
         }
         if (collider.gameObject.name == "BlueBox(Clone)")
@@ -74,21 +59,10 @@ public class BossController : MonoBehaviour
             if (mod == 2)
             {
                 HP -= 1;
+                modtime.time = 0;
                 Destroy(collider.gameObject);
                 bBox.blue = false;
-                scene = Random.Range(1, 4);
-                if (scene == 1)
-                {
-                    SceneManager.LoadScene("TestSceneRed");
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.LoadScene("TestSceneGrey");
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.LoadScene("TestSceneWhite");
-                }
+                mod = Random.Range(1, 5);
             }
         }
         if (collider.gameObject.name == "WhiteBox(Clone)")
@@ -96,21 +70,10 @@ public class BossController : MonoBehaviour
             if (mod == 3)
             {
                 HP -= 1;
+                modtime.time = 0;
                 Destroy(collider.gameObject);
                 wBox.white = false;
-                scene = Random.Range(1, 4);
-                if (scene == 1)
-                {
-                    SceneManager.LoadScene("TestSceneRed");
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.LoadScene("TestSceneBlue");
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.LoadScene("TestSceneGrey");
-                }
+                mod = Random.Range(1, 5);
             }
         }
         if (collider.gameObject.name == "GreyBox(Clone)")
@@ -118,29 +81,16 @@ public class BossController : MonoBehaviour
             if (mod == 4)
             {
                 HP -= 1;
+                modtime.time = 0;
                 Destroy(collider.gameObject);
                 gBox.grey = false;
-                scene = Random.Range(1, 4);
-                if (scene == 1)
-                {
-                    SceneManager.LoadScene("TestSceneRed");
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.LoadScene("TestSceneBlue");
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.LoadScene("TestSceneWhite");
-                }
+                mod = Random.Range(1, 5);
             }
         }
 
     }
     void Update()
     {
-        // 보스 4가지 상태
-        Change();
         if (mod == 1)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.red;

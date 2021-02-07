@@ -250,7 +250,7 @@ public class PlayerMoveController : MonoBehaviour
             {
                 //transform.Translate(-speed, 0, 0);
                 rigidBody.AddForce(new Vector2(-walkForce, 0));
-                rigidBody.velocity = Vector2.zero;
+                rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
             }
             else if (jump == true && stopJump == true && (LHit.distance > 2 || RHit.distance > 2))
             {
@@ -276,7 +276,7 @@ public class PlayerMoveController : MonoBehaviour
             {
                 //transform.Translate(speed, 0, 0);
                 rigidBody.AddForce(new Vector2(walkForce, 0));
-                rigidBody.velocity = Vector2.zero;
+                rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
             }
             else if (jump == true && stopJump == true && (LHit.distance > 2 || RHit.distance > 2))
             {
@@ -296,7 +296,7 @@ public class PlayerMoveController : MonoBehaviour
         if (LBTrigger && jump == false)
         {
             jump = true;
-            Vector2 LJ = new Vector2(-1, 2).normalized;
+            Vector2 LJ = new Vector2(-1, 3f).normalized;
             rigidBody.AddForce(LJ * jumpForce);
 
             jumpAni();  // 형준
@@ -304,7 +304,7 @@ public class PlayerMoveController : MonoBehaviour
         else if (RBTrigger && jump == false)
         {
             jump = true;
-            Vector2 LJ = new Vector2(1, 2).normalized;
+            Vector2 LJ = new Vector2(1, 3f).normalized;
             rigidBody.AddForce(LJ * jumpForce);
 
             jumpAni();  // 형준

@@ -4876,7 +4876,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.35960865}
@@ -5119,7 +5119,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.35960865}
@@ -5218,7 +5218,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.35960865}
@@ -7692,6 +7692,80 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e63ca4cfc6639954191d667619d6faf8, type: 3}
+--- !u!1001 &1188212568
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5353562
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.0834408
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -21.042469
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002884, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590263175933002885, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 358c72b65f1db4f238886aec03017666, type: 3}
+    - target: {fileID: 8590263175933002886, guid: 4f6796f21246d63479cebc3ebcd2c77d,
+        type: 3}
+      propertyPath: m_Name
+      value: BGMmanager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4f6796f21246d63479cebc3ebcd2c77d, type: 3}
 --- !u!1001 &1189930727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9646,7 +9720,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.35960865}
@@ -9745,7 +9819,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.35960865}
@@ -10238,7 +10312,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.35960865}

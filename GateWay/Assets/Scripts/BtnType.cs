@@ -126,27 +126,27 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.Stage2_Level1:
                 btnClick();
-                SceneManager.LoadScene("WaterStage1");
+                SceneManager.LoadScene("WaterPlanet1");
                 break;
             case BTNType.Stage2_Level2:
                 btnClick();
-                SceneManager.LoadScene("WaterStage2");
+                SceneManager.LoadScene("WaterPlanet2");
                 break;
             case BTNType.Stage2_Level3:
                 btnClick();
-                SceneManager.LoadScene("WaterStage3");
+                SceneManager.LoadScene("WaterPlanet3");
                 break;
             case BTNType.Stage2_Level4:
                 btnClick();
-                SceneManager.LoadScene("WaterStage4");
+                SceneManager.LoadScene("WaterPlanet4");
                 break;
             case BTNType.Stage2_Level5:
                 btnClick();
-                SceneManager.LoadScene("WaterStage5");
+                SceneManager.LoadScene("WaterPlanet5");
                 break;
             case BTNType.Stage2_Level6:
                 btnClick();
-                SceneManager.LoadScene("WaterStage6");
+                SceneManager.LoadScene("WaterPlanet6");
                 break;
             case BTNType.Stage3_Level1:
                 btnClick();

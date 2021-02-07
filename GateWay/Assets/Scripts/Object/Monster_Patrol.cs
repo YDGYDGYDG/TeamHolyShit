@@ -47,5 +47,11 @@ public class Monster_Patrol : MonoBehaviour
         {
             Instantiate(monsterDeathEffect, transform.position, Quaternion.identity); 
         }
+        if (col.gameObject.layer == LayerMask.NameToLayer("Shootable"))
+        {
+            Instantiate(monsterDeathEffect, transform.position, Quaternion.identity);
+            this.gameObject.SetActive(false);
+        }
+
     }
 }

@@ -35,7 +35,7 @@ public class WaterOpendoor : MonoBehaviour
 
                 else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
                 {
-                    SceneManager.LoadScene("WaterPlanet5");
+                    SceneManager.LoadScene("StageSelectScene");
                 }
 
             }

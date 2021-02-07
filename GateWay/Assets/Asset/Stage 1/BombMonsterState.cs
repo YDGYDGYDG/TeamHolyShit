@@ -19,7 +19,7 @@ public class BombMonsterState : MonoBehaviour
         hookLine2 = GameObject.Find("player").GetComponent<HookShotScript>();
 
         box = GameObject.FindGameObjectWithTag("Object");
-        // boxRigid = box.GetComponent<Rigidbody2D>();
+        boxRigid = box.GetComponent<Rigidbody2D>();
 
         bombMonster2 = GameObject.Find("BombMonster");
         bombScript = bombMonster2.GetComponent<BombMonster>();

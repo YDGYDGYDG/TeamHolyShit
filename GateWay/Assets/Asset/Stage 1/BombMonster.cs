@@ -15,6 +15,8 @@ public class BombMonster : MonoBehaviour
 
     Vector3 monsterStartPosition = new Vector3();
 
+    LayerMask Wall;
+
     // Use this for initialization
     void Start()
     {
@@ -116,6 +118,31 @@ public class BombMonster : MonoBehaviour
             }
 
             // 오른쪽 이동중일때 바닥이 없다?
+            else if (dist == "Right")
+            {
+                // 왼쪽으로 방향 전환
+                movementFlag = -1;
+            }
+        }
+
+
+        // 벽이 있는지 체크
+        Vector2 frontVec2 = new Vector2(rigid.position.x + (movementFlag * 0.4f), rigid.position.y);
+        Debug.DrawRay(frontVec2, Vector3.forward, new Color(0, 1, 0));
+        RaycastHit2D rayHit2 = Physics2D.Raycast(frontVec2, Vector3.forward, 2, LayerMask.GetMask("Wall"));
+
+
+        // 앞에 벽이 있어?
+        if (rayHit2.collider != null)
+        {
+            // 왼쪽 이동중일때
+            if (dist == "Left")
+            {
+                // 오른쪽으로 방향 전환
+                movementFlag = 1;
+            }
+
+            // 오른쪽 이동중일때
             else if (dist == "Right")
             {
                 // 왼쪽으로 방향 전환

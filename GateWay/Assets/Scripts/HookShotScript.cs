@@ -25,6 +25,10 @@ public class HookShotScript : MonoBehaviour
     // 캐릭터 날아가는 속도
     [SerializeField, Range(0.1f, 0.9f)]
     private float playerlineSpeed = 0.4f;
+    float playerlineSpeedPower = 1;
+    [SerializeField, Range(0.0f, 0.5f)]
+    private float playerlineSpeedRate = 0.015f;
+
     // 로프 회수하는 속도
     public float linePullSpeed = 60;
     // 로프로 오브젝트 당기는 속도
@@ -106,7 +110,8 @@ public class HookShotScript : MonoBehaviour
                 if (Vector2.Distance(hook.position, transform.position) > 1f)
                 {
                     // DIstance Joint 2D를 쓰지 말자
-                    transform.position = Vector3.MoveTowards(transform.position, hook.position, playerlineSpeed);
+                    transform.position = Vector3.MoveTowards(transform.position, hook.position, playerlineSpeed * playerlineSpeedPower);
+                    playerlineSpeedPower += playerlineSpeedRate;
                 }
             }
         }
@@ -212,6 +217,7 @@ public class HookShotScript : MonoBehaviour
         isAttachObject = false;
         hook.gameObject.SetActive(false);
         HookOffBtn.SetActive(false);
+        playerlineSpeedPower = 1;
     }
 
     public void HookOFFBtnTouch()

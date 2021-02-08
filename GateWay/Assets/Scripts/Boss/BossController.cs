@@ -29,11 +29,6 @@ public class BossController : MonoBehaviour
 
     public GameObject bossEffect;
 
-
-
-    public GameObject ending;
-
-
     public float time;
 
     public float timeMax = 1;
@@ -58,7 +53,6 @@ public class BossController : MonoBehaviour
         cblue.SetActive(false);
         cgrey.SetActive(false);
         cwhite.SetActive(false);
-        ending.SetActive(false);
     }
 
 
@@ -252,12 +246,9 @@ public class BossController : MonoBehaviour
             whiteWall.SetActive(true);
             if (time > 3)
             {
-                ending.SetActive(true);
+                SceneManager.LoadScene("EndingScene");
             }
-            else if ( time > 8)
-            {
-                SceneManager.LoadScene("StageSelectScene");
-            }
+
         }
     }
 }

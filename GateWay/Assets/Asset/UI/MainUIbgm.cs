@@ -40,16 +40,13 @@ public class MainUIbgm : MonoBehaviour
                 break;
             // 튜토
             case "TutorialStage1":
-                sceneName = SceneManager.GetActiveScene().name;
-                audioSource.clip = null;
+                ChangeBGM(7);
                 break;
             case "TutorialStage2":
-                sceneName = SceneManager.GetActiveScene().name;
-                audioSource.clip = null;
+                ChangeBGM(7);
                 break;
             case "TutorialStage3":
-                sceneName = SceneManager.GetActiveScene().name;
-                audioSource.clip = null;
+                ChangeBGM(7);
                 break;
             // 불
             case "LavaStage1":

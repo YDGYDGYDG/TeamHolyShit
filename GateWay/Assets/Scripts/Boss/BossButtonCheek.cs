@@ -13,23 +13,48 @@ public class BossButtonCheek : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (SceneManager.GetActiveScene().name == "InfinityStorm4-5")
+        if(collision.gameObject.name == "player")
         {
-            bb.white = true;
+            if (SceneManager.GetActiveScene().name == "InfinityStorm4-5")
+            {
+                bb.white = 1;
+            }
+            if (SceneManager.GetActiveScene().name == "LavaStage4")
+            {
+                bb.red = 1;
+            }
+            if (SceneManager.GetActiveScene().name == "MachineryStage5")
+            {
+                bb.grey = 1;
+            }
+            if (SceneManager.GetActiveScene().name == "WaterPlanet4")
+            {
+                bb.blue = 1;
+            }
         }
-        else if (SceneManager.GetActiveScene().name == "LavaStage4")
+        // Update is called once per frame
+    }
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "player")
         {
-            bb.red = true;
+            if (SceneManager.GetActiveScene().name == "InfinityStorm4-5")
+            {
+                bb.white = 1;
+            }
+            if (SceneManager.GetActiveScene().name == "LavaStage4")
+            {
+                bb.red = 1;
+            }
+            if (SceneManager.GetActiveScene().name == "MachineryStage5")
+            {
+                bb.grey = 1;
+            }
+            if (SceneManager.GetActiveScene().name == "WaterPlanet4")
+            {
+                bb.blue = 1;
+            }
         }
-        else if (SceneManager.GetActiveScene().name == "MachineryStage5")
-        {
-            bb.grey = true;
-        }
-        else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
-        {
-            bb.blue = true;
-        }
-
         // Update is called once per frame
     }
     // Update is called once per frame

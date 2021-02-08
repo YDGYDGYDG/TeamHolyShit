@@ -20,7 +20,7 @@ public class ButtonSetActive : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "StageSelectScene")
         {
-            if (on.red && on.blue && on.grey && on.white)
+            if (on.red == 1 && on.blue == 1 && on.grey == 1 && on.white == 1)
             {
                 text.SetActive(true);
                 boss.SetActive(true);

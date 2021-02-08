@@ -134,7 +134,12 @@ public class MainUIbgm : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-             
+
+        else if (SceneManager.GetActiveScene().name == "BossStage")
+        {
+            Destroy(this.gameObject);
+        }
+
 
         PlayerPrefs.DeleteAll();
 

@@ -120,10 +120,7 @@ public class MainUIbgm : MonoBehaviour
                 break;
         }
 
-        //PlayerPrefs.DeleteAll();
-        CheckPointSave.savedPositionX = 0;
-        CheckPointSave.savedPositionY = 0;
-
+        PlayerPrefs.DeleteAll();
 
     }
 

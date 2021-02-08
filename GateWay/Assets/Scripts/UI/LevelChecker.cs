@@ -8,7 +8,6 @@ public class LevelChecker : MonoBehaviour
     public GameObject[] levels;
 
     string sceneName;
-
     int level;
 
     void Start()
@@ -18,38 +17,76 @@ public class LevelChecker : MonoBehaviour
         if (sceneName == "Stage1_LevelScene")
         {
             level = PlayerPrefs.GetInt("Fire", 0);
-            for (int i = 0; i < level; i++) 
+            if(level >= 4)
             {
-                levels[i].SetActive(true);
+                for (int i = 0; i < level - 1; i++)
+                {
+                    levels[i].SetActive(true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < level; i++)
+                {
+                    levels[i].SetActive(true);
+                }
             }
         }
         else if (sceneName == "Stage2_LevelScene")
         {
             level = PlayerPrefs.GetInt("Water", 0);
-            for (int i = 0; i < level; i++)
+            if (level >= 4)
             {
-                levels[i].SetActive(true);
+                for (int i = 0; i < level - 1; i++)
+                {
+                    levels[i].SetActive(true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < level; i++)
+                {
+                    levels[i].SetActive(true);
+                }
             }
         }
         else if (sceneName == "Stage3_LevelScene")
         {
             level = PlayerPrefs.GetInt("Mech", 0);
-            for (int i = 0; i < level; i++)
+            if (level >= 5)
             {
-                levels[i].SetActive(true);
+                for (int i = 0; i < level - 1; i++)
+                {
+                    levels[i].SetActive(true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < level; i++)
+                {
+                    levels[i].SetActive(true);
+                }
             }
         }
         else if (sceneName == "Stage4_LevelScene")
         {
             level = PlayerPrefs.GetInt("Wind", 0);
-            for (int i = 0; i < level; i++)
+            if (level >= 5)
             {
-                levels[i].SetActive(true);
+                for (int i = 0; i < level - 1; i++)
+                {
+                    levels[i].SetActive(true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < level; i++)
+                {
+                    levels[i].SetActive(true);
+                }
             }
         }
         PlayerPrefs.Save();
-
-
 
     }
 

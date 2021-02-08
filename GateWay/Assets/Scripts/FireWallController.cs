@@ -47,7 +47,7 @@ public class FireWallController : MonoBehaviour
         {
             line.SetPosition(1, hit.point);                             // 충돌하면 거기가 새로운 점
             hitPoint = hit.point.y - transform.position.y ;
-            Debug.Log(hitPoint);
+            //Debug.Log(hitPoint);
         }                       
         else
         {

@@ -16,7 +16,7 @@ public class StarController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             star = true;
-            Debug.Log("열쇠 획득");
+            //Debug.Log("열쇠 획득");
             // this.gameObject.GetComponent<AudioSource>().Play();     // 별 획득 사운드 재생
             this.gameObject.SetActive(false);
 

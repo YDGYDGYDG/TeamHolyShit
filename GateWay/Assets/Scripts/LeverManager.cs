@@ -51,7 +51,7 @@ public class LeverManager : MonoBehaviour
     public GameObject wall_38;
     public GameObject wall_39;
     
-    float disappearTime = 10.0f;  // 10초뒤 레버가 다시 돌아옴   
+    float disappearTime = 20.0f;  // 20초뒤 레버가 다시 돌아옴   
 
     void Update()
     {

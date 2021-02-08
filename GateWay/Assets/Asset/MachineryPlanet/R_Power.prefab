@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6900297550984495200}
   m_Layer: 0
   m_Name: R_Power
-  m_TagString: Untagged
+  m_TagString: SteelWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7284fa00296b9be4e96264eb01fa0fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerDownObject: {fileID: 0}
+  laserProjector: {fileID: 0}
+  laser: {fileID: 0}
   powerVisual: {fileID: 6900297551997493112}
   powerDownEffect: {fileID: 1892078723244562, guid: ee06e2495609d924194441b50ee27cf0,
     type: 3}

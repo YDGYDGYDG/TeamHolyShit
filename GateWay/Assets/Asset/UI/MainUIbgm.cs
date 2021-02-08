@@ -31,6 +31,24 @@ public class MainUIbgm : MonoBehaviour
     {
         switch (SceneManager.GetActiveScene().name)
         {
+            // 로비
+            case "TitleScene":
+                ChangeBGM(0);
+                break;
+            case "MainScene":
+                ChangeBGM(0);
+                break;
+            case "OptionScene":
+                ChangeBGM(0);
+                break;
+            case "CreditScene":
+                ChangeBGM(0);
+                break;
+            case "StageSelectScene":
+                ChangeBGM(0);
+                break;
+
+            // 튜토
             case "TutorialStage1":
                 sceneName = SceneManager.GetActiveScene().name;
                 audioSource.clip = null;
@@ -43,6 +61,7 @@ public class MainUIbgm : MonoBehaviour
                 sceneName = SceneManager.GetActiveScene().name;
                 audioSource.clip = null;
                 break;
+            // 불
             case "LavaStage1":
                 ChangeBGM(1);
                 break;
@@ -55,6 +74,7 @@ public class MainUIbgm : MonoBehaviour
             case "LavaStage4":
                 ChangeBGM(1);
                 break;
+            // 물
             case "WaterPlanet1":
                 ChangeBGM(3);
                 break;
@@ -70,6 +90,7 @@ public class MainUIbgm : MonoBehaviour
             case "WaterPlanet5":
                 ChangeBGM(3);
                 break;
+            // 바람
             case "InfinityStorm4-1":
                 ChangeBGM(4);
                 break;
@@ -85,6 +106,7 @@ public class MainUIbgm : MonoBehaviour
             case "InfinityStorm4-5":
                 ChangeBGM(2);
                 break;
+            // 기계
             case "MachineryStage1":
                 ChangeBGM(5);
                 break;
@@ -100,6 +122,7 @@ public class MainUIbgm : MonoBehaviour
             case "MachineryStage5":
                 ChangeBGM(6);
                 break;
+            // 보스
             case "BossStage":
                 ChangeBGM(2);
                 break;

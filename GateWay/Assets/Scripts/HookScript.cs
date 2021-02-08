@@ -54,9 +54,9 @@ public class HookScript : MonoBehaviour
                 hookShot.isAttachObject = true;
                 hookShot.hookedObject = collision.gameObject;
                 if (collision.GetComponent<BoxCollider2D>())
-                    hookShot.hookedObjectSize = collision.GetComponent<BoxCollider2D>().bounds.extents.magnitude / 2.0f;
+                    hookShot.hookedObjectSize = collision.GetComponent<BoxCollider2D>().bounds.extents.magnitude;
                 else if (collision.GetComponent<PolygonCollider2D>())
-                    hookShot.hookedObjectSize = collision.GetComponent<PolygonCollider2D>().bounds.extents.magnitude / 2.0f;
+                    hookShot.hookedObjectSize = collision.GetComponent<PolygonCollider2D>().bounds.extents.magnitude;
 
                  hookSE.GetComponent<AudioSource>().Stop();          // 로프 사운드 정지(형준)
                  attackHook.GetComponent<AudioSource>().Play();      // 충돌 사운드 재생(형준)

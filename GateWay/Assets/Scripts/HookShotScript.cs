@@ -151,7 +151,7 @@ public class HookShotScript : MonoBehaviour
                 hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * objectPullSpeed);
 
                 // 내 앞까지 이동했으면 줄 끊는다.
-                if (Vector2.Distance(transform.position, hook.position) < hookedObjectSize)
+                if (Vector2.Distance(transform.position, hookedObject.transform.position) <= hookedObjectSize * 2)
                 {
                     // 이 때, '던질 수 있는 오브젝트'를 가져왔으면 흡수한다
                     if (hookedObject.layer == LayerMask.NameToLayer("Shootable"))
@@ -173,8 +173,6 @@ public class HookShotScript : MonoBehaviour
                     }
                     HookOFF();
                     hookChildJoint2D.connectedBody = null;
-                    
-                        
                 }
             }
 

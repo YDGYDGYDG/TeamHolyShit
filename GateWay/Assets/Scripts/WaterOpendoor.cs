@@ -11,6 +11,7 @@ public class WaterOpendoor : MonoBehaviour
     {
         starCon = GameObject.Find("Star").GetComponent<StarController>();
     }
+    
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -35,7 +36,7 @@ public class WaterOpendoor : MonoBehaviour
 
                 else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
                 {
-                    SceneManager.LoadScene("StageSelectScene");
+                    SceneManager.LoadScene("ClearScene"); // 클리어 화면으로 이동
                 }
 
             }

@@ -29,7 +29,8 @@ public class OpenDoor : MonoBehaviour
 
             else if (SceneManager.GetActiveScene().name == "LavaStage4")
             {
-                SceneManager.LoadScene("MainScene");   // 메인 로비 이동
+
+                SceneManager.LoadScene("ClearScene"); // 클리어 화면으로 이동
             }
             //=============================================================================
 
@@ -54,7 +55,7 @@ public class OpenDoor : MonoBehaviour
 
             else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
             {
-                SceneManager.LoadScene("MainScene");  // 메인 로비 이동
+                SceneManager.LoadScene("ClearScene"); // 클리어 화면으로 이동
             }
             //=============================================================================
 
@@ -74,7 +75,7 @@ public class OpenDoor : MonoBehaviour
 
             else if (SceneManager.GetActiveScene().name == "TutorialStage3")
             {
-                SceneManager.LoadScene("MainScene");   // 메인 로비 이동
+                SceneManager.LoadScene("ClearScene"); // 클리어 화면으로 이동
             }
             //=============================================================================
 
@@ -104,7 +105,7 @@ public class OpenDoor : MonoBehaviour
 
             else if (SceneManager.GetActiveScene().name == "InfinityStorm4-5")
             {
-                SceneManager.LoadScene("MainScene"); // 메인 로비 이동
+                SceneManager.LoadScene("ClearScene"); // 클리어 화면으로 이동
             }
             //=============================================================================
 
@@ -134,7 +135,7 @@ public class OpenDoor : MonoBehaviour
 
             else if (SceneManager.GetActiveScene().name == "MachineryStage5")
             {
-                SceneManager.LoadScene("MainScene"); // 메인 로비 이동
+                SceneManager.LoadScene("ClearScene"); // 클리어 화면으로 이동
             }
             //=============================================================================
         }

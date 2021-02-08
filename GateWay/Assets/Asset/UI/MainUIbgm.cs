@@ -8,10 +8,16 @@ public class MainUIbgm : MonoBehaviour
 
     public static MainUIbgm Instance;
 
-    // Start is called before the first frame update
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
+
+    string sceneName;
+
     void Start()
     {
-        if(Instance != null)
+        audioSource = GetComponent<AudioSource>();
+        sceneName = SceneManager.GetActiveScene().name;
+        if (Instance != null)
         {
             Destroy(this.gameObject);
             return;
@@ -19,129 +25,97 @@ public class MainUIbgm : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "LavaStage1")
+        switch (SceneManager.GetActiveScene().name)
         {
-            Destroy(this.gameObject);
+            case "TutorialStage1":
+                sceneName = SceneManager.GetActiveScene().name;
+                audioSource.clip = null;
+                break;
+            case "TutorialStage2":
+                sceneName = SceneManager.GetActiveScene().name;
+                audioSource.clip = null;
+                break;
+            case "TutorialStage3":
+                sceneName = SceneManager.GetActiveScene().name;
+                audioSource.clip = null;
+                break;
+            case "LavaStage1":
+                ChangeBGM(1);
+                break;
+            case "LavaStage2":
+                ChangeBGM(1);
+                break;
+            case "LavaStage3":
+                ChangeBGM(1);
+                break;
+            case "LavaStage4":
+                ChangeBGM(1);
+                break;
+            case "WaterPlanet1":
+                ChangeBGM(3);
+                break;
+            case "WaterPlanet2":
+                ChangeBGM(3);
+                break;
+            case "WaterPlanet3":
+                ChangeBGM(3);
+                break;
+            case "WaterPlanet4":
+                ChangeBGM(3);
+                break;
+            case "WaterPlanet5":
+                ChangeBGM(3);
+                break;
+            case "InfinityStorm4-1":
+                ChangeBGM(4);
+                break;
+            case "InfinityStorm4-2":
+                ChangeBGM(4);
+                break;
+            case "InfinityStorm4-3":
+                ChangeBGM(4);
+                break;
+            case "InfinityStorm4-4":
+                ChangeBGM(4);
+                break;
+            case "InfinityStorm4-5":
+                ChangeBGM(2);
+                break;
+            case "MachineryStage1":
+                ChangeBGM(5);
+                break;
+            case "MachineryStage2":
+                ChangeBGM(5);
+                break;
+            case "MachineryStage3":
+                ChangeBGM(5);
+                break;
+            case "MachineryStage4":
+                ChangeBGM(6);
+                break;
+            case "MachineryStage5":
+                ChangeBGM(6);
+                break;
+            case "BossStage":
+                ChangeBGM(2);
+                break;
         }
-
-        else if (SceneManager.GetActiveScene().name == "LavaStage2")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "LavaStage3")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "LavaStage4")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "WaterPlanet1")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "WaterPlanet2")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "WaterPlanet3")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "WaterPlanet5")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "TutorialStage1")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "TutorialStage2")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "TutorialStage3")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "InfinityStorm4-1")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "InfinityStorm4-2")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "InfinityStorm4-3")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "InfinityStorm4-4")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "InfinityStorm4-5")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "MachineryStage1")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "MachineryStage2")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "MachineryStage3")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "MachineryStage4")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "MachineryStage5")
-        {
-            Destroy(this.gameObject);
-        }
-
-        else if (SceneManager.GetActiveScene().name == "BossStage")
-        {
-            Destroy(this.gameObject);
-        }
-
 
         PlayerPrefs.DeleteAll();
 
+    }
+
+    void ChangeBGM(int index)
+    {
+        if(SceneManager.GetActiveScene().name != sceneName)
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+            audioSource.clip = audioClips[index];
+            audioSource.Play();
+        }
     }
 }

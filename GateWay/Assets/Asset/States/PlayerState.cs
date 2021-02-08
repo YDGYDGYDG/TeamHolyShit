@@ -60,6 +60,7 @@ public class PlayerState : MonoBehaviour
         audioSource = GetComponent<AudioSource>();          // 오디오 소스 연결
         playerMoveStop = GetComponent<PlayerMoveController>();  // 무브 컨트롤러 연결
 
+        //Debug.Log(PlayerPrefs.GetFloat("SavedPlayerX")+"부활"+ PlayerPrefs.GetFloat("SavedPlayerY"));
         // 스폰 시 저장된 위치가 있다면 그곳으로
         Vector2 loadSavedPositon = new Vector2(PlayerPrefs.GetFloat("SavedPlayerX"), PlayerPrefs.GetFloat("SavedPlayerY"));
         if(loadSavedPositon != null)
@@ -128,7 +129,8 @@ public class PlayerState : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("SavedPlayerX");
+        PlayerPrefs.DeleteKey("SavedPlayerY");
     }
 
 }

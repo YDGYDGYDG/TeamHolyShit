@@ -38,8 +38,6 @@ public class MainUIbgm : MonoBehaviour
             case "MainScene":
                 ChangeBGM(0);
                 break;
-           
-
             // 튜토
             case "TutorialStage1":
                 sceneName = SceneManager.GetActiveScene().name;
@@ -120,17 +118,18 @@ public class MainUIbgm : MonoBehaviour
                 break;
         }
 
-        PlayerPrefs.DeleteAll();
-
     }
 
     void ChangeBGM(int index)
     {
         if(SceneManager.GetActiveScene().name != sceneName)
         {
+            //Debug.Log("클리어");
             sceneName = SceneManager.GetActiveScene().name;
             audioSource.clip = audioClips[index];
             audioSource.Play();
+            PlayerPrefs.DeleteKey("SavedPlayerX");
+            PlayerPrefs.DeleteKey("SavedPlayerY");
         }
     }
 }

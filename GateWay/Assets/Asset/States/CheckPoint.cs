@@ -12,6 +12,8 @@ public class CheckPoint : MonoBehaviour
         {
             PlayerPrefs.SetFloat("SavedPlayerX", transform.position.x);
             PlayerPrefs.SetFloat("SavedPlayerY", transform.position.y);
+            PlayerPrefs.Save();
+            //Debug.Log(PlayerPrefs.GetFloat("SavedPlayerX") + "저장" + PlayerPrefs.GetFloat("SavedPlayerY"));
             Instantiate(Check, transform.position, Quaternion.identity);
             this.gameObject.SetActive(false);
         }

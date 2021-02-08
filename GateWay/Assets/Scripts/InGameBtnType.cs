@@ -43,6 +43,8 @@ public class InGameBtnType : MonoBehaviour
             //    break; 
             case InGameBTNType.GameQuit:
                 SceneManager.LoadScene("MainScene");
+                PlayerPrefs.DeleteKey("SavedPlayerX");
+                PlayerPrefs.DeleteKey("SavedPlayerY");
                 break;
             case InGameBTNType.Xbtn:
                 if (menuSet.activeSelf)
@@ -55,6 +57,8 @@ public class InGameBtnType : MonoBehaviour
                 break;
             case InGameBTNType.Level:
                 SceneManager.LoadScene("StageSelectScene");
+                PlayerPrefs.DeleteKey("SavedPlayerX");
+                PlayerPrefs.DeleteKey("SavedPlayerY");
                 break;
         }
 

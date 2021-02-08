@@ -10,12 +10,11 @@ public class BossSetActiveController : MonoBehaviour
     public GameObject white;
     public GameObject whiteWall;
 
-    BossController mod;
-
     public float time;
 
     public float timeMax = 1;
 
+    BossController mod;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +28,6 @@ public class BossSetActiveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(mod.mod);
         if (mod.mod == 1)
         {
             time += Time.deltaTime;

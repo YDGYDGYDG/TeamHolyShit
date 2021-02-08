@@ -27,6 +27,10 @@ public class BossController : MonoBehaviour
     public GameObject cgrey;
     public GameObject cwhite;
 
+
+    public GameObject ending;
+
+
     public float time;
 
     public float timeMax = 1;
@@ -51,6 +55,7 @@ public class BossController : MonoBehaviour
         cblue.SetActive(false);
         cgrey.SetActive(false);
         cwhite.SetActive(false);
+        ending.SetActive(false);
     }
 
 
@@ -230,12 +235,22 @@ public class BossController : MonoBehaviour
         // 사망처리
         if (HP == 0)
         {
+            time = 0;
+            time += Time.deltaTime;
             this.gameObject.SetActive(false);
             red.SetActive(false);
             blue.SetActive(false);
             grey.SetActive(false);
             white.SetActive(false);
             whiteWall.SetActive(true);
+            if (time > 3)
+            {
+                ending.SetActive(true);
+            }
+            else if ( time > 8)
+            {
+                SceneManager.LoadScene("StageSelectScene");
+            }
         }
     }
 }

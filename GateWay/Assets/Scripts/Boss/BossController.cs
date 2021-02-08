@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class BossController : MonoBehaviour
 {
     public int mod = 1;
-    public int HP = 10;
+    public int HP = 8;
 
     ObjectRedController rBox;
     ObjectBlueController bBox;
@@ -236,15 +236,18 @@ public class BossController : MonoBehaviour
         // 사망처리
         if (HP == 0)
         {
-            time = 0;
             time += Time.deltaTime;
-            this.gameObject.SetActive(false);
+            gameObject.GetComponent<Renderer>().material.color = Color.black;
             red.SetActive(false);
             blue.SetActive(false);
             grey.SetActive(false);
             white.SetActive(false);
             whiteWall.SetActive(true);
-            if (time > 3)
+            cred.SetActive(false);
+            cblue.SetActive(false);
+            cgrey.SetActive(false);
+            cwhite.SetActive(false);
+            if (time > 5)
             {
                 SceneManager.LoadScene("EndingScene");
             }

@@ -116,6 +116,10 @@ public class MainUIbgm : MonoBehaviour
             case "BossStage":
                 ChangeBGM(2);
                 break;
+            // 엔딩 김휘원
+            case "EndingScene":
+                ChangeBGM(8);
+                break;
         }
 
     }

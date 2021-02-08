@@ -91,7 +91,7 @@ public class BombMonster : MonoBehaviour
         if (isTracing == true)
         {
             // 이동속도 증가
-            movement = transform.position += moveVelocity * (movePower * 5.0f) * Time.deltaTime;
+            movement = transform.position += moveVelocity * (movePower * 6.0f) * Time.deltaTime;
         }
         // 플레이어가 범위 내에 없을때
         else if (isTracing == false)

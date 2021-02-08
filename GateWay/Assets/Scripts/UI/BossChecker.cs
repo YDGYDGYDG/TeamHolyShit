@@ -19,7 +19,7 @@ public class BossChecker : MonoBehaviour
         mechLv = PlayerPrefs.GetInt("Mech", 0);
         PlayerPrefs.Save();
 
-        if (fireLv == 4 && waterLv == 4 && windLv == 5 && mechLv == 5)
+        if (fireLv >= 4 && waterLv >= 4 && windLv >= 5 && mechLv >= 5)
         {
             bossPlanet.SetActive(true);
         }

@@ -333,7 +333,8 @@ public class HookShotScript : MonoBehaviour
         isHaveShootableObject = false;
 
         // 물리 효과 다시 받게 함
-        hookedObject.GetComponent<BoxCollider2D>().enabled = true;
+        if (hookedObject.GetComponent<BoxCollider2D>())
+            hookedObject.GetComponent<BoxCollider2D>().enabled = true;
         hookedObject.GetComponent<Rigidbody2D>().isKinematic = false;
         hookedObject.GetComponent<Rigidbody2D>().freezeRotation = false;
 

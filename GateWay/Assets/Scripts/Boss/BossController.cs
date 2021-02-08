@@ -27,6 +27,9 @@ public class BossController : MonoBehaviour
     public GameObject cgrey;
     public GameObject cwhite;
 
+    public GameObject bossEffect;
+
+
 
     public GameObject ending;
 
@@ -68,6 +71,7 @@ public class BossController : MonoBehaviour
             if (mod == 1)
             {
                 HP -= 1;
+                Instantiate(bossEffect, collider.transform.position, Quaternion.identity);  // 이펙트도 출력해
                 start = true;
                 time = 0;
                 Destroy(collider.gameObject);
@@ -80,6 +84,7 @@ public class BossController : MonoBehaviour
             if (mod == 2)
             {
                 HP -= 1;
+                Instantiate(bossEffect, collider.transform.position, Quaternion.identity);  // 이펙트도 출력해
                 start = true;
                 time = 0;
                 Destroy(collider.gameObject);
@@ -92,6 +97,7 @@ public class BossController : MonoBehaviour
             if (mod == 3)
             {
                 HP -= 1;
+                Instantiate(bossEffect, collider.transform.position, Quaternion.identity);  // 이펙트도 출력해
                 start = true;
                 time = 0;
                 Destroy(collider.gameObject);
@@ -104,6 +110,7 @@ public class BossController : MonoBehaviour
             if (mod == 4)
             {
                 HP -= 1;
+                Instantiate(bossEffect, collider.transform.position, Quaternion.identity);  // 이펙트도 출력해
                 start = true;
                 time = 0;
                 Destroy(collider.gameObject);

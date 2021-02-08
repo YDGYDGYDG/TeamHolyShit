@@ -37,7 +37,17 @@ public class PlayerState : MonoBehaviour
         //{
         //    transform.position = Vector2.zero;
         //}
-        SceneManager.LoadScene(Now_Scene);
+        if (SceneManager.GetActiveScene().name == "BossStage")
+        {
+            this.gameObject.SetActive(true);
+            //gameObject.transform.position = playerStartPosition;
+            gameObject.transform.position = new Vector2(0, 0);
+        }
+        else
+        {
+            SceneManager.LoadScene(Now_Scene);
+        }
+
     }
     
 
@@ -102,10 +112,18 @@ public class PlayerState : MonoBehaviour
             hookLine.BreakShootableObject();
         }
         playerMoveStop.Dead();                      // 이동 정지해
+        // 보스 신에서 부활
+        if (SceneManager.GetActiveScene().name == "BossStage")
+        {
+            playerStartPosition = this.gameObject.transform.position;
+        }
+
 
         // 이펙트도 출력해
         Instantiate(playerDeath, transform.position, Quaternion.identity);
         Invoke("playerRevive", 1.0f);       // 1초 뒤에 시작 위치에 부활 시켜
+
+        
     }
 
     private void OnApplicationQuit()

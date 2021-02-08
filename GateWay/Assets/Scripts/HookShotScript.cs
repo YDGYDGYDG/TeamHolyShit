@@ -160,10 +160,12 @@ public class HookShotScript : MonoBehaviour
                         hookedObject.transform.SetParent(transform);
                         // 그리고 머리위에 고정됨
                         hookedObject.transform.position = transform.position + (new Vector3(0, hookedObject.GetComponent<BoxCollider2D>().bounds.extents.y) + new Vector3(0, 0.4f, 0));
-                        hookedObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                        Rigidbody2D hookedObjectRigid = hookedObject.GetComponent<Rigidbody2D>();
+                        hookedObject.GetComponent<BoxCollider2D>().enabled = false;
+                        hookedObjectRigid.isKinematic = true;
                         hookedObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-                        hookedObject.GetComponent<Rigidbody2D>().freezeRotation = true;
-                        hookedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                        hookedObjectRigid.freezeRotation = true;
+                        hookedObjectRigid.velocity = Vector2.zero;
                         // '나 물건 들고 있어요'가 true
                         isHaveShootableObject = true;
                         // 애니메이션도 바꿔줘(형준)
@@ -323,6 +325,7 @@ public class HookShotScript : MonoBehaviour
         isHaveShootableObject = false;
 
         // 물리 효과 다시 받게 함
+        hookedObject.GetComponent<BoxCollider2D>().enabled = true;
         hookedObject.GetComponent<Rigidbody2D>().isKinematic = false;
         hookedObject.GetComponent<Rigidbody2D>().freezeRotation = false;
 

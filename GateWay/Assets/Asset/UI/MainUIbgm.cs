@@ -38,6 +38,9 @@ public class MainUIbgm : MonoBehaviour
             case "MainScene":
                 ChangeBGM(0);
                 break;
+            case "StageSelectScene":
+                ChangeBGM(0);
+                break;
             // 튜토
             case "TutorialStage1":
                 ChangeBGM(7);
@@ -119,7 +122,19 @@ public class MainUIbgm : MonoBehaviour
 
     void ChangeBGM(int index)
     {
-        if(SceneManager.GetActiveScene().name != sceneName)
+        if (sceneName == "TitleScene" && SceneManager.GetActiveScene().name == "MainScene")
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+        }
+        else if (sceneName == "MainScene" && SceneManager.GetActiveScene().name == "StageSelectScene")
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+        }
+        else if (sceneName == "StageSelectScene" && SceneManager.GetActiveScene().name == "MainScene")
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+        }
+        else if (SceneManager.GetActiveScene().name != sceneName)
         {
             //Debug.Log("클리어");
             sceneName = SceneManager.GetActiveScene().name;

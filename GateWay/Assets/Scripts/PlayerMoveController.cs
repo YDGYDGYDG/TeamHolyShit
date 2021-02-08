@@ -138,6 +138,19 @@ public class PlayerMoveController : MonoBehaviour
                 {
                     animator.SetBool("isJump", false);
 
+                    if (LBTrigger == true && jump == false && stopJump == false && audioSource.isPlaying == false)
+                    {
+                        animator.SetBool("isRun", true);
+                        audioSource.clip = playerState.plyaerMove;
+                        audioSource.Play();
+                    }
+                    else if(RBTrigger == true && jump == false && stopJump == false && audioSource.isPlaying == false)
+                    {
+                        animator.SetBool("isRun", true);
+                        audioSource.clip = playerState.plyaerMove;
+                        audioSource.Play();
+                    }
+
                 }
             }
         }
@@ -177,8 +190,17 @@ public class PlayerMoveController : MonoBehaviour
         // SE 중복재생 방지(형준)
         if (audioSource.isPlaying == false && rigidBody.velocity.y > -2 && rigidBody.velocity.y < 2)
         {
-            audioSource.clip = playerState.plyaerMove;
-            audioSource.Play();
+            
+           if (jump == true || stopJump == true)
+           {
+          
+           }
+           else
+           {
+                audioSource.clip = playerState.plyaerMove;
+                audioSource.Play();
+            }
+            
         }
 
         // 동시에 눌릴땐 재생하지마(형준)
@@ -211,8 +233,17 @@ public class PlayerMoveController : MonoBehaviour
         // SE 중복재생 방지(형준)
         if (audioSource.isPlaying == false && rigidBody.velocity.y > -2 && rigidBody.velocity.y < 2)
         {
-            audioSource.clip = playerState.plyaerMove;
-            audioSource.Play();
+
+            
+            if (jump == true || stopJump == true)
+            {
+           
+            }
+            else
+            {
+                audioSource.clip = playerState.plyaerMove;
+                audioSource.Play();
+            }
         }
 
         // 동시에 눌릴땐 재생하지마(형준)
@@ -242,7 +273,7 @@ public class PlayerMoveController : MonoBehaviour
         {
             ResetMovement();
 
-            animator.SetBool("isRun", false);   // Idle 애니메이션 출력(형준)
+           animator.SetBool("isRun", false);   // Idle 애니메이션 출력(형준)
         }
         else
         {

@@ -138,7 +138,7 @@ public class MainUIsound : MonoBehaviour
         }
 
 
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
     }
 }

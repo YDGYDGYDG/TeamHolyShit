@@ -10,8 +10,10 @@ public class CheckPoint : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
         {
-            PlayerPrefs.SetFloat("SavedPlayerX", transform.position.x);
-            PlayerPrefs.SetFloat("SavedPlayerY", transform.position.y);
+            //PlayerPrefs.SetFloat("SavedPlayerX", transform.position.x);
+            //PlayerPrefs.SetFloat("SavedPlayerY", transform.position.y);
+            CheckPointSave.savedPositionX = transform.position.x;
+            CheckPointSave.savedPositionY = transform.position.y;
             Instantiate(Check, transform.position, Quaternion.identity);
             this.gameObject.SetActive(false);
         }

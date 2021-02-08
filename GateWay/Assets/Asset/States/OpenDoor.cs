@@ -141,7 +141,10 @@ public class OpenDoor : MonoBehaviour
         }
 
        // 씬 나가기 전에 플레이어 위치 저장해 둔 정보 등 글로벌 정보 다 삭제
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
+        CheckPointSave.savedPositionX = 0;
+        CheckPointSave.savedPositionY = 0;
+
     }
 
 }

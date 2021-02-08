@@ -29,6 +29,7 @@ public class BossSetActiveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(mod.mod);
         if (mod.mod == 1)
         {
             time += Time.deltaTime;

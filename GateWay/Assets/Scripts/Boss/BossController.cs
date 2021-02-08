@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 public class BossController : MonoBehaviour
 {
     public int mod = 1;
-    float time = 0;
-    public int changtime = 3;
     public int HP = 10;
 
     ObjectRedController rBox;
@@ -17,8 +15,25 @@ public class BossController : MonoBehaviour
 
     BossSetActiveController modtime;
 
-    int scene;
-    
+    // 보스 패턴
+    public GameObject red;
+    public GameObject blue;
+    public GameObject grey;
+    public GameObject white;
+    public GameObject whiteWall;
+
+    public GameObject cred;
+    public GameObject cblue;
+    public GameObject cgrey;
+    public GameObject cwhite;
+
+    public float time;
+
+    public float timeMax = 1;
+
+    bool start;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,18 +41,18 @@ public class BossController : MonoBehaviour
         bBox = GameObject.Find("BlueBoxPos").GetComponent<ObjectBlueController>();
         gBox = GameObject.Find("GreyBoxPos").GetComponent<ObjectGreyController>();
         wBox = GameObject.Find("WhiteBoxPos").GetComponent<ObjectWhiteController>();
-        mod = 1;
-        modtime = GameObject.Find("Boss").GetComponent<BossSetActiveController>();
+        mod = Random.Range(1,5);
+
+        red.SetActive(false);
+        blue.SetActive(false);
+        grey.SetActive(false);
+        white.SetActive(false);
+        cred.SetActive(false);
+        cblue.SetActive(false);
+        cgrey.SetActive(false);
+        cwhite.SetActive(false);
     }
-    void Change()
-    {
-        time += Time.deltaTime; ;
-        if ((int)time > changtime)
-        {
-            time = 0;
-            mod = Random.Range(1, 5);
-        }
-    }
+
 
 
     // Update is called once per frame
@@ -48,7 +63,8 @@ public class BossController : MonoBehaviour
             if (mod == 1)
             {
                 HP -= 1;
-                modtime.time = 0;
+                start = true;
+                time = 0;
                 Destroy(collider.gameObject);
                 rBox.red = false;
                 mod = Random.Range(1, 5);
@@ -59,31 +75,34 @@ public class BossController : MonoBehaviour
             if (mod == 2)
             {
                 HP -= 1;
-                modtime.time = 0;
+                start = true;
+                time = 0;
                 Destroy(collider.gameObject);
                 bBox.blue = false;
                 mod = Random.Range(1, 5);
             }
         }
-        if (collider.gameObject.name == "WhiteBox(Clone)")
+        if (collider.gameObject.name == "GreyBox(Clone)")
         {
             if (mod == 3)
             {
                 HP -= 1;
-                modtime.time = 0;
+                start = true;
+                time = 0;
                 Destroy(collider.gameObject);
-                wBox.white = false;
+                gBox.grey = false;
                 mod = Random.Range(1, 5);
             }
         }
-        if (collider.gameObject.name == "GreyBox(Clone)")
+        if (collider.gameObject.name == "WhiteBox(Clone)")
         {
             if (mod == 4)
             {
                 HP -= 1;
-                modtime.time = 0;
+                start = true;
+                time = 0;
                 Destroy(collider.gameObject);
-                gBox.grey = false;
+                wBox.white = false;
                 mod = Random.Range(1, 5);
             }
         }
@@ -91,27 +110,132 @@ public class BossController : MonoBehaviour
     }
     void Update()
     {
-        if (mod == 1)
+        if (start)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            if (mod == 1)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                time += Time.deltaTime;
+                if (time < timeMax)
+                {
+                    red.SetActive(false);
+                    blue.SetActive(false);
+                    grey.SetActive(false);
+                    white.SetActive(false);
+                    whiteWall.SetActive(true);
+                    cred.SetActive(true);
+                    cblue.SetActive(false);
+                    cgrey.SetActive(false);
+                    cwhite.SetActive(false);
+                }
+                else
+                {
+                    red.SetActive(true);
+
+                }
+            }
+            else if (mod == 2)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                time += Time.deltaTime;
+                if (time < timeMax)
+                {
+                    red.SetActive(false);
+                    blue.SetActive(false);
+                    grey.SetActive(false);
+                    white.SetActive(false);
+                    whiteWall.SetActive(true);
+                    cred.SetActive(false);
+                    cblue.SetActive(true);
+                    cgrey.SetActive(false);
+                    cwhite.SetActive(false);
+                }
+                else
+                {
+                    blue.SetActive(true);
+
+                }
+            }
+            else if (mod == 3)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.grey;
+                time += Time.deltaTime;
+                if (time < timeMax)
+                {
+                    red.SetActive(false);
+                    blue.SetActive(false);
+                    grey.SetActive(false);
+                    white.SetActive(false);
+                    whiteWall.SetActive(true);
+                    cred.SetActive(false);
+                    cblue.SetActive(false);
+                    cgrey.SetActive(true);
+                    cwhite.SetActive(false);
+                }
+                else
+                {
+                    grey.SetActive(true);
+
+                }
+            }
+            else if (mod == 4)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.white;
+                time += Time.deltaTime;
+                if (time < timeMax)
+                {
+                    red.SetActive(false);
+                    blue.SetActive(false);
+                    grey.SetActive(false);
+                    white.SetActive(false);
+                    whiteWall.SetActive(true);
+                    cred.SetActive(false);
+                    cblue.SetActive(false);
+                    cgrey.SetActive(false);
+                    cwhite.SetActive(true);
+                }
+                else
+                {
+                    white.SetActive(true);
+                    whiteWall.SetActive(false);
+ 
+                }
+            }
         }
-        else if (mod == 2)
+        else if (!start)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            if (mod == 1)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                cred.SetActive(true);
+            }
+            else if (mod == 2)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                cblue.SetActive(true);
+            }
+            else if (mod == 3)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.grey;
+                cgrey.SetActive(true);
+            }
+            else if (mod == 4)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.white;
+                cwhite.SetActive(true);
+            }
         }
-        else if (mod == 3)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.white;
-        }
-        else if (mod == 4)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.grey;
-        }
+
 
         // 사망처리
         if (HP == 0)
         {
             this.gameObject.SetActive(false);
+            red.SetActive(false);
+            blue.SetActive(false);
+            grey.SetActive(false);
+            white.SetActive(false);
+            whiteWall.SetActive(true);
         }
     }
 }

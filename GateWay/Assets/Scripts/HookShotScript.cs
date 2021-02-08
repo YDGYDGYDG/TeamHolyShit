@@ -62,6 +62,7 @@ public class HookShotScript : MonoBehaviour
     public Vector2 shootDir;
 
     int aimLayerMask;
+    int aimLayerMask1;
 
     // UI 사용
     public GameObject HookOffBtn;
@@ -88,6 +89,10 @@ public class HookShotScript : MonoBehaviour
         playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
         HookSE = GameObject.Find("Hook");                   // 훅 찾아주고..(형준)
         jumpAnim = GetComponent<Animator>();         // 애니메이션 연결(형준)
+
+        aimLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
+        aimLayerMask1 = ~(1 << LayerMask.NameToLayer("Water"));
+
 
     }
 
@@ -259,8 +264,7 @@ public class HookShotScript : MonoBehaviour
                 // 에임 그리기 시퀀스 ---------------------
                 // 에임의 끝점을 구하는 레이캐스트
                 RaycastHit2D hit;
-                aimLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
-                hit = Physics2D.Raycast(transform.position, aimDir, Mathf.Infinity, aimLayerMask);
+                hit = Physics2D.Raycast(transform.position, aimDir, Mathf.Infinity, aimLayerMask & aimLayerMask1);
                 // 에임을 그린다
                 // 에임의 레이캐스트 거리 > 에임의 최대 사거리 이면
                 if (hit && lineMax > (transform.position - new Vector3(hit.point.x, hit.point.y, 0)).magnitude)

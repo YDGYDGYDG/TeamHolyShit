@@ -38,15 +38,7 @@ public class MainUIbgm : MonoBehaviour
             case "MainScene":
                 ChangeBGM(0);
                 break;
-            case "OptionScene":
-                ChangeBGM(0);
-                break;
-            case "CreditScene":
-                ChangeBGM(0);
-                break;
-            case "StageSelectScene":
-                ChangeBGM(0);
-                break;
+           
 
             // 튜토
             case "TutorialStage1":

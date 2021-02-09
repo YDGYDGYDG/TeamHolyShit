@@ -17,7 +17,6 @@ public class LevelChecker : MonoBehaviour
         if (sceneName == "Stage1_LevelScene")
         {
             level = PlayerPrefs.GetInt("Fire", 0);
-            Debug.Log(level);
             if(level >= 4)
             {
                 for (int i = 0; i < level; i++)
@@ -36,7 +35,6 @@ public class LevelChecker : MonoBehaviour
         else if (sceneName == "Stage2_LevelScene")
         {
             level = PlayerPrefs.GetInt("Water", 0);
-            Debug.Log(level);
             if (level >= 4)
             {
                 for (int i = 0; i < level; i++)
@@ -55,7 +53,6 @@ public class LevelChecker : MonoBehaviour
         else if (sceneName == "Stage3_LevelScene")
         {
             level = PlayerPrefs.GetInt("Mech", 0);
-            Debug.Log(level);
             if (level >= 5)
             {
                 for (int i = 0; i < level; i++)
@@ -74,7 +71,6 @@ public class LevelChecker : MonoBehaviour
         else if (sceneName == "Stage4_LevelScene")
         {
             level = PlayerPrefs.GetInt("Wind", 0);
-            Debug.Log(level);
             if (level >= 5)
             {
                 for (int i = 0; i < level; i++)

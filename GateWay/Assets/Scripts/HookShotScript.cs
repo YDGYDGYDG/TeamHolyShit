@@ -66,6 +66,7 @@ public class HookShotScript : MonoBehaviour
 
     // UI 사용
     public GameObject HookOffBtn;
+    GameObject lever;
 
     // 물건을 들고 있는가
     public bool isHaveShootableObject = false;
@@ -89,7 +90,7 @@ public class HookShotScript : MonoBehaviour
         playerPosition = GetComponent<SpriteRenderer>();    // 랜더러 값 찾아주고?(형준)
         HookSE = GameObject.Find("Hook");                   // 훅 찾아주고..(형준)
         jumpAnim = GetComponent<Animator>();         // 애니메이션 연결(형준)
-
+        lever = GameObject.Find("Lever");
         aimLayerMask = ~(1 << LayerMask.NameToLayer("Player"));
         aimLayerMask1 = ~(1 << LayerMask.NameToLayer("Water"));
 
@@ -222,6 +223,7 @@ public class HookShotScript : MonoBehaviour
         isAttachObject = false;
         hook.gameObject.SetActive(false);
         HookOffBtn.SetActive(false);
+        lever.SetActive(true);
         playerlineSpeedPower = 1;
     }
 
@@ -234,6 +236,8 @@ public class HookShotScript : MonoBehaviour
             getRigid.AddForce((hook.position - transform.position).normalized * linePower * nowRope);
         }
         HookOFF();
+        lever.SetActive(true);
+
     }
 
     public void HookAim()
@@ -288,7 +292,8 @@ public class HookShotScript : MonoBehaviour
         if (!isHookActive)
         {
             aim.SetActive(false);
-            
+            lever.SetActive(false);
+
             hook.gameObject.SetActive(true);
             isHookActive = true;
             // 훅은 캐릭터 위치에서부터 날아가겠지

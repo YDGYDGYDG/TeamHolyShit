@@ -38,29 +38,29 @@ public class OpenDoor : MonoBehaviour
 
 
             // =========================== 김나연(물) =====================================
-            else if (SceneManager.GetActiveScene().name == "WaterPlanet1")
-            {
-                SceneManager.LoadScene("WaterPlanet2");  // 2 스테이지 이동
-                PlayerPrefs.SetInt("Water", 1);
-            }
+            //else if (SceneManager.GetActiveScene().name == "WaterPlanet1")
+            //{
+            //    SceneManager.LoadScene("WaterPlanet2");  // 2 스테이지 이동
+            //    PlayerPrefs.SetInt("Water", 1);
+            //}
 
-            else if (SceneManager.GetActiveScene().name == "WaterPlanet2")
-            {
-                SceneManager.LoadScene("WaterPlanet3");  // 3 스테이지 이동
-                PlayerPrefs.SetInt("Water", 2);
-            }
+            //else if (SceneManager.GetActiveScene().name == "WaterPlanet2")
+            //{
+            //    SceneManager.LoadScene("WaterPlanet3");  // 3 스테이지 이동
+            //    PlayerPrefs.SetInt("Water", 2);
+            //}
 
-            else if (SceneManager.GetActiveScene().name == "WaterPlanet3")
-            {
-                SceneManager.LoadScene("WaterPlanet4");  // 4 스테이지 이동
-                PlayerPrefs.SetInt("Water", 3);
-            }
+            //else if (SceneManager.GetActiveScene().name == "WaterPlanet3")
+            //{
+            //    SceneManager.LoadScene("WaterPlanet4");  // 4 스테이지 이동
+            //    PlayerPrefs.SetInt("Water", 3);
+            //}
 
-            else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
-            {
-                SceneManager.LoadScene("ClearScene"); // 클리어 화면으로 이동
-                PlayerPrefs.SetInt("Water", 4);
-            }
+            //else if (SceneManager.GetActiveScene().name == "WaterPlanet4")
+            //{
+            //    SceneManager.LoadScene("ClearScene"); // 클리어 화면으로 이동
+            //    PlayerPrefs.SetInt("Water", 4);
+            //}
             //=============================================================================
 
 

@@ -20,6 +20,9 @@ public class PlayerMoveController : MonoBehaviour
     RaycastHit2D RHit;
     LayerMask moveLayerMask;
     LayerMask waterLayerMask;
+    LayerMask wallLayerMask;
+    LayerMask steelwallLayerMask;
+
     float playerSize;
     // 점프 상태
     public bool jump;

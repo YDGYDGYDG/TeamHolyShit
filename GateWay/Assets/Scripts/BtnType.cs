@@ -19,6 +19,10 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     GameObject uiSE;                // 오디오 매니저(형준)
     GameObject uiBGM;
     MainUIsound mainUIsound;        // 오디오 매니저 스크립트(형준)
+
+    AudioSource BgmAudioSource;
+
+    
     public void Awake()
     {
         defaultScale = buttonScale.localScale;
@@ -27,6 +31,10 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         uiBGM = GameObject.Find("UI BGM");   // 오디오 매니저 연결(형준)
         audioSource = uiSE.GetComponent<AudioSource>(); // 오디오 소스 연결(형준)
         mainUIsound = uiSE.GetComponent<MainUIsound>(); // 오디오 매니저 스크립트 연결(형준)
+
+        BgmAudioSource = uiBGM.GetComponent<AudioSource>();
+
+        
     }
 
     // 버튼에 마우스를 가져다 대면 버튼이 커짐
@@ -206,10 +214,12 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case BTNType.BGM_On:
                 btnClick();
+                BgmAudioSource.volume = 0.3f;
                 // BGM실행
                 break;
             case BTNType.BGM_Off:
                 btnClick();
+                BgmAudioSource.volume = 0.0f;
                 // BGM중단
                 break;
             case BTNType.BossStage:

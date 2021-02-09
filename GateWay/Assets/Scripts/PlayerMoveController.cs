@@ -74,13 +74,44 @@ public class PlayerMoveController : MonoBehaviour
         {
             LBDown();
             playerPosition.flipX = true;    // 애니메이션 방향 왼쪽(형준)
-            
+
+            // 추가 사항
+            if (audioSource.isPlaying == false && !jump)
+            {
+                if (!jump)
+                {
+                    audioSource.clip = playerState.plyaerMove;
+                    audioSource.Play();
+                }
+
+                else if (!stopJump)
+                {
+                    audioSource.clip = playerState.plyaerMove;
+                    audioSource.Play();
+                }
+            }
+
         }
         if (RBTrigger)
         {
             RBDown();
             playerPosition.flipX = false;    // 애니메이션 방향 오른쪽(형준)
-            
+
+            // 추가 사항
+            if (audioSource.isPlaying == false && !jump)
+            {
+                if (!jump)
+                {
+                    audioSource.clip = playerState.plyaerMove;
+                    audioSource.Play();
+                }
+
+                else if (!stopJump)
+                {
+                    audioSource.clip = playerState.plyaerMove;
+                    audioSource.Play();
+                }
+            }
         }
     }
 
@@ -134,6 +165,7 @@ public class PlayerMoveController : MonoBehaviour
         // 바닥에 충돌했을 때 다시 Idle 애니메이션으로 전환(형준)
         if (rigidBody.velocity.y < 0)
         {
+            Debug.DrawRay(transform.position, Vector3.down, new Color(0, 1, 0));
             RaycastHit2D rayDownHit = Physics2D.Raycast(transform.position + new Vector3(playerSize - 0.4f, -0.5f), Vector3.down, 0.3f);
             if (rayDownHit.collider != null)
             {
@@ -141,17 +173,17 @@ public class PlayerMoveController : MonoBehaviour
                 {
                     animator.SetBool("isJump", false);
 
-                    if (LBTrigger == true && jump == false && stopJump == false && audioSource.isPlaying == false)
+                    if (LBTrigger == true && jump == false && stopJump == false)
                     {
                         animator.SetBool("isRun", true);
-                        audioSource.clip = playerState.plyaerMove;
-                        audioSource.Play();
+                       // audioSource.clip = playerState.plyaerMove;
+                       // audioSource.Play();
                     }
-                    else if(RBTrigger == true && jump == false && stopJump == false && audioSource.isPlaying == false)
+                    else if(RBTrigger == true && jump == false && stopJump == false)
                     {
                         animator.SetBool("isRun", true);
-                        audioSource.clip = playerState.plyaerMove;
-                        audioSource.Play();
+                       // audioSource.clip = playerState.plyaerMove;
+                       // audioSource.Play();
                     }
 
                 }
@@ -193,17 +225,11 @@ public class PlayerMoveController : MonoBehaviour
         // SE 중복재생 방지(형준)
         if (audioSource.isPlaying == false && rigidBody.velocity.y > -2 && rigidBody.velocity.y < 2)
         {
-            
-           if (jump == true || stopJump == true)
-           {
-          
-           }
-           else
+           if (!jump || !stopJump)
            {
                 audioSource.clip = playerState.plyaerMove;
                 audioSource.Play();
             }
-            
         }
 
         // 동시에 눌릴땐 재생하지마(형준)
@@ -236,13 +262,7 @@ public class PlayerMoveController : MonoBehaviour
         // SE 중복재생 방지(형준)
         if (audioSource.isPlaying == false && rigidBody.velocity.y > -2 && rigidBody.velocity.y < 2)
         {
-
-            
-            if (jump == true || stopJump == true)
-            {
-           
-            }
-            else
+            if (!jump || !stopJump)
             {
                 audioSource.clip = playerState.plyaerMove;
                 audioSource.Play();

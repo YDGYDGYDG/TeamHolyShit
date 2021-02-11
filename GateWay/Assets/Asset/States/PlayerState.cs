@@ -18,30 +18,30 @@ public class PlayerState : MonoBehaviour
     public AudioClip playerDrop;           // 플레이어 추락 사운드
     public AudioClip plyaerMove;           // 플레이어 무브 사운드
     public AudioClip plyaerjump;           // 플레이어 점프 사운드
-    
 
-    // 캐릭터 부활 위치(맵에 따라 다름 인스펙터에서 조절하세요~~)
-    public Vector2 playerStartPosition = new Vector2(0f, 0f);
-
+    int randomSeed;
 
     public void playerRevive()     // 부활 함수
     {
-        //this.gameObject.SetActive(true);         
-        //// 스폰 시 저장된 위치가 있다면 그곳으로
-        //Vector2 loadSavedPositon = new Vector2(PlayerPrefs.GetFloat("SavedPlayerX"), PlayerPrefs.GetFloat("SavedPlayerY"));
-        //if (loadSavedPositon != null)
-        //{
-        //    transform.position = loadSavedPositon;
-        //}
-        //else
-        //{
-        //    transform.position = Vector2.zero;
-        //}
         if (SceneManager.GetActiveScene().name == "BossStage")
         {
             this.gameObject.SetActive(true);
-            //gameObject.transform.position = playerStartPosition;
-            gameObject.transform.position = new Vector2(0, 0);
+            randomSeed = Random.Range(0, 4);
+            switch (randomSeed)
+            {
+                case 0:
+                    transform.position = new Vector2(-18, -16);
+                    break;
+                case 1:
+                    transform.position = new Vector2(18, -16);
+                    break;
+                case 2:
+                    transform.position = new Vector2(18, 8);
+                    break;
+                case 3:
+                    transform.position = new Vector2(-18, 8);
+                    break;
+            }
         }
         else
         {
@@ -63,7 +63,26 @@ public class PlayerState : MonoBehaviour
         //Debug.Log(PlayerPrefs.GetFloat("SavedPlayerX")+"부활"+ PlayerPrefs.GetFloat("SavedPlayerY"));
         // 스폰 시 저장된 위치가 있다면 그곳으로
         Vector2 loadSavedPositon = new Vector2(PlayerPrefs.GetFloat("SavedPlayerX"), PlayerPrefs.GetFloat("SavedPlayerY"));
-        if(loadSavedPositon != null)
+        if (SceneManager.GetActiveScene().name == "BossStage")
+        {
+            randomSeed = Random.Range(0, 4);
+            switch (randomSeed)
+            {
+                case 0:
+                    transform.position = new Vector2(-18, -16);
+                    break;
+                case 1:
+                    transform.position = new Vector2(18, -16);
+                    break;
+                case 2:
+                    transform.position = new Vector2(18, 8);
+                    break;
+                case 3:
+                    transform.position = new Vector2(-18, 8);
+                    break;
+            }
+        }
+        else if (loadSavedPositon != null)
         {
             transform.position = loadSavedPositon;
         }
@@ -113,12 +132,6 @@ public class PlayerState : MonoBehaviour
             hookLine.BreakShootableObject();
         }
         playerMoveStop.Dead();                      // 이동 정지해
-        // 보스 신에서 부활
-        if (SceneManager.GetActiveScene().name == "BossStage")
-        {
-            playerStartPosition = this.gameObject.transform.position;
-        }
-
 
         // 이펙트도 출력해
         Instantiate(playerDeath, transform.position, Quaternion.identity);

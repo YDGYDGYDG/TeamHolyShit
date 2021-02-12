@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8459482882585902467}
   - component: {fileID: 690673462381897620}
   - component: {fileID: 8849562084522392389}
-  - component: {fileID: 2247638454099535395}
+  - component: {fileID: 2077590853413948582}
   m_Layer: 0
   m_Name: WaterMonsterPrefabRL
   m_TagString: Monster
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
---- !u!114 &2247638454099535395
+--- !u!114 &2077590853413948582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5374881680963988016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12f3a3ecdaf766e4a8d28a54a2fbaae0, type: 3}
+  m_Script: {fileID: 11500000, guid: 1420ca6687b014842973a8093fe259a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterSpeed: 200

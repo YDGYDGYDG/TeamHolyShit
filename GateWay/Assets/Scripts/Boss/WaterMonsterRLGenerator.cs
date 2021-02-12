@@ -13,7 +13,9 @@ public class WaterMonsterRLGenerator : MonoBehaviour
 
     void Start()
     {
-
+        GameObject waterMonster = Instantiate(waterMonsterPrefab) as GameObject;
+        waterMonster.transform.position = new Vector2(range.transform.position.x, range.transform.position.y);
+        waterMonster.transform.parent = gameObject.transform;
     }
 
     void Update()
@@ -24,6 +26,7 @@ public class WaterMonsterRLGenerator : MonoBehaviour
             delta = 0;
             GameObject waterMonster = Instantiate(waterMonsterPrefab) as GameObject;
             waterMonster.transform.position = new Vector2(range.transform.position.x, range.transform.position.y);
+            waterMonster.transform.parent = gameObject.transform;
         }
 
     }

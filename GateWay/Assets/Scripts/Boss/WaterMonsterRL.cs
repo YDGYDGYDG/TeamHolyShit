@@ -14,14 +14,15 @@ public class WaterMonsterRL : MonoBehaviour
     {
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Destroy(gameObject);
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2Int(monsterSpeed, 0));
-        if (transform.position.x > 23)
-        {
-            Destroy(gameObject);
-        }
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2Int(-monsterSpeed, 0));
+
     }
 }

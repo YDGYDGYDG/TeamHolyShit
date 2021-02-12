@@ -9,158 +9,145 @@ public class GreyGenerator : MonoBehaviour
     public float RTime = 0.6f;
     public float DTime = 2f;
 
-    public GameObject rlur;
-    public GameObject rlub;
-    public GameObject rldr;
-    public GameObject rldb;
-    public GameObject udlr;
-    public GameObject udlb;
-    public GameObject udrr;
-    public GameObject udrb;
-    
-    
+    public GameObject upRadRay;
+    public GameObject upBlueRay;
+    public GameObject downRadRay;
+    public GameObject downBlueRay;
+    public GameObject laftRadRay;
+    public GameObject laftBlueRay;
+    public GameObject righteRadRay;
+    public GameObject rightBlueRay;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        random = Random.Range(1, 5);
+        // random = Random.Range(1, 13);
         Rayoff();
 
     }
     
-    void RLUR()
+    void RadRay()
     {
-        rlur.SetActive(true);
-        rlub.SetActive(false);
-    }
-    void RLUB()
-    {
-        rlub.SetActive(true);
-        rlur.SetActive(false);
-    }
+        upRadRay.SetActive(true);
+        downRadRay.SetActive(true);
+        laftRadRay.SetActive(true);
+        righteRadRay.SetActive(true);
 
-    void RLDR()
-    {
-        rldr.SetActive(true);
-        rlub.SetActive(false);
+        upBlueRay.SetActive(false);
+        downBlueRay.SetActive(false);
+        laftBlueRay.SetActive(false);
+        rightBlueRay.SetActive(false);
     }
-    void RLDB()
+    void BlueRay()
     {
-        rldb.SetActive(true);
-        rldr.SetActive(false);
-    }
+        upRadRay.SetActive(false);
+        downRadRay.SetActive(false);
+        laftRadRay.SetActive(false);
+        righteRadRay.SetActive(false);
 
-    void UDRR()
-    {
-        udrr.SetActive(true);
-        udrb.SetActive(false);
+        upBlueRay.SetActive(true);
+        downBlueRay.SetActive(true);
+        laftBlueRay.SetActive(true);
+        rightBlueRay.SetActive(true);
     }
-    void UDRB()
-    {
-        udrb.SetActive(true);
-        udrr.SetActive(false);
-    }
-
-    void UDLR()
-    {
-        udlr.SetActive(true);
-        udlb.SetActive(false);
-    }
-    void UDLB()
-    {
-        udlb.SetActive(true);
-        udlr.SetActive(false);
-    }
+ 
 
     void Rayoff()
     {
-        rlur.SetActive(false);
-        rlub.SetActive(false);
-        rldr.SetActive(false);
-        rldb.SetActive(false);
-        udlr.SetActive(false);
-        udlb.SetActive(false);
-        udrr.SetActive(false);
-        udrb.SetActive(false);
+        upRadRay.SetActive(false);
+        upBlueRay.SetActive(false);
+        downRadRay.SetActive(false);
+        downBlueRay.SetActive(false);
+        laftRadRay.SetActive(false);
+        laftBlueRay.SetActive(false);
+        righteRadRay.SetActive(false);
+        rightBlueRay.SetActive(false);
     }
 
     int random;
-    
+
+    float pos = 100;
     // Update is called once per frame
     void FixedUpdate()
     {
+
         time += Time.deltaTime;
-        if (random == 1)
+        // if (random == 1)
+        // {
+        //     pos = 75;
+        // }
+        // else if (random == 2)
+        // {
+        //     pos = 70;
+        // }
+        // else if (random == 3)
+        // {
+        //     pos = 31.2f;
+        // }
+        // else if (random == 4)
+        // {
+        //     pos = 15;
+        // }
+        // else if (random == 5)
+        // {
+        //     pos = 6;
+        // }
+        // else if (random == 6)
+        // {
+        //     pos = 4.6f;
+        // }
+        // else if (random == 7)
+        // {
+        //     pos = 97.2f;
+        // }
+        // else if (random == 8)
+        // {
+        //     pos = 105;
+        // }
+        // else if (random == 9)
+        // {
+        //     pos = 105;
+        // }
+        // else if (random == 10)
+        // {
+        //     pos = 112.4f;
+        // }
+        // else if (random == 11)
+        // {
+        //     pos = 121.4f;
+        // }
+        // else if (random == 12)
+        // {
+        //     pos = 145.1f;
+        // }
+
+
+
+        if (time < BTime)
         {
-            if (time < BTime)
-            {
-                RLUB();
-                UDRB();
-            }
-            else if (time < RTime)
-            {
-                RLUR();
-                UDRR();
-            }
-            else
-            {
-                Rayoff();
-            }
+            gameObject.transform.Rotate(0, 0, 0);
+            BlueRay();
         }
-        if (random == 2)
+        else if (time < RTime)
         {
-            if (time < BTime)
-            {
-                RLUB();
-                UDLB();
-            }
-            else if (time < RTime)
-            {
-                RLUR();
-                UDLR();
-            }
-            else
-            {
-                Rayoff();
-            }
+            gameObject.transform.Rotate(0, 0, 0);
+            RadRay();
         }
-        if ( random == 3)
+        else
         {
-            if (time < BTime)
-            {
-                RLDB();
-                UDRB();
-            }
-            else if (time < RTime)
-            {
-                RLDR();
-                UDRR();
-            }
-            else
-            {
-                Rayoff();
-            }
+            gameObject.transform.Rotate(0, 0, 5);
+            Rayoff();
         }
-        if (random == 4)
-        {
-            if (time < BTime)
-            {
-                RLDB();
-                UDLB();
-            }
-            else if (time < RTime)
-            {
-                RLDR();
-                UDLR();
-            }
-            else
-            {
-                Rayoff();
-            }
-        }
+
+
+
+
+
         if (time > DTime)
         {
             time = 0;
-            random = Random.Range(1, 5);
+            // random = Random.Range(1, 13);
         }
     }
 }

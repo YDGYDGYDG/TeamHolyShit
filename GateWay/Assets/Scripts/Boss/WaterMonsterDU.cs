@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterMonsterDU : MonoBehaviour
+public class WaterMonsterUD : MonoBehaviour
 {
     public int monsterSpeed = 100;
 
@@ -21,10 +21,11 @@ public class WaterMonsterDU : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2Int(0, -monsterSpeed));
-        if(gameObject.transform.position.y <= -20)
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2Int(monsterSpeed,0));
+        if (gameObject.transform.position.x >= 20)
         {
             Destroy(gameObject);
         }
+
     }
 }

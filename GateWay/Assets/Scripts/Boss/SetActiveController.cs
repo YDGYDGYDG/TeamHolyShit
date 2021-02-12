@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SetActiveController : MonoBehaviour
 {
-    public GameObject fireO;
-    public GameObject fireT;
+    public GameObject fire1;
+    public GameObject fire2;
+    public GameObject fire3;
 
 
     // Start is called before the first frame update
@@ -22,8 +23,9 @@ public class SetActiveController : MonoBehaviour
         if (time >= maxtime)
         {
             time = 0;
-            fireO.SetActive(true);
-            fireT.SetActive(true);
+            fire1.SetActive(true);
+            fire2.SetActive(true);
+            fire3.SetActive(true);
         }
     }
 }

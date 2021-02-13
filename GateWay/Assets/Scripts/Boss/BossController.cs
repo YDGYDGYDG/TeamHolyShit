@@ -204,7 +204,6 @@ public class BossController : MonoBehaviour
                 {
                     white.SetActive(true);
                     whiteWall.SetActive(false);
- 
                 }
             }
         }

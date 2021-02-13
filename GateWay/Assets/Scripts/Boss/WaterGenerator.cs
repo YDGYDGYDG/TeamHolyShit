@@ -35,7 +35,9 @@ public class WaterGenerator : MonoBehaviour
             water13.SetActive(true);
             if(time >= changetime)
             {
+                water13.SetActive(false);
                 time = 0;
+
             }
             if (time < maxtime)
             {
@@ -51,7 +53,6 @@ public class WaterGenerator : MonoBehaviour
                 water10.SetActive(false);
                 water11.SetActive(false);
                 water12.SetActive(false);
-                water13.SetActive(false);
             }
             else if (time >= maxtime)
             {
